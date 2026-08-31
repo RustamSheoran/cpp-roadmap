@@ -8,24 +8,44 @@
 
 ---
 
+## Roadmap Progression Tiers
+
+| Tier | Candidate Profile & Core Competencies |
+| :--- | :--- |
+| **THE TOP 1% TIER** | **Lock-Free Primitives** • **Memory Consistency Models** • **Cache Coherence (MESI)** • **Micro-benchmarking** • **Assembly & Inlines** |
+| **COMPETITIVE TIER** | Modern C++ (20/23) • Profiling (perf/VTune) • Kernel Bypass (DPDK/ef_vi) • Linux Kernel Tuning • Custom Allocators |
+| **BASELINE TIER** | Standard DSA • Socket Programming • CMake • Valgrind • OOP |
+
+### Role Track Specializations
+
+| Role Track | What You Listed That Matters | Missing Essentials You Must Master |
+| :--- | :--- | :--- |
+| **C++ Core Software Dev (Low-Latency)** | Memory architecture (TLB, cache lines), `perf`, `Valgrind`, `VTune`, `CMake`, `DPDK`/`ef_vi` | **Extreme Concurrency:** Lock-free structures (SPSC, memory orders).<br>**Modern C++ Internals:** Move semantics, `constexpr`/`consteval`, zero-cost abstractions.<br>**OS & Architecture:** MESI, branch prediction, kernel bypass.<br>**DSA:** Fast algorithmic reasoning under strict constraints. |
+| **FPGA / Hardware Engineer** | FPGA (Verilog/VHDL, SystemVerilog), ITCH/OUCH parsing on chip, PCIe/Ethernet MAC layers | High-speed digital design, CDC (Clock Domain Crossing), pipeline timing closure, AXI stream interfaces, Vivado/Quartus toolchains. |
+| **Quantitative Developer / Researcher** | Market mechanics (Order book matching, FIX, ITCH/OUCH) | Fast mental probability, linear algebra, time-series statistics, vectorized Python/C++ integration, pricing models. |
+
+> [!TIP]
+> **Key hiring reality for HFT freshers:** Most HFTs test Computer Architecture, Multithreading, Modern C++, and Advanced DSA/Puzzles during campus/off-campus hiring. You rarely get quizzed on proprietary APIs like `ef_vi` or ITCH/OUCH specifications in interviews, but knowing them makes your resume stand out and gives you an immediate advantage in technical discussions and trial weeks.
+
 # Table of Contents
 
 1. [The Overall Roadmap](#1-the-overall-roadmap)
 2. [Phase 0 — Modern C++ Foundation](#2-phase-0--modern-c-foundation)
-3. [Phase 1 — What Happens Beneath C++](#3-phase-1--what-happens-beneath-c)
-4. [Phase 2 — Memory and Hardware](#4-phase-2--memory-and-hardware)
-5. [Phase 3 — Linux Systems Mastery](#5-phase-3--linux-systems-mastery)
-6. [Phase 4 — Concurrency](#6-phase-4--concurrency)
+3. [Phase 1 — What Happens Beneath C++ & Compiler Design](#3-phase-1--what-happens-beneath-c--compiler-design)
+4. [Phase 2 — CPU Architecture, Memory, and Hardware](#4-phase-2--cpu-architecture-memory-and-hardware)
+5. [Phase 3 — OS Fundamentals & Linux Systems Mastery](#5-phase-3--os-fundamentals--linux-systems-mastery)
+6. [Phase 4 — Concurrency & Memory Models](#6-phase-4--concurrency--memory-models)
 7. [Phase 5 — Performance Engineering](#7-phase-5--performance-engineering)
 8. [Phase 6 — Networking and I/O](#8-phase-6--networking-and-io)
 9. [Phase 7 — Advanced I/O and Kernel Bypass](#9-phase-7--advanced-io-and-kernel-bypass)
 10. [Phase 8 — x86-64, Assembly, and SIMD](#10-phase-8--x86-64-assembly-and-simd)
-11. [Phase 9 — The Flagship Project](#11-phase-9--the-flagship-project)
-12. [What Not to Learn Yet](#12-what-not-to-learn-yet)
-13. [Weekly Study Split](#13-weekly-study-split)
-14. [Free Resources](#14-free-resources)
-15. [Milestones](#15-milestones)
-16. [The Learning Loop](#16-the-learning-loop)
+11. [Phase 9 — Financial Markets & Trading Mechanics](#11-phase-9--financial-markets--trading-mechanics)
+12. [Phase 10 — Quantitative Math & Probability (Quant Track)](#12-phase-10--quantitative-math--probability-quant-track)
+13. [Phase 11 — The Hardcore Flagship Projects](#13-phase-11--the-hardcore-flagship-projects)
+14. [What Not to Learn Yet](#14-what-not-to-learn-yet)
+15. [Weekly Study Split](#15-weekly-study-split)
+16. [Free Resources](#16-free-resources)
+17. [The Learning Loop](#17-the-learning-loop)
 
 ---
 
@@ -41,35 +61,23 @@ flowchart TD
     P5 --> P6["**Phase 6**<br/>Master networking and event-driven I/O"]
     P6 --> P7["**Phase 7**<br/>Advanced I/O and kernel bypass"]
     P7 --> P8["**Phase 8**<br/>x86-64, assembly, and SIMD"]
-    P8 --> P9["**Phase 9**<br/>Build serious high-performance systems"]
-    P9 --> P10["**Phase 10**<br/>Read real production code and specialize"]
-````
+    P8 --> P9["**Phase 9**<br/>Financial Markets & Trading Mechanics"]
+    P9 --> P10["**Phase 10**<br/>Quant Math & Probability (Optional)"]
+    P10 --> P11["**Phase 11**<br/>Build hardcore high-performance systems"]
+```
 
 > [!IMPORTANT]
 > Do not try to learn all of this simultaneously. Depth matters more than touching everything once.
 
-The goal is not to become someone who knows the most C++ syntax.
-
 The goal is to become someone who can answer:
-
 - What does this code compile into?
-    
 - Where is this object stored?
-    
 - Who owns this memory?
-    
 - What is its lifetime?
-    
 - How does this affect the cache?
-    
 - Is this operation thread-safe?
-    
 - What does the compiler optimize?
-    
 - Where is the actual bottleneck?
-    
-- How can I measure it?
-    
 
 ---
 
@@ -77,1405 +85,455 @@ The goal is to become someone who can answer:
 
 **Estimated time: 2–4 months**
 
-
 ### 📚 Useful References for Phase 0
 - [cppreference: C++ Language](https://en.cppreference.com/w/cpp/language)
 - [Learn C++ (Comprehensive tutorials)](https://www.learncpp.com/)
 - [Effective Modern C++ by Scott Meyers](https://www.oreilly.com/library/view/effective-modern-c/9781491908419/)
+- [YouTube: CppCon - Back to Basics Series](https://www.youtube.com/playlist?list=PLHTh1InhhwT6vqw21c_QhE6cZ75FkQst_)
 
 ## Core Language
 
-Become comfortable with:
-
-- Pointers and references
-    
-- Object lifetime
-    
-- Storage duration
-    
-- Stack vs heap
-    
-- `const`
-    
-- Value categories
-    
-- Lvalues
-    
-- Xvalues
-    
-- Prvalues
-    
-- Copy semantics
-    
-- Move semantics
-    
-- Constructors and destructors
-    
-- RAII
-    
-- Exceptions
-    
-- Templates
-    
-- Concepts
-    
-- Lambdas
-    
-- `constexpr`
-    
-- `consteval`
-    
+- **Pointers and references** [Docs](https://en.cppreference.com/w/cpp/language/pointer)
+  - The mechanisms for indirect memory access. References are essentially syntax sugar for non-null, immutable pointers.
+- **Object lifetime & Storage duration** [Docs](https://en.cppreference.com/w/cpp/language/lifetime)
+  - Understanding when an object is created and destroyed (automatic/stack, dynamic/heap, static, thread-local).
+- **Stack vs heap** [Resource](https://www.learncpp.com/cpp-tutorial/the-stack-and-the-heap/)
+  - Stack is fast, local, and auto-managed. Heap is slow, global, and requires explicit OS memory allocation.
+- **`const` correctness** [Docs](https://isocpp.org/wiki/faq/const-correctness)
+  - Enforcing immutability at compile-time to prevent state changes and enable optimizations.
+- **Value categories (Lvalues, Xvalues, Prvalues)** [Docs](https://en.cppreference.com/w/cpp/language/value_category)
+  - Understanding expressions you can assign to (lvalues) vs temporaries (rvalues). This is the foundation of move semantics.
+- **Copy vs Move semantics** [Docs](https://en.cppreference.com/w/cpp/utility/move)
+  - Copying duplicates data. Move semantics (`std::move`) steals resources from temporary objects for zero-cost transfers.
+- **Constructors and destructors** [Docs](https://en.cppreference.com/w/cpp/language/constructor)
+  - Hooking into the lifecycle of an object for resource initialization and cleanup.
+- **RAII (Resource Acquisition Is Initialization)** [Resource](https://en.cppreference.com/w/cpp/language/raii)
+  - Tying resource lifecycle (memory, file handles, locks) to object lifetime to guarantee exception-safe cleanup.
+- **Exceptions & `std::expected` (C++23)** [Docs](https://en.cppreference.com/w/cpp/utility/expected)
+  - Understand the massive cost of stack unwinding and why HFT environments compile with `-fno-exceptions`. Learn modern exception-less error handling using `std::expected` (monadic error handling).
+- **Templates & Concepts (C++20)** [Docs](https://en.cppreference.com/w/cpp/language/templates)
+  - Compile-time polymorphism. Concepts constrain templates for better error messages.
+- **Lambdas** [Docs](https://en.cppreference.com/w/cpp/language/lambda)
+  - Anonymous inline functions. Understand how variable capture (`=` vs `&`) translates to internal state.
+- **`constexpr` & `consteval` (C++20)** [Docs](https://en.cppreference.com/w/cpp/language/constexpr)
+  - Forcing computation to happen at compile-time, resulting in zero runtime cost.
 
 ## Modern Standard Library
 
-Understand these well:
-
-```cpp
-std::vector
-std::array
-std::deque
-std::list
-std::unordered_map
-std::map
-std::set
-std::unordered_set
-
-std::unique_ptr
-std::shared_ptr
-std::weak_ptr
-
-std::optional
-std::variant
-std::any
-
-std::span
-std::string_view
-
-std::algorithm
-std::ranges
-
-std::chrono
-std::filesystem
-
-std::thread
-std::mutex
-std::atomic
-std::condition_variable
-```
-
-### Important mindset
-
-Do not simply memorize syntax.
-
-For every feature, ask:
-
-> [!NOTE]
-> What does this do at runtime?
-
-For example:
-
-- Does it allocate?
-    
-- Does it copy?
-    
-- Does it move?
-    
-- Does it cause indirection?
-    
-- What owns the object?
-    
-- When is the destructor called?
-    
-
-## Primary Resources
-
-- [cppreference](https://en.cppreference.com/)
-    
-- [CppCon](https://www.youtube.com/@CppCon)
-    
-- [C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines)
-    
-
-Use **cppreference as a reference**, not as something to read from beginning to end.
+- **Containers:**
+  - `std::vector` (contiguous memory, cache-friendly) [Docs](https://en.cppreference.com/w/cpp/container/vector)
+  - `std::array` (stack-allocated) [Docs](https://en.cppreference.com/w/cpp/container/array)
+  - `std::deque` (chunked contiguous) [Docs](https://en.cppreference.com/w/cpp/container/deque)
+  - `std::unordered_map` (hash table) [Docs](https://en.cppreference.com/w/cpp/container/unordered_map)
+- **Smart Pointers:**
+  - `std::unique_ptr` (exclusive ownership) [Docs](https://en.cppreference.com/w/cpp/memory/unique_ptr)
+  - `std::shared_ptr` (shared ownership, atomic reference counting) [Docs](https://en.cppreference.com/w/cpp/memory/shared_ptr)
+  - *Note: High-performance code often entirely avoids `std::shared_ptr` due to this atomic overhead, favoring deterministic lifetime design with raw non-owning pointers.*
+- **Vocabulary Types:**
+  - `std::optional` (might not contain a value) [Docs](https://en.cppreference.com/w/cpp/utility/optional)
+  - `std::variant` (type-safe union) [Docs](https://en.cppreference.com/w/cpp/utility/variant)
+  - `std::span` (non-owning view of contiguous memory) [Docs](https://en.cppreference.com/w/cpp/container/span)
+  - `std::string_view` [Docs](https://en.cppreference.com/w/cpp/string/basic_string_view)
+- **Algorithms & Ranges:**
+  - `std::algorithm` (sort, find) [Docs](https://en.cppreference.com/w/cpp/algorithm)
+  - `std::ranges` (C++20 functional chaining) [Docs](https://en.cppreference.com/w/cpp/ranges)
 
 ---
 
-# 3. Phase 1 — What Happens Beneath C++
-
-This phase is where C++ starts becoming much more interesting.
-
+# 3. Phase 1 — What Happens Beneath C++ & Compiler Design
 
 ### 📚 Useful References for Phase 1
+- [Compiler Explorer (Godbolt)](https://godbolt.org/)
 - [GCC and Make - A Tutorial](https://www3.ntu.edu.sg/home/ehchua/programming/cpp/gcc_make.html)
-- [How to Write a Shared Library](https://akkadia.org/drepper/dsohowto.pdf)
-- [CMake Tutorial](https://cmake.org/cmake/help/latest/guide/tutorial/index.html)
+- [How to Write a Shared Library (Ulrich Drepper)](https://akkadia.org/drepper/dsohowto.pdf)
+- [CMake Official Documentation](https://cmake.org/cmake/help/latest/)
 
-## Understand the Compilation Pipeline
+## The Compilation Pipeline & Compiler Design
 
 ```mermaid
 flowchart TD
     A([source.cpp]) -->|Preprocessor| B(Expanded Source)
-    B -->|Compiler| C(Assembly)
+    B -->|Lexical & Syntax Analysis| AST(Abstract Syntax Tree)
+    AST -->|IR Generation| IR(LLVM IR / Gimple)
+    IR -->|Optimization Passes| OPT(Optimized IR)
+    OPT -->|Code Generation| C(Assembly)
     C -->|Assembler| D(Object File .o)
     D -->|Linker| E([Executable])
     E -->|Loader| F((Process))
 ```
 
-Learn:
-
-- Translation units
-    
-- Headers
-    
-- Include guards
-    
-- The One Definition Rule
-    
-- Static libraries
-    
-- Shared libraries
-    
-- Name mangling
-    
-- Symbol resolution
-    
-- ABI
-    
-- ELF
-    
-- Dynamic linking
-    
-- Static linking
-    
-
-## Tools
-
-Learn to use:
-
-```bash
-clang++
-g++
-cmake
-ninja
-
-nm
-readelf
-objdump
-ldd
-size
-strings
-```
-
-## Project
-
-Build a small C++ library.
-
-Create:
-
-```text
-project/
-├── library/
-│   ├── include/
-│   └── src/
-├── app/
-├── CMakeLists.txt
-└── README.md
-```
-
-Build it as:
-
-1. A static library
-    
-2. A shared library
-    
-3. An executable using the library
-    
-
-Then inspect the output with:
-
-```bash
-nm
-readelf
-objdump
-ldd
-```
-
-The goal is to understand what actually changed.
+- **Translation units** [Docs](https://en.cppreference.com/w/cpp/language/translation_phases)
+  - A single `.cpp` file after the preprocessor has run. The compiler compiles each completely independently.
+- **Headers & Include guards** [Docs](https://en.cppreference.com/w/c/preprocessor/include)
+  - Headers declare interfaces. Guards prevent a header from being copied into a translation unit multiple times.
+- **The One Definition Rule (ODR)** [Docs](https://en.cppreference.com/w/cpp/language/odr)
+  - You can declare a symbol many times, but define it exactly once. Violating this causes linker errors or Undefined Behavior.
+- **Name mangling** [Resource](https://en.wikipedia.org/wiki/Name_mangling)
+  - Because C++ supports function overloading, the compiler mangles names (e.g., `void foo(int)` becomes `_Z3fooi`) so the linker can identify them.
+- **Object Files (.o) & ELF** [Resource](https://en.wikipedia.org/wiki/Executable_and_Linkable_Format)
+  - The binary format of compiled code containing machine instructions and symbol tables. ELF is the standard on Linux.
+- **Symbol resolution** [Resource](https://ftp.gnu.org/old-gnu/Manuals/ld-2.9.1/html_chapter/ld_3.html)
+  - How the linker matches a function call in one object file to its definition in another.
+- **Static Linking** [Resource](https://en.wikipedia.org/wiki/Static_library)
+  - Copies library code directly into your executable (`.a` files), making it larger but slightly faster.
+- **Dynamic Linking** [Resource](https://en.wikipedia.org/wiki/Dynamic_linker)
+  - Resolves library code at runtime (`.so` files). Introduces a tiny overhead via the PLT/GOT.
+- **ABI (Application Binary Interface)** [Resource](https://en.wikipedia.org/wiki/Application_binary_interface)
+  - The low-level standard detailing how functions are called, how structs are laid out, and register usage.
+- **Compiler Design Basics:**
+  - *Frontend:* Tokenizes code into an Abstract Syntax Tree (AST).
+  - *Middle-end:* Translates AST into Intermediate Representation (IR, like LLVM IR) and runs optimization passes.
+  - *Backend:* Emits target-specific assembly for x86-64 or ARM.
+- **LTO (Link-Time Optimization) & PGO (Profile-Guided Optimization)** [Docs (GCC)](https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html)
+  - LTO inlines functions across different translation units. PGO uses actual profiling data to optimize hot paths.
 
 ---
 
-# 4. Phase 2 — Memory and Hardware
-
-This is one of the highest-ROI phases for high-performance C++.
-
+# 4. Phase 2 — CPU Architecture, Memory, and Hardware
 
 ### 📚 Useful References for Phase 2
-- [What Every Programmer Should Know About Memory (Ulrich Drepper)](https://people.freebsd.org/~lstewart/articles/cpumemory.pdf)
+- [What Every Programmer Should Know About Memory](https://people.freebsd.org/~lstewart/articles/cpumemory.pdf)
 - [Data-Oriented Design (Richard Fabian)](https://www.dataorienteddesign.com/dodbook/)
+- [YouTube: Scott Meyers - Cpu Caches and Why You Care](https://www.youtube.com/watch?v=WDIkqP4JbkE)
 
 ## Learn the Memory Hierarchy
 
 ```mermaid
 flowchart TD
-    R[Registers] --> L1[L1 Cache]
-    L1 --> L2[L2 Cache]
-    L2 --> L3[L3 Cache]
-    L3 --> RAM[RAM / Main Memory]
-    RAM --> Storage[(Storage / SSD / HDD)]
+    R[Registers - 0.5ns] --> L1[L1 Cache - 1 ns]
+    L1 --> L2[L2 Cache - 3 ns]
+    L2 --> L3[L3 Cache - 15 ns]
+    L3 --> RAM[RAM / Main Memory - 100 ns]
+    RAM --> Storage[(Storage / SSD - 10,000+ ns)]
 ```
 
-Understand:
+- **Cache Lines (64 Bytes)** [Resource](https://en.wikipedia.org/wiki/CPU_cache#Cache_lines)
+  - The CPU fetches 64-byte chunks from RAM, not single bytes. Data structures fitting in cache lines are exponentially faster.
+- **Spatial & Temporal Locality** [Resource](https://en.wikipedia.org/wiki/Locality_of_reference)
+  - *Spatial:* Accessing address X means X+1 is likely next. This predictable access triggers the **Hardware Prefetcher**, pulling the next cache line into the CPU early.
+  - *Temporal:* Accessing address X means X will be accessed again soon.
+- **TLB (Translation Lookaside Buffer) & Paging** [Resource](https://en.wikipedia.org/wiki/Translation_lookaside_buffer)
+  - The TLB caches virtual-to-physical address translations. If the TLB misses, the CPU must do a slow "page walk".
+- **HugePages (2MB / 1GB)** [Docs (Linux)](https://www.kernel.org/doc/html/latest/admin-guide/mm/hugetlbpage.html)
+  - Standard pages are 4KB. HugePages reduce TLB misses drastically because fewer pages cover the same memory.
 
-- Cache lines
-    
-- Spatial locality
-    
-- Temporal locality
-    
-- Cache misses
-    
-- Cache coherence
-    
-- False sharing
-    
-- Hardware prefetching
-    
-- TLB
-    
-- Virtual memory
-    
-- Page faults
-    
-- Page tables
-    
-- Huge pages
-    
+## Advanced Hardware Microarchitecture
 
-## Projects
-
-### Project 1 — Array of Structs vs Struct of Arrays
-
-Compare:
-
-```cpp
-struct Particle {
-    float x;
-    float y;
-    float z;
-    float velocity;
-};
-```
-
-with a Structure of Arrays approach:
-
-```cpp
-struct Particles {
-    std::vector<float> x;
-    std::vector<float> y;
-    std::vector<float> z;
-    std::vector<float> velocity;
-};
-```
-
-Benchmark both.
-
-Explain:
-
-- Memory layout
-    
-- Cache locality
-    
-- Why one may perform better
-    
+- **Cache Coherence & MESI/MOESI Protocol** [Resource](https://en.wikipedia.org/wiki/MESI_protocol)
+  - In multi-core CPUs, MESI tracks cache states (Modified, Exclusive, Shared, Invalid) to ensure consistency when multiple cores access the same RAM.
+- **Store Buffers & Invalidation Queues** [Resource](https://en.wikipedia.org/wiki/Store_buffer)
+  - Writes go to a store buffer before hitting cache, necessitating memory barriers to ensure threads see writes in order.
+- **False Sharing** [Resource](https://en.wikipedia.org/wiki/False_sharing)
+  - If two threads modify independent variables that reside on the *same cache line*, the CPU bounces the cache line back and forth, crushing performance. Solved via `alignas(64)`.
+- **Branch Prediction Internals** [Resource](https://en.wikipedia.org/wiki/Branch_predictor)
+  - The CPU guesses if an `if` statement is true (Speculative Execution) via the BTB (Branch Target Buffer). A misprediction costs ~20 cycles. Hinting with `[[likely]]` / `[[unlikely]]` favors the hot path.
+- **NUMA (Non-Uniform Memory Access)** [Resource](https://en.wikipedia.org/wiki/Non-uniform_memory_access)
+  - On multi-socket motherboards, a CPU accesses its local RAM fast, but RAM on the other socket is slow. Solved by `pthread_setaffinity_np` and `libnuma`.
 
 ---
 
-### Project 2 — Matrix Traversal
-
-Compare row-major traversal:
-
-```cpp
-for (int i = 0; i < rows; ++i)
-    for (int j = 0; j < cols; ++j)
-        sum += matrix[i][j];
-```
-
-against column-major traversal.
-
-Measure the difference.
-
-Explain why cache locality changes performance.
-
----
-
-### Project 3 — False Sharing
-
-Create two threads modifying adjacent counters.
-
-Then compare:
-
-```cpp
-struct Counters {
-    std::atomic<int> a;
-    std::atomic<int> b;
-};
-```
-
-against cache-line-separated counters.
-
-Measure the impact.
-
----
-
-# 5. Phase 3 — Linux Systems Mastery
-
-Learn Linux as a programmer, not just as a desktop environment.
-
+# 5. Phase 3 — OS Fundamentals & Linux Systems Mastery
 
 ### 📚 Useful References for Phase 3
-- [The Linux Programming Interface (Michael Kerrisk)](https://man7.org/tlpi/)
+- [The Linux Programming Interface](https://man7.org/tlpi/)
 - [Beej's Guide to Unix Interprocess Communication](https://beej.us/guide/bgipc/)
+- [YouTube: Linux OS Internals for C++ Developers](https://www.youtube.com/watch?v=0iWb_qi2-uI)
 
-## Processes
+## OS Fundamentals
 
-Understand:
+- **Process vs Thread** [Resource](https://en.wikipedia.org/wiki/Thread_(computing))
+  - A process provides an isolated virtual memory space. Threads share that space but have their own stack and registers.
+- **Context Switches** [Resource](https://en.wikipedia.org/wiki/Context_switch)
+  - The heavy cost of the OS swapping a thread out of a CPU core. It flushes registers and pollutes the L1/L2 caches.
+- **System Calls** [Docs (Linux)](https://man7.org/linux/man-pages/man2/syscall.2.html)
+  - The boundary between User Space and Kernel Space. Syscalls (`read`, `malloc` via `mmap`) are slow due to context switching.
+- **File Descriptors** [Resource](https://en.wikipedia.org/wiki/File_descriptor)
+  - In Linux, everything (sockets, pipes, files) is interacted with via integer File Descriptors.
+- **Memory-Mapped Files (`mmap`)** [Docs (Linux)](https://man7.org/linux/man-pages/man2/mmap.2.html)
+  - Mapping a file directly into RAM. Heavily used in HFT for ultra-fast IPC and zero-copy logging.
+- **Signals** [Docs (Linux)](https://man7.org/linux/man-pages/man7/signal.7.html)
+  - Asynchronous interrupts (e.g., `SIGINT`, `SIGSEGV`).
 
-- `fork`
-    
-- `exec`
-    
-- `wait`
-    
-- Process memory layout
-    
-- File descriptors
-    
-- Pipes
-    
-- Signals
-    
-- Process groups
-    
+## Advanced Low-Latency Linux Tuning
 
-## System Calls
+- **Kernel Core Isolation** [Docs (Linux)](https://www.kernel.org/doc/html/latest/admin-guide/kernel-parameters.html)
+  - Reserving CPU cores so the Linux Scheduler NEVER touches them using boot parameters like `isolcpus`, `nohz_full`, and `rcu_nocbs`.
+- **System Jitter & Power States** [Resource](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/power_management_guide/cpufreq_governors)
+  - Disabling CPU frequency scaling and locking CPU C-states (`intel_idle.max_cstate=0`) to ensure deterministic execution times.
+- **Memory Locking (`mlockall`)** [Docs (Linux)](https://man7.org/linux/man-pages/man2/mlock.2.html)
+  - Locking your app into physical RAM to entirely prevent the OS from swapping it to disk.
 
-Understand the transition:
-
-```mermaid
-flowchart TD
-    UP[User Program] --> CRT[C/C++ Runtime]
-    CRT -->|System Call| K((Kernel Space))
-```
-
-Learn to inspect programs using:
-
-```bash
-strace
-ltrace
-```
-
-## File Descriptors
-
-Master the idea that many Linux resources can be represented by file descriptors:
-
-```text
-stdin
-stdout
-stderr
-
-files
-sockets
-pipes
-eventfd
-timerfd
-epoll
-```
-
-## Project — Build a Mini Shell
-
-Create something like:
-
-```text
-mysh
-```
-
-Support:
-
-```bash
-ls
-ls | grep cpp
-cat file > output.txt
-sleep 10 &
-```
-
-This teaches:
-
-- `fork`
-    
-- `exec`
-    
-- Pipes
-    
-- File descriptor redirection
-    
-- Process management
-    
-- Signals
-    
 
 ---
 
-# 6. Phase 4 — Concurrency
-
-This is mandatory for your target profile.
-
+# 6. Phase 4 — Concurrency & Memory Models
 
 ### 📚 Useful References for Phase 4
 - [C++ Concurrency in Action (Anthony Williams)](https://www.manning.com/books/c-plus-plus-concurrency-in-action-second-edition)
-- [C++ memory order (cppreference)](https://en.cppreference.com/w/cpp/atomic/memory_order)
+- [cppreference: std::memory_order](https://en.cppreference.com/w/cpp/atomic/memory_order)
+- [YouTube: Fedor Pikus "The C++ Memory Model"](https://www.youtube.com/watch?v=F6Ipn7gCOsY)
 
 ## Level 1 — Basic Threading
 
-Master:
+- **Mutexes & Critical Sections** [Docs](https://en.cppreference.com/w/cpp/thread/mutex)
+  - `std::mutex` puts a waiting thread to sleep (context switch).
+- **Spinlocks vs Mutexes** [Resource](https://en.wikipedia.org/wiki/Spinlock)
+  - Because sleeping costs microseconds, low-latency systems use Spinlocks (`while(atomic_flag.test_and_set())`). It burns 100% CPU but reacts in nanoseconds.
+- **Deadlocks** [Resource](https://en.wikipedia.org/wiki/Deadlock)
+  - Thread A holds Lock 1 and wants Lock 2; Thread B holds Lock 2 and wants Lock 1. Both freeze forever.
 
-```cpp
-std::thread
-std::mutex
-std::lock_guard
-std::unique_lock
-std::condition_variable
-```
+## Level 2 — Atomics & The C++ Memory Model
 
-Understand:
-
-- Critical sections
-    
-- Mutual exclusion
-    
-- Deadlocks
-    
-- Lock ordering
-    
-- Contention
-    
-
-## Level 2 — Atomics
-
-Learn:
-
-```cpp
-std::atomic
-```
-
-Memory orders:
-
-```cpp
-std::memory_order_relaxed
-std::memory_order_acquire
-std::memory_order_release
-std::memory_order_acq_rel
-std::memory_order_seq_cst
-```
+- **`std::atomic`** [Docs](https://en.cppreference.com/w/cpp/atomic/atomic)
+  - Hardware atomics bypass the OS entirely for Lock-Free programming.
+- **`std::memory_order_relaxed`** [Docs](https://en.cppreference.com/w/cpp/atomic/memory_order#Relaxed_ordering)
+  - Atomicity guaranteed, but no synchronization. The compiler and CPU can reorder instructions freely around this.
+- **`std::memory_order_acquire` / `release`** [Docs](https://en.cppreference.com/w/cpp/atomic/memory_order#Release-Acquire_ordering)
+  - A `release` store ensures all previous writes are visible. An `acquire` load ensures no subsequent reads/writes are reordered before it.
+- **`std::memory_order_seq_cst`** [Docs](https://en.cppreference.com/w/cpp/atomic/memory_order#Sequentially-consistent_ordering)
+  - Sequential consistency (safest but slowest). Adds heavy memory fences (like `mfence`) to force a global total order.
 
 ## Level 3 — Concurrency Problems
 
-Understand deeply:
-
-- Data races
-    
-- Race conditions
-    
-- Deadlocks
-    
-- Livelock
-    
-- Starvation
-    
-- ABA problem
-    
-- False sharing
-    
-- Lock contention
-    
-
-## Level 4 — Build Things
-
-Implement:
-
-1. Thread pool
-    
-2. Bounded blocking queue
-    
-3. SPSC ring buffer
-    
-4. MPSC queue
-    
-5. Lock-free stack as a learning exercise
-    
-
-> [!WARNING]
-> Do not start by building complicated lock-free data structures.
-
-First understand why:
-
-```text
-atomics
-+
-memory ordering
-+
-cache coherence
-+
-CPU reordering
-```
-
-make concurrent programming difficult.
-
-The real test is:
-
-> [!IMPORTANT]
-> Can I explain exactly why this memory ordering is correct?
+- **Data Races vs Race Conditions** [Resource](https://en.wikipedia.org/wiki/Race_condition)
+  - Data race = simultaneous unsynchronized memory writes (Undefined Behavior). Race condition = flawed logic depending on execution order.
+- **ABA Problem** [Resource](https://en.wikipedia.org/wiki/ABA_problem)
+  - Thread 1 reads A. Thread 2 changes A to B, then back to A. Thread 1 resumes and mistakenly thinks nothing changed, corrupting lock-free structures.
+- **Safe Memory Reclamation (SMR)** [Resource](https://en.wikipedia.org/wiki/Hazard_pointer)
+  - In lock-free structures, you can't just `delete` a node because another thread might be reading it. You use Hazard Pointers or Epoch-Based Reclamation (EBR).
+- **Hardware vs Software Reordering** [Docs (GCC)](https://gcc.gnu.org/onlinedocs/gcc/Extended-Asm.html)
+  - The compiler can optimize assembly (`asm volatile("" ::: "memory")`). The CPU can execute out of order (prevented by hardware fences like `lfence`).
 
 ---
 
-# 7. Phase 5 — Performance Engineering
-
-Many C++ programmers optimize based on intuition.
-
-Do not become one of them.
-
+# 7. Phase 5 — Performance Engineering & Reliability
 
 ### 📚 Useful References for Phase 5
 - [Systems Performance (Brendan Gregg)](https://www.brendangregg.com/systems-performance.html)
-- [Google Benchmark](https://github.com/google/benchmark)
+- [Google Benchmark Documentation](https://github.com/google/benchmark)
+- [YouTube: Chandler Carruth "Efficiency with Algorithms"](https://www.youtube.com/watch?v=fHNmRkzxHWs)
 
-## Learn `perf`
+## Profiling Tools
 
-Use it to investigate:
+- **`perf`** [Docs](https://perf.wiki.kernel.org/index.php/Main_Page)
+  - The Linux standard for sampling CPU cycles, branch misses, and cache misses.
+- **Flamegraphs** [Resource](https://www.brendangregg.com/flamegraphs.html)
+  - The industry standard visualization for `perf`. Highlights wide stack traces eating up CPU time.
+- **Intel `VTune`** [Docs](https://www.intel.com/content/www/us/en/developer/tools/oneapi/vtune-profiler.html)
+  - Deep microarchitecture profiling (IPC, cache hit rates, memory bandwidth).
+- **`Valgrind`** [Docs](https://valgrind.org/docs/manual/manual.html)
+  - Detects memory leaks and Uninitialized memory reads (though it drastically slows down execution).
+- **`heaptrack`** [Docs](https://github.com/KDE/heaptrack)
+  - Fast memory allocation profiling to track down exact lines of code doing hidden `malloc`s.
 
-- CPU cycles
-    
-- Instructions
-    
-- Cache misses
-    
-- Branch misses
-    
-- Context switches
-    
+## Low-Latency Benchmarking Rigor
 
-Learn:
+- **Hardware Cycle Counting** [Resource](https://en.wikipedia.org/wiki/Time_Stamp_Counter)
+  - Use raw hardware cycle counters (`__rdtsc()`). Must bracket code with serialization barriers (`cpuid` / `lfence`) to prevent out-of-order timer execution.
+- **Coordinated Omission** [Resource](https://psy-lob-saw.blogspot.com/2015/03/coordinated-omission.html)
+  - A benchmarking trap where a system under load queues measurements, falsely hiding latency spikes.
+- **Percentile Profiling** [Resource](https://www.p99conf.io/)
+  - Averages hide latency spikes. You must optimize for the "Tail Latency" — the 99.9th percentile (p99.9) and Max latency.
 
-- Sampling profiling
-    
-- Flame graphs
-    
-- Call graphs
-    
-- Instrumentation
-    
-- Microbenchmarking
-    
+## Testing, Debugging & Reliability
 
-## The Performance Workflow
+In HFT, performance without correctness is bankruptcy (e.g., the Knight Capital $460M glitch).
+- **Time-Travel Debugging (`rr`)** [Docs](https://rr-project.org/)
+  - Standard `gdb` is great for core dumps, but `rr` (Record and Replay) allows you to record an execution and step *backwards* in time to find the exact origin of non-deterministic multithreading bugs.
+- **Fuzzing (`libFuzzer`)** [Docs](https://llvm.org/docs/LibFuzzer.html)
+  - Feeding random, mutated, garbage network packets into your ITCH/FIX parsers to ensure they never segfault or buffer-overflow in production.
+- **Core Dump Analysis** [Resource](https://man7.org/linux/man-pages/man5/core.5.html)
+  - Being able to take a production crash (`SIGSEGV`), load the `core` file into `gdb`, and inspect the exact CPU registers and stack frames that caused the crash.
 
-```text
-1. Form a hypothesis
-        ↓
-2. Measure baseline
-        ↓
-3. Profile
-        ↓
-4. Identify bottleneck
-        ↓
-5. Change ONE thing
-        ↓
-6. Measure again
-        ↓
-7. Verify improvement
-        ↓
-8. Explain why
-```
-
-Never say:
-
-> [!CAUTION]
-> "This should be faster."
-
-Say:
-
-> [!TIP]
-> "The benchmark shows this is 18% faster because..."
-
-## Project — Optimization Diary
-
-Take a deliberately inefficient C++ program.
-
-Optimize it over multiple iterations.
-
-For every optimization, document:
-
-```text
-Baseline:
-X ns/op
-
-Problem:
-What was slow?
-
-Evidence:
-What did the profiler show?
-
-Change:
-What changed?
-
-Result:
-Y ns/op
-
-Explanation:
-Why did this improve?
-```
-
-This is much more impressive than generic projects.
 
 ---
 
 # 8. Phase 6 — Networking and I/O
 
-Learn networking fundamentals before touching DPDK.
-
-
 ### 📚 Useful References for Phase 6
 - [Beej's Guide to Network Programming](https://beej.us/guide/bgnet/)
-- [High Performance Browser Networking (Ilya Grigorik)](https://hpbn.co/)
+- [High Performance Browser Networking](https://hpbn.co/)
 
-## TCP/IP
+## Network Architecture
 
-Understand:
-
-```mermaid
-flowchart TD
-    A[Application Layer] --> T[Transport Layer]
-    T --> N[Network Layer]
-    N --> L[Link Layer]
-```
-
-## TCP
-
-Learn:
-
-- Three-way handshake
-    
-- Sequence numbers
-    
-- ACKs
-    
-- Flow control
-    
-- Congestion control
-    
-- Retransmission
-    
-- Nagle's algorithm
-    
-- Head-of-line blocking
-    
-
-## UDP
-
-Understand:
-
-- Datagrams
-    
-- Packet loss
-    
-- Ordering
-    
-- Why low-latency systems sometimes use UDP
-    
-
-## Linux Sockets
-
-Master:
-
-```cpp
-socket()
-bind()
-listen()
-accept()
-connect()
-send()
-recv()
-```
-
-Then learn:
-
-```text
-select
-poll
-epoll
-```
-
-## Project — Event-Driven TCP Server
-
-Requirements:
-
-- Non-blocking sockets
-    
-- `epoll`
-    
-- Multiple simultaneous clients
-    
-- Connection state machine
-    
-- Graceful disconnection
-    
-- Benchmarking
-    
-
-Then profile it.
+- **TCP (Transmission Control Protocol)** [Resource](https://en.wikipedia.org/wiki/Transmission_Control_Protocol)
+  - Reliable, ordered. Understand the 3-way handshake and Nagle's algorithm (which batches packets and must be disabled via `TCP_NODELAY` for low latency).
+- **UDP (User Datagram Protocol)** [Resource](https://en.wikipedia.org/wiki/User_Datagram_Protocol)
+  - Unreliable, unordered datagrams. Faster than TCP because there is no handshake or ACK overhead.
+- **User-Space Event Polling (`epoll`)** [Docs (Linux)](https://man7.org/linux/man-pages/man7/epoll.7.html)
+  - Monitor thousands of sockets asynchronously. In ultra-low latency, you skip `epoll` entirely and use busy-polling/busy-wait loops to avoid context switches.
 
 ---
 
 # 9. Phase 7 — Advanced I/O and Kernel Bypass
 
-Only start this after understanding regular Linux networking and I/O.
-
-
 ### 📚 Useful References for Phase 7
 - [Lord of the io_uring (Axboe)](https://unixism.net/loti/)
-- [DPDK Documentation](https://doc.dpdk.org/guides/)
-- [Cloudflare: io_uring blog](https://blog.cloudflare.com/io_uring-fast-kernel-bypass/)
+- [DPDK Official Documentation](https://doc.dpdk.org/guides/)
+- [OpenOnload Documentation](https://www.xilinx.com/products/design-tools/onload.html)
 
-## `io_uring`
+## Kernel Bypass Tech
 
-Understand:
-
-```mermaid
-flowchart LR
-    SQ[Submission Queue] -->|Syscall / Polling| K((Kernel))
-    K -->|Completion Events| CQ[Completion Queue]
-```
-
-Learn:
-
-- Asynchronous I/O
-    
-- Submission queues
-    
-- Completion queues
-    
-- Registered buffers
-    
-- Registered files
-    
-
-Do not treat `io_uring` as magic.
-
-Understand what problem it is solving.
-
-## DPDK
-
-Only after:
-
-- Networking fundamentals
-    
-- Linux networking
-    
-- Concurrency
-    
-- Memory
-    
-- Performance
-    
-
-Learn DPDK concepts:
-
-- Memory pools
-    
-- Packet buffers
-    
-- Ring buffers
-    
-- Poll-mode drivers
-    
-- Huge pages
-    
-- NUMA awareness
-    
-
-### Important
-
-Your current hardware does not need to be perfect.
-
-You can still:
-
-- Compile DPDK
-    
-- Read its source
-    
-- Understand its architecture
-    
-- Experiment with what your hardware supports
-    
-
-Do not buy expensive networking hardware before you know why you need it.
+- **`ef_vi` & DMA (Direct Memory Access)** [Docs (Solarflare)](https://support.xilinx.com/s/article/1118676?language=en_US)
+  - `ef_vi` allows C++ to read packets directly from the NIC's buffer (zero-copy). It works because the NIC uses DMA to write packets directly to RAM over the PCIe bus without waking up the CPU, skipping the Linux network stack.
+- **`OpenOnload`** [Docs](https://github.com/Xilinx-CNS/onload)
+  - Transparent kernel bypass. You launch your app with `LD_PRELOAD`, intercepting POSIX socket calls (`recv`, `send`) and translating them into bypass calls.
+- **DPDK (Data Plane Development Kit)** [Docs](https://www.dpdk.org/)
+  - Framework for fast packet processing.
+- **Poll-Mode Drivers** [Resource](https://doc.dpdk.org/guides/prog_guide/poll_mode_drv.html)
+  - Instead of hardware interrupts, your CPU spins in a `while` loop asking the NIC for data (100% CPU usage, zero latency).
+- **Zero-Allocation Pipelines**
+  - Pre-allocating 100% of memory on startup via Arena Allocators and Object Pools using HugePages. Dynamic allocation at runtime is forbidden.
 
 ---
 
 # 10. Phase 8 — x86-64, Assembly, and SIMD
 
-This is particularly valuable for HFT and low-latency work.
-
-
 ### 📚 Useful References for Phase 8
-- [Intel 64 and IA-32 Architectures Software Developer Manuals](https://software.intel.com/content/www/us/en/develop/articles/intel-sdm.html)
+- [Intel 64 Architectures Software Developer Manuals](https://software.intel.com/content/www/us/en/develop/articles/intel-sdm.html)
 - [Compiler Explorer (Godbolt)](https://godbolt.org/)
 
-## Learn x86-64 Fundamentals
+## CPU Execution
 
-Understand:
-
-- Registers
-    
-- Calling conventions
-    
-- Stack frames
-    
-- Function calls
-    
-- Instruction latency
-    
-- Instruction throughput
-    
-- Branch prediction
-    
-
-Study instructions such as:
-
-```text
-mov
-lea
-cmp
-test
-jmp
-call
-ret
-
-add
-sub
-imul
-```
-
-Understand:
-
-```text
-lock-prefixed instructions
-```
-
-Then SIMD:
-
-```text
-SSE
-AVX
-AVX2
-AVX-512
-```
-
-## Important
-
-The goal is **not** to write everything in assembly.
-
-The goal is:
-
-> [!TIP]
-> Look at compiler-generated assembly and understand what your C++ is actually doing.
-
-Use:
-
-- Compiler Explorer
-    
-- `objdump`
-    
-- `perf`
-    
-
-## Project — SIMD Dot Product
-
-Implement:
-
-1. Naive scalar implementation
-    
-2. Optimized scalar implementation
-    
-3. Auto-vectorized implementation
-    
-4. Explicit SIMD implementation
-    
-
-Benchmark everything.
-
-Document:
-
-```text
-Scalar:
-X
-
-Auto-vectorized:
-Y
-
-Explicit SIMD:
-Z
-```
-
-Explain the generated assembly.
+- **Registers & Calling Conventions** [Resource](https://en.wikipedia.org/wiki/X86_calling_conventions)
+  - Fast on-CPU memory slots (`rax`, `rdi`). Understand the System V ABI for how parameters are passed.
+- **Instruction-Level Parallelism (ILP)** [Resource](https://en.wikipedia.org/wiki/Instruction-level_parallelism)
+  - CPUs execute multiple instructions simultaneously using a Reorder Buffer (ROB) and Out-of-Order (OoO) execution to find independent instructions.
+- **SIMD (Single Instruction, Multiple Data)** [Resource](https://en.wikipedia.org/wiki/SIMD)
+  - `AVX2`, `AVX-512`. Hardware vectorization executing the same operation on an entire array in a single cycle.
+- **Compiler Intrinsics** [Docs (Intel)](https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html)
+  - Writing C++ functions (e.g., `_mm256_load_si256`) that map directly to specific SIMD assembly instructions, bypassing the auto-vectorizer's guessing game.
 
 ---
 
-# 11. Phase 9 — The Flagship Project
-
+# 11. Phase 9 — Financial Markets & Trading Mechanics
 
 ### 📚 Useful References for Phase 9
-- [Building a High-Performance Matching Engine](https://weareadaptive.com/2021/08/23/build-high-performance-matching-engine/)
+- [Trading & Exchanges (Larry Harris)](https://www.amazon.com/Trading-Exchanges-Market-Microstructure-Practitioners/dp/0195144708)
+- [Investopedia: Algorithmic Trading](https://www.investopedia.com/articles/active-trading/101014/basics-algorithmic-trading-concepts-and-examples.asp)
+- [FIX Protocol Documentation](https://www.fixtrading.org/what-is-fix/)
+
+## Market Fundamentals
+
+- **Bid / Ask & The Spread** [Resource](https://www.investopedia.com/terms/b/bid-and-ask.asp)
+  - "Bid" = highest price a buyer pays. "Ask" = lowest price a seller accepts. Spread = the difference.
+- **Limit Order Book (LOB)** [Resource](https://www.investopedia.com/terms/l/limitorderbook.asp)
+  - The core data structure of an exchange. Holds all resting orders sorted by Price-Time Priority.
+- **Limit vs Market Orders** [Resource](https://www.investopedia.com/terms/m/marketorder.asp)
+  - Limit Order specifies an exact price (adds liquidity). Market Order executes immediately at the best price (takes liquidity).
+- **ITCH / OUCH / FIX Protocols**
+  - *ITCH:* Multicast binary feed broadcasting every order book change. [Docs](http://www.nasdaqtrader.com/content/technicalsupport/specifications/dataproducts/NQTVITCHspecification.pdf)
+  - *OUCH:* Point-to-point binary protocol to send orders.
+  - *FIX:* A slower, human-readable ASCII string protocol used for standard order routing.
+
+## Trading Strategies
+
+- **Market Making** [Resource](https://www.investopedia.com/terms/m/marketmaker.asp)
+  - Quoting Bid and Ask limit orders to profit from the Spread. The risk is "Adverse Selection" (the market violently moves against you). Speed is required to cancel orders before being "run over".
+- **Statistical Arbitrage (Stat Arb)** [Resource](https://www.investopedia.com/terms/s/statisticalarbitrage.asp)
+  - Mathematical models identifying temporary pricing inefficiencies between correlated assets (e.g., mean reversion pairs trading).
+- **Smart Order Routing (SOR)** [Resource](https://www.investopedia.com/terms/s/smart-order-routing.asp)
+  - Algorithms that break up a massive order and route slices to different fragmented exchanges to sweep liquidity and minimize market impact.
+- **Execution Algos (TWAP/VWAP)** [Resource](https://www.investopedia.com/terms/v/vwap.asp)
+  - Institutional algos designed to trade huge volumes over time (Time-Weighted) or based on volume (Volume-Weighted) without crashing the market.
+
+---
+
+# 12. Phase 10 — Quantitative Math & Probability (Quant Track)
+
+If you are aiming for **Quantitative Developer** or **Quantitative Researcher** roles, pure C++ systems knowledge is not enough. You must understand the math that drives the trading models.
+
+### 📚 Useful References for Phase 10
+- [MIT 18.06: Linear Algebra (Gilbert Strang)](https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/video_galleries/video-lectures/)
+- [Harvard Stat 110: Probability (Joe Blitzstein)](https://www.youtube.com/playlist?list=PL2SOU6wwxB0uwwH80KTQ6ht66KWxbzTIo)
+- [MIT 18.S096: Math with Applications in Finance](https://ocw.mit.edu/courses/18-s096-topics-in-mathematics-with-applications-in-finance-fall-2013/video_galleries/video-lectures/)
+
+## Core Mathematics
+
+- **Linear Algebra** [Resource](https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/)
+  - The foundation of modern quant finance. You must deeply understand Matrix Multiplication, Eigenvalues/Eigenvectors, and Singular Value Decomposition (SVD). Used heavily in portfolio optimization and risk factor modeling.
+- **Probability & Statistics** [Resource](https://statistics.fas.harvard.edu/pages/stat-110)
+  - Bayes' Theorem, Random Variables, Expected Value, and Probability Distributions (Normal, Poisson, Log-Normal). You must be able to do fast mental probability calculations for Quant interviews.
+- **Time-Series Analysis** [Resource](https://www.itl.nist.gov/div898/handbook/pmc/section4/pmc4.htm)
+  - Autocorrelation, Stationarity, and Cointegration. Used to analyze historical market tick data to find mean-reverting signals.
+- **Stochastic Calculus (Advanced/Optional)** [Resource](https://en.wikipedia.org/wiki/Stochastic_calculus)
+  - Brownian motion, Ito's Lemma, and the Black-Scholes model. Only strictly necessary for options pricing and derivatives research, but highly respected.
+
+---
+
+# 13. Phase 11 — The Hardcore Flagship Projects
+
+To stand out against candidates from MIT/Stanford, you cannot just build a "To-Do App" or a basic web scraper. You must build extremely hardcore, specialized infrastructure that proves your mechanical empathy for the hardware.
+
+### 📚 Useful References for Phase 11
+- [Adaptive: Building a High-Performance Matching Engine](https://weareadaptive.com/2021/08/23/build-high-performance-matching-engine/)
 - [LMAX Architecture (Martin Fowler)](https://martinfowler.com/articles/lmax.html)
+- [YouTube: Carl Cook "When a Microsecond Is an Eternity"](https://www.youtube.com/watch?v=NH1Tta7purM)
 
-## Build a Low-Latency Exchange Simulator
+## 1. Ultra-Low-Latency Limit Order Book (LOB) & Matching Engine
+- **Description:** A core exchange matching engine processing incoming limit, market, and cancel orders using Price-Time priority. This is the ultimate test of data-oriented design.
+- **Architecture Constraints:** 
+  - **Zero dynamic allocations (`new`/`malloc`)** in the hot path. All memory must be pre-allocated on startup.
+  - Use **Flat Arrays** for price levels and **Custom Object Pools** for order nodes to guarantee L1/L2 cache locality.
+  - Strictly avoid `virtual` functions to prevent vtable indirection/branch misprediction.
+- **Testing & Profiling:** Bracket your core matching function with `__rdtsc()` (Hardware cycle counters). Profile with `perf stat` and generate Flamegraphs.
+- **Success Metric:** Achieve sub-100 nanosecond tick-to-trade latency at the 99th percentile (p99).
 
-Architecture:
+## 2. Kernel-Bypass Hardware-Accurate ITCH 5.0 Feed Handler
+- **Description:** A market data parser that connects to a UDP multicast socket, reads raw network packets, and reconstructs the NASDAQ order book in real-time.
+- **Architecture Constraints:**
+  - Start with `epoll`, upgrade to a **busy-wait polling loop**, and finally implement a **Kernel Bypass** version using Solarflare `ef_vi` or `OpenOnload`.
+  - Implement a **Zero-Copy Architecture**: parse the packet directly from the NIC's receive buffer.
+  - Use **Compiler Intrinsics** (`__builtin_bswap32/64`) to handle network byte-order endianness instantly, and SIMD instructions to bulk-decode ASCII message types.
+- **Success Metric:** Process over 1 million market messages per second with zero garbage collection spikes.
 
-```mermaid
-flowchart TD
-    MDF[Market Data Feed] --> PD[Parser / Decoder]
-    PD -->|SPSC Ring Buffer| ME{Matching Engine}
-    ME --> T[Trades]
-    ME --> B[Order Book]
-    ME --> R[Risk Management]
-    T --> Met[Metrics]
-    B --> Met
-    R --> Met
-```
+## 3. High-Throughput Lock-Free SPSC / MPMC Ring Buffer
+- **Description:** A custom concurrent queue designed to pass market data from a network thread to a strategy thread without ever asking the OS for a lock.
+- **Architecture Constraints:**
+  - Must utilize explicit `std::memory_order_acquire` and `std::memory_order_release` semantics to synchronize threads.
+  - Cache-line align (`alignas(64)`) the head and tail atomic pointers to completely eliminate **False Sharing** between the producer and consumer CPU cores.
+- **Success Metric:** Write a Google Benchmark proving your queue outperforms `std::mutex` + `std::condition_variable` queues by at least an order of magnitude.
 
-## Matching Engine
-
-Implement:
-
-- Limit orders
-    
-- Market orders
-    
-- Cancel orders
-    
-- Modify orders
-    
-- Price-time priority
-    
-
-## Performance Requirements
-
-Investigate:
-
-- Dynamic allocations
-    
-- Object pools
-    
-- Data-oriented design
-    
-- Cache locality
-    
-- SPSC queues
-    
-- CPU affinity
-    
-- Thread placement
-    
-- Latency histograms
-    
-
-Measure:
-
-```text
-Throughput
-p50 latency
-p99 latency
-p99.9 latency
-Maximum latency
-```
-
-## Project Evolution
-
-### Version 1
-
-Basic single-threaded matching engine.
-
-### Version 2
-
-Multithreaded architecture.
-
-### Version 3
-
-SPSC queues.
-
-### Version 4
-
-Networked market data feed.
-
-### Version 5
-
-Binary protocol.
-
-### Version 6
-
-`epoll`.
-
-### Version 7
-
-Advanced asynchronous I/O.
-
-### Version 8
-
-Kernel-bypass experiments.
-
-This one project can evolve over multiple years.
+## 4. Custom C++ Arena Allocator & Memory Pool Library
+- **Description:** In HFT, `malloc` is banned because the OS locks the heap and takes microseconds to find free memory. You will write your own ultra-fast memory manager.
+- **Architecture Constraints:**
+  - Implement a **Monotonic Arena Allocator** (bump allocator) for per-tick temporary data that gets reset at the end of every event loop.
+  - Implement a **Free-List Object Pool** for objects that live longer (like active network connections or resting orders).
+  - Use `madvise` or `mmap` to request **HugePages (2MB)** directly from the Linux Kernel on startup to prevent TLB misses.
+- **Success Metric:** Prove via microbenchmarks that your allocator is 10x-50x faster than standard `std::allocator`.
 
 ---
 
-# 12. What Not to Learn Yet
+# 14. What Not to Learn Yet
 
-This section is important.
-
-## Do Not Memorize Every C++ Feature
-
-You do not need to master:
-
-- Every obscure template trick
-    
-- Every Boost library
-    
-- Every new C++ standard feature immediately
-    
-- Template metaprogramming puzzles for the sake of puzzles
-    
-
-Understand deeply instead.
+- **Do Not Memorize Every C++ Feature:** You don't need every obscure template trick or Boost library. Understand deeply instead.
+- **Do Not Learn Design Patterns as a Checklist:** Understand *why* an abstraction exists and its *runtime cost*. Indirection (like heavy OOP/virtual functions) destroys cache locality. Choose abstractions based on the hardware problem.
+- **Do Not Start With Lock-Free Programming:** Master mutexes, cache coherence, and contention before writing the world's fastest lock-free structures.
+- **Do Not Spend All Your Time on LeetCode:** Maintain strong DSA skills, but pair them with serious systems knowledge and projects.
 
 ---
 
-## Do Not Learn Design Patterns as a Checklist
+# 15. Weekly Study Split
 
-Avoid:
-
-```text
-Factory ✓
-Singleton ✓
-Observer ✓
-Visitor ✓
-Abstract Factory ✓
-```
-
-That is not software engineering mastery.
-
-Understand:
-
-- Why an abstraction exists
-    
-- What problem it solves
-    
-- Its runtime cost
-    
-- When not to use it
-    
+A good approximate split for mastering this domain:
+- **35% — C++ + Systems Projects:** Actual implementation. Build things.
+- **25% — DSA / Competitive Programming:** Maintain algorithmic strength.
+- **20% — Systems Theory:** Study OS, Networking, Architecture, Concurrency.
+- **15% — Performance Engineering:** Benchmarking, Profiling, Assembly.
+- **5% — Reading Excellent Code:** Read Linux kernel components, high-perf libraries, DBs.
 
 ---
 
-## Do Not Overuse OOP
+# 16. Free Resources
 
-Understand that:
-
-```cpp
-virtual_function();
-```
-
-may involve:
-
-- Indirection
-    
-- Reduced locality
-    
-- Difficult optimization
-    
-
-This does **not** mean OOP is bad.
-
-It means:
-
-> [!TIP]
-> Choose abstractions based on the problem.
+- **[cppreference.com](https://en.cppreference.com/)** - Your permanent C++ reference.
+- **[CppCon YouTube Channel](https://www.youtube.com/@CppCon)** - Watch speakers like Chandler Carruth, Fedor Pikus, Carl Cook, Timur Doumler.
+- **[Compiler Explorer (godbolt.org)](https://godbolt.org/)** - For assembly inspection.
+- **[Agner Fog's Optimization Manuals](https://www.agner.org/optimize/)** - The bible for x86 microarchitecture.
 
 ---
 
-## Do Not Start With Lock-Free Programming
-
-Do not immediately attempt:
-
-> "I'm going to write the world's fastest lock-free exchange."
-
-First master:
-
-```text
-mutexes
-atomics
-memory ordering
-cache coherence
-false sharing
-contention
-```
-
----
-
-## Do Not Spend All Your Time on LeetCode
-
-Algorithms are extremely important.
-
-But:
-
-```text
-1000 LeetCode problems
-+
-No systems knowledge
-+
-No serious projects
-```
-
-is not the profile this roadmap is building.
-
-Maintain strong DSA skills while building depth elsewhere.
-
----
-
-# 13. Weekly Study Split
-
-A good approximate split:
-
-## 35% — C++ + Systems Projects
-
-Actual implementation.
-
-Build things.
-
-## 25% — DSA / Competitive Programming
-
-Maintain algorithmic strength.
-
-## 20% — Systems Theory
-
-Study:
-
-- Operating systems
-    
-- Networking
-    
-- Computer architecture
-    
-- Concurrency
-    
-
-## 15% — Performance Engineering
-
-- Benchmarking
-    
-- Profiling
-    
-- Assembly
-    
-- Cache analysis
-    
-
-## 5% — Reading Excellent Code
-
-Read projects such as:
-
-- Linux kernel components
-    
-- High-performance libraries
-    
-- Databases
-    
-- Networking libraries
-    
-- Compilers
-    
-
-Do not try to understand an entire massive codebase at once.
-
-Pick one small subsystem.
-
----
-
-# 14. Free Resources
-
-## C++ Reference
-
-### cppreference
-
-[https://en.cppreference.com/](https://en.cppreference.com/)
-
-Use this as your permanent C++ reference.
-
----
-
-## CppCon
-
-[https://www.youtube.com/@CppCon](https://www.youtube.com/@CppCon)
-
-Useful speakers and topics include:
-
-- Chandler Carruth
-    
-- Andrei Alexandrescu
-    
-- Herb Sutter
-    
-- Jason Turner
-    
-- Timur Doumler
-    
-- Fedor Pikus
-    
-
-Do not watch talks randomly.
-
-Search for talks relevant to what you are currently learning.
-
----
-
-## C++ Core Guidelines
-
-[https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines)
-
----
-
-## Compiler Explorer
-
-[https://godbolt.org/](https://godbolt.org/)
-
-Use it to answer:
-
-> What assembly did my C++ produce?
-
----
-
-## Linux Kernel Documentation
-
-[https://docs.kernel.org/](https://docs.kernel.org/)
-
----
-
-## DPDK Documentation
-
-[https://doc.dpdk.org/guides/](https://doc.dpdk.org/guides/)
-
----
-
-# 15. Milestones
-
-## After 6 Months
-
-You should comfortably be able to:
-
-- Write modern C++
-    
-- Understand RAII and object lifetime
-    
-- Use CMake
-    
-- Debug with GDB
-    
-- Understand compilation and linking
-    
-- Understand basic OS concepts
-    
-- Write multithreaded programs
-    
-- Solve reasonably difficult DSA problems
-    
-
----
-
-## After 1 Year
-
-You should be able to:
-
-- Use `perf`
-    
-- Understand atomics
-    
-- Understand cache behavior
-    
-- Write event-driven network servers
-    
-- Inspect generated assembly
-    
-- Build concurrent systems
-    
-- Have 2–3 genuinely strong projects
-    
-
----
-
-## After 2 Years
-
-You should be able to:
-
-> Take a C++ system, profile it, identify the actual bottleneck, explain the hardware/software reason, and make a measurable improvement.
-
-This is a very valuable engineering skill.
-
----
-
-## After 3–4 Years
-
-The goal profile:
-
-```text
-Strong Algorithms
-        +
-Modern C++
-        +
-Linux
-        +
-Concurrency
-        +
-Performance Engineering
-        +
-Networking
-        +
-x86 / SIMD
-        +
-Serious Systems Projects
-```
-
-This combination can make you unusually competitive for:
-
-- HFT
-    
-- Low-latency systems
-    
-- Trading infrastructure
-    
-- High-performance backend systems
-    
-- Databases
-    
-- Infrastructure engineering
-    
-- Systems roles at large tech companies
-    
-
----
-
-# 16. The Learning Loop
-
-This is the most important rule in the entire roadmap.
-
-For every major topic:
+# 17. The Learning Loop
 
 ```mermaid
 flowchart TD
@@ -1489,50 +547,24 @@ flowchart TD
     W -.->|Next Topic| L
 ```
 
-Do not endlessly consume tutorials.
-
-Build things.
-
-Break things.
-
-Measure things.
-
-For every project, your README should ideally answer:
-
+For every project, your README should answer:
 1. What problem does this solve?
-    
 2. What is the architecture?
-    
 3. What tradeoffs did you make?
-    
 4. How did you measure performance?
-    
 5. What bottleneck did you find?
-    
 6. What optimization did you make?
-    
 7. Why did it work?
-    
-8. What would you improve next?
-    
 
 ---
 
 # Final Goal
 
 Do not aim to become:
-
 > Someone who knows a lot of C++ syntax.
 
 Aim to become:
-
 > [!SUCCESS]
 > **Someone who can understand a system from the C++ source code down through assembly, CPU behavior, memory, Linux, networking, and performance measurements.**
 
-That is the kind of depth that can make you genuinely exceptional over your university years.
-
-The roadmap is long. That is intentional.
-
-You do not need to rush through it.
-
-Go deep, build continuously, benchmark everything, and keep your best work documented publicly.
+That is the kind of depth that makes you genuinely exceptional. Go deep, build continuously, benchmark everything, and document your work.
