@@ -247,8 +247,8 @@ flowchart TD
   - 📖 **Read 1:** [cppreference - Language Linkage (extern C)](https://en.cppreference.com/w/cpp/language/language_linkage) `[Search: "cppreference language linkage extern c"]`
   - 📖 **Read 2:** [Wikipedia - Name Mangling](https://en.wikipedia.org/wiki/Name_mangling) `[Search: "wikipedia name mangling"]`
   - 📖 **Read 3:** [GeeksforGeeks - Name Mangling in C++ and extern C](https://www.geeksforgeeks.org/cpp/extern-c-in-c/) `[Search: "geeksforgeeks extern c in c++ name mangling"]`
-  - 🎥 **Watch 1:** [Welcome to C++](https://www.youtube.com/watch?v=18c3MTX0PK0) `[Search: "The Cherno extern in C++"]`
-  - 🎥 **Watch 2:** [Name mangling is crazy in Python](https://www.youtube.com/watch?v=YkpG5CH0ySc) `[Search: "Computerphile Name Mangling"]`
+  - 🎥 **Watch 1:** [extern "C": Talking to C Programmers about C++ - Dan Saks - CppCon 2016](https://www.youtube.com/watch?v=D7Sd8A6_fYU) `[Search: "Dan Saks extern C Talking to C Programmers about C++ CppCon"]`
+  - 🎥 **Watch 2:** [The C++ ABI From the Ground Up - Louis Dionne - CppCon 2019](https://www.youtube.com/watch?v=DZ93lP1I7wU) `[Search: "Louis Dionne The C++ ABI From the Ground Up CppCon"]`
 
 - **Object Files (.o) & ELF Binary Layout**
   - *Core Concept:* Executable and Linkable Format (ELF) stores machine code (.text), initialised data (.data), zero-initialised data (.bss), and symbol tables.
@@ -256,7 +256,7 @@ flowchart TD
   - 📖 **Read 2:** [Linux Manual - elf(5)](https://man7.org/linux/man-pages/man5/elf.5.html) `[Search: "man7 elf manual"]`
   - 📖 **Read 3:** [Ian Lance Taylor - Linkers part 1 & ELF Section Headers](https://www.airs.com/blog/archives/38) `[Search: "ian lance taylor linkers part 1 elf archives 38"]`
   - 🎥 **Watch 1:** [Why Use Binary? - Computerphile](https://www.youtube.com/watch?v=thrx3SBEpL8) `[Search: "Computerphile Dissecting Binaries"]`
-  - 🎥 **Watch 2:** [LiveOverflow Channel Introduction and Backstory - bin 0x00](https://www.youtube.com/watch?v=iyAyN3GFM7A) `[Search: "LiveOverflow ELF Binary Format"]`
+  - 🎥 **Watch 2:** [In-depth: ELF - The Extensible & Linkable Format](https://www.youtube.com/watch?v=nC1U1LJQL8o) `[Search: "stacksmashing In-depth: ELF - The Extensible & Linkable Format"]`
 
 - **Symbol Resolution & Linker Mechanics**
   - *Core Concept:* How the linker resolves undefined symbol references across object files and static archives (.a), detecting multiple definitions or missing symbols.
@@ -419,7 +419,7 @@ flowchart TD
   - 📖 **Read 2:** [Linux Kernel Documentation - Real-Time Scheduler](https://www.kernel.org/doc/html/latest/scheduler/sched-rt-group.html) `[Search: "linux kernel real time scheduler documentation"]`
   - 📖 **Read 3:** [Eli Bendersky - Measuring Context Switching and Memory Overheads for Linux Threads](https://eli.thegreenplace.net/2018/measuring-context-switching-and-memory-overheads-for-linux-threads/) `[Search: "eli bendersky measuring context switching and memory overheads linux threads"]`
   - 🎥 **Watch 1:** [OS Context Switching - Computerphile](https://www.youtube.com/watch?v=DKmBRl8j3Ak) `[Search: "Computerphile Context Switching"]`
-  - 🎥 **Watch 2:** [C++ Sanitizers & Fuzzing for the Windows Platform Using New Compilers... - Jim Radigan - CppCon 2019](https://www.youtube.com/watch?v=0EsqxGgYOQU) `[Search: "CppCon Operating Systems Internals for C++ Developers"]`
+  - 🎥 **Watch 2:** [Context Switching | OS Process Management Explained](https://www.youtube.com/watch?v=ajs6sWOXlpc) `[Search: "Operating System Context Switching Explained"]`
 
 - **System Calls (Syscalls) & User-to-Kernel Transitions**
   - *Core Concept:* Syscall instructions (syscall on x86) transition execution rings, flush CPU pipelines, and invoke kernel privilege checks. Low-latency systems avoid syscalls entirely in the hot path.
@@ -456,7 +456,7 @@ flowchart TD
   - *Core Concept:* Dedicating CPU cores exclusively to trading processes by instructing the Linux scheduler and kernel timer interrupts to stay away from designated cores.
   - 📖 **Read 1:** [Linux Kernel Parameters Documentation](https://www.kernel.org/doc/html/latest/admin-guide/kernel-parameters.html) `[Search: "linux kernel parameters isolcpus nohz_full"]`
   - 📖 **Read 2:** [Red Hat Documentation - Isolating CPUs](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_for_real_time/7/html/tuning_guide/isolating_cpus_using_tuned_profiles) `[Search: "red hat real time tuning isolating cpus"]`
-  - 🎥 **Watch 1:** [Interrupt Chaos? isolcpus Solves It #Linux #Latency](https://www.youtube.com/watch?v=sSImGtCWAdI) `[Search: "Linux Real-Time Kernel Tuning isolcpus"]`
+  - 🎥 **Watch 1:** [How to Configure Linux Kernel for Real-Time Applications | Deterministic Low Latency Performance](https://www.youtube.com/watch?v=iqWLWagb5JM) `[Search: "Linux Real-Time Kernel Tuning isolcpus deterministic low latency"]`
   - 🎥 **Watch 2:** [What is Low Latency C++? (Part 1) - Timur Doumler - CppNow 2023](https://www.youtube.com/watch?v=EzmNeAhWqVs) `[Search: "CppCon Low Latency Linux System Tuning"]`
 
 - **System Jitter & CPU Power States (C-States, P-States, Turbo Boost)**
@@ -486,7 +486,7 @@ flowchart TD
   - *Core Concept:* Standard mutual exclusion. A locked thread is put to sleep by the kernel (futex syscall), incurring a multi-microsecond wake-up penalty when uncontended access fails.
   - 📖 **Read 1:** [cppreference - std::mutex](https://en.cppreference.com/w/cpp/thread/mutex) `[Search: "cppreference std mutex"]`
   - 📖 **Read 2:** [cppreference - std::unique_lock](https://en.cppreference.com/w/cpp/thread/unique_lock) `[Search: "cppreference std unique_lock"]`
-  - 🎥 **Watch 1:** [Welcome to C++](https://www.youtube.com/watch?v=18c3MTX0PK0) `[Search: "The Cherno Mutex in C++"]`
+  - 🎥 **Watch 1:** [Threads in C++ (std::thread & std::mutex)](https://www.youtube.com/watch?v=wXBcwHwIt_I) `[Search: "The Cherno Threads in C++ std::thread std::mutex"]`
   - 🎥 **Watch 2:** [Back to Basics: Concurrency - Arthur O'Dwyer - CppCon 2020](https://www.youtube.com/watch?v=F6Ipn7gCOsY) `[Search: "CppCon Back to Basics: Concurrency Arthur O'Dwyer"]`
 
 - **Spinlocks vs Sleep Mutexes**
@@ -503,14 +503,14 @@ flowchart TD
   - 📖 **Read 2:** [cppreference - std::lock](https://en.cppreference.com/w/cpp/thread/lock) `[Search: "cppreference std lock deadlock avoidance"]`
   - 📖 **Read 3:** [C++ Core Guidelines - Deadlock Avoidance and Lock Management](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#cp4-think-about-concurrency-at-the-design-level) `[Search: "c++ core guidelines deadlock avoidance lock management"]`
   - 🎥 **Watch 1:** [L-4.1: DEADLOCK concept | Example | Necessary condition | Operating System](https://www.youtube.com/watch?v=rWFH6PLOIEI) `[Search: "Computerphile Deadlocks in Operating Systems"]`
-  - 🎥 **Watch 2:** [Welcome to C++](https://www.youtube.com/watch?v=18c3MTX0PK0) `[Search: "The Cherno Deadlocks in C++"]`
+  - 🎥 **Watch 2:** [An Introduction to Multithreading in C++20 - Anthony Williams - CppCon 2022](https://www.youtube.com/watch?v=A7sVFJLJM-A) `[Search: "Anthony Williams Multithreading and Deadlock Avoidance CppCon"]`
 
 - **Hardware Atomics (std::atomic & compare_exchange)**
   - *Core Concept:* Lock-free primitives mapped directly to CPU atomic instructions (LOCK CMPXCHG on x86). compare_exchange_weak vs compare_exchange_strong in loop structures.
   - 📖 **Read 1:** [cppreference - std::atomic](https://en.cppreference.com/w/cpp/atomic/atomic) `[Search: "cppreference std atomic"]`
   - 📖 **Read 2:** [cppreference - compare_exchange_weak](https://en.cppreference.com/w/cpp/atomic/atomic/compare_exchange) `[Search: "cppreference atomic compare exchange weak strong"]`
   - 🎥 **Watch 1:** [CppCon 2016: Fedor Pikus “The speed of concurrency (is lock-free faster?)"](https://www.youtube.com/watch?v=9hJkWwHDDxs) `[Search: "CppCon 2016: Fedor Pikus “The speed of concurrency (is lock-free faster?)""]`
-  - 🎥 **Watch 2:** [Atomic Variables Explained in 20 seconds! #cpp #cpp14 #cpp17 #programming #developer](https://www.youtube.com/watch?v=QFJmnznZdvU) `[Search: "The Cherno Atomics in C++"]`
+  - 🎥 **Watch 2:** [Using std::atomic in modern C++ to update a shared value | Introduction to Concurrency in Cpp](https://www.youtube.com/watch?v=f_C4eYxBWdQ) `[Search: "Using std::atomic in modern C++ to update a shared value"]`
 
 - **The C++ Memory Model (Relaxed, Acquire-Release, SeqCst)**
   - *Core Concept:* memory_order_relaxed (atomicity without synchronization), memory_order_acquire / release (synchronizes-with relationship, ordering stores and loads), and memory_order_seq_cst (global total order).
@@ -577,7 +577,7 @@ flowchart TD
   - 📖 **Read 1:** [Valgrind Memcheck User Manual](https://valgrind.org/docs/manual/mc-manual.html) `[Search: "valgrind memcheck user manual"]`
   - 📖 **Read 2:** [Valgrind Quick Start Guide](https://valgrind.org/docs/manual/quick-start.html) `[Search: "valgrind quick start guide manual"]`
   - 🎥 **Watch 1:** [Using Valgrind and GDB together to fix a segfault and memory leak](https://www.youtube.com/watch?v=8JEEYwdrexc) `[Search: "Using Valgrind and GDB together to fix a segfault and memory leak"]`
-  - 🎥 **Watch 2:** [Using Valgrind and GDB together to fix a segfault and memory leak](https://www.youtube.com/watch?v=8JEEYwdrexc) `[Search: "Valgrind Memory Leak Tutorial C++"]`
+  - 🎥 **Watch 2:** [Fix Memory Leaks in C Code with Valgrind](https://www.youtube.com/watch?v=DyqstSE470s) `[Search: "Fix Memory Leaks in C Code with Valgrind Memcheck"]`
 
 - **Heaptrack (Heap Memory Allocation Profiler)**
   - *Core Concept:* Tracking every malloc/free call at runtime to pinpoint code paths triggering hidden dynamic memory allocations and tracking resident memory growth.
@@ -619,7 +619,7 @@ flowchart TD
   - *Core Concept:* Generating millions of mutated, malformed binary payloads to test protocol parsers against buffer overflows, null pointer dereferences, and infinite loops.
   - 📖 **Read 1:** [LLVM libFuzzer Documentation](https://llvm.org/docs/LibFuzzer.html) `[Search: "llvm libfuzzer documentation official"]`
   - 📖 **Read 2:** [Google AddressSanitizer Documentation](https://github.com/google/sanitizers/wiki/AddressSanitizer) `[Search: "google sanitizers addresssanitizer documentation"]`
-  - 🎥 **Watch 1:** [C++ Sanitizers & Fuzzing for the Windows Platform Using New Compilers... - Jim Radigan - CppCon 2019](https://www.youtube.com/watch?v=0EsqxGgYOQU) `[Search: "C++ Sanitizers & Fuzzing for the Windows Platform Using New Compilers... - Jim Radigan - CppCon 2019"]`
+  - 🎥 **Watch 1:** [Context Switching | OS Process Management Explained](https://www.youtube.com/watch?v=ajs6sWOXlpc) `[Search: "Operating System Context Switching Explained"]`
   - 🎥 **Watch 2:** [GTAC 2016: Finding Bugs in C++ Libraries Using LibFuzzer](https://www.youtube.com/watch?v=FzaR3iH2iZs) `[Search: "Modern Fuzz Testing in C++ with libFuzzer"]`
 
 - **Core Dump Analysis & Post-Mortem Debugging (GDB)**
@@ -670,7 +670,7 @@ flowchart TD
   - *Core Concept:* epoll registers sockets in a red-black tree and notifies user space of readiness via an event list. In ultra-low latency, busy-wait polling loops avoid epoll_wait context switch delay.
   - 📖 **Read 1:** [Linux Manual - epoll(7)](https://man7.org/linux/man-pages/man7/epoll.7.html) `[Search: "man7 epoll manual linux"]`
   - 📖 **Read 2:** [The Edge of Call: The epoll mechanism](https://copyconstruct.medium.com/the-method-to-epolls-madness-d9d2d6378642) `[Search: "the method to epolls madness copyconstruct"]`
-  - 🎥 **Watch 1:** [Why Modern Systems Use epoll & async I/O 🔥 | select vs poll vs epoll Explained | Arvind Sir #viral](https://www.youtube.com/watch?v=8qOoSypRVQw) `[Search: "Why Modern Systems Use epoll & async I/O | select vs poll vs epoll Explained"]`
+  - 🎥 **Watch 1:** [epoll: How Linux Handles 10,000 Connections](https://www.youtube.com/watch?v=MzLZhAShgs0) `[Search: "epoll How Linux Handles 10,000 Connections"]`
   - 🎥 **Watch 2:** [Linux's epoll explained](https://www.youtube.com/watch?v=eaT6XtfyGHQ) `[Search: "epoll in Linux Tutorial C++"]`
 
 ---
@@ -693,8 +693,8 @@ flowchart LR
   - 📖 **Read 1:** [Wikipedia - Direct Memory Access](https://en.wikipedia.org/wiki/Direct_memory_access) `[Search: "wikipedia direct memory access dma"]`
   - 📖 **Read 2:** [PCI-SIG Official Portal](https://pcisig.com/) `[Search: "pci sig official portal pcie latency"]`
   - 📖 **Read 3:** [Linux Kernel Documentation - Dynamic DMA Mapping API](https://www.kernel.org/doc/html/latest/core-api/dma-api.html) `[Search: "linux kernel dynamic dma mapping api documentation"]`
-  - 🎥 **Watch 1:** [Computer Organization #68: Full Concept of DMA | Direct Memory Access | DMA | Modes of DMA Transfer](https://www.youtube.com/watch?v=qiaEGFh4D_I) `[Search: "Computerphile Direct Memory Access (DMA)"]`
-  - 🎥 **Watch 2:** [I have a 10G network card inserted into my PCIe card slot#wifi #techtech #networkcard](https://www.youtube.com/watch?v=yXXkGXhUL5M) `[Search: "How PCIe and DMA Work in Network Cards"]`
+  - 🎥 **Watch 1:** [DMA Controller: How Peripheral Devices Transfer Data to RAM](https://www.youtube.com/watch?v=s8RGHggL7ws) `[Search: "DMA Controller How Peripheral Devices Transfer Data to RAM"]`
+  - 🎥 **Watch 2:** [PCIe Protocol Explained | The Backbone of High-Speed Data Transfer!](https://www.youtube.com/watch?v=ZMor9cE0PvQ) `[Search: "PCIe Protocol Explained The Backbone of High-Speed Data Transfer"]`
 
 - **Solarflare ef_vi (Event Format Virtual Interface)**
   - *Core Concept:* Low-level zero-copy user-space API bypassing the OS kernel. Maps the NIC descriptor ring directly into the application virtual address space.
@@ -745,14 +745,14 @@ flowchart LR
   - 📖 **Read 1:** [Compiler Explorer (Godbolt)](https://godbolt.org/) `[Search: "compiler explorer godbolt"]`
   - 📖 **Read 2:** [Matt Godbolt - What Has My Compiler Done for Me Lately?](https://www.youtube.com/watch?v=bSkpMdDe4g4) `[Search: "matt godbolt what has my compiler done for me lately"]`
   - 🎥 **Watch 1:** [CppCon 2017: Matt Godbolt “What Has My Compiler Done for Me Lately? Unbolting the Compiler's Lid”](https://www.youtube.com/watch?v=bSkpMdDe4g4) `[Search: "CppCon 2017: Matt Godbolt “What Has My Compiler Done for Me Lately? Unbolting the Compiler's Lid”"]`
-  - 🎥 **Watch 2:** ["Hello World" has CHANGED in C++!](https://www.youtube.com/watch?v=k4F2V_BXMlI) `[Search: "The Cherno Reading Assembly Output"]`
+  - 🎥 **Watch 2:** [C++: Some Assembly Required - Matt Godbolt - CppCon](https://www.youtube.com/watch?v=zoYT7R94S3c) `[Search: "Matt Godbolt Some Assembly Required CppCon"]`
 
 - **Instruction-Level Parallelism (ILP, Superscalar, Reorder Buffer)**
   - *Core Concept:* Modern Out-of-Order (OoO) CPUs execute multiple independent instructions per cycle across separate execution ports. Reducing data dependency chains unlocks maximum Instructions Per Cycle (IPC).
   - 📖 **Read 1:** [Agner Fog - The Microarchitecture of Intel, AMD and VIA CPUs](https://www.agner.org/optimize/microarchitecture.pdf) `[Search: "agner fog microarchitecture intel amd optimization manual"]`
   - 📖 **Read 2:** [Wikipedia - Instruction-Level Parallelism](https://en.wikipedia.org/wiki/Instruction-level_parallelism) `[Search: "wikipedia instruction level parallelism out of order"]`
   - 📖 **Read 3:** [Modern Microprocessors - A 90-Minute Guide by Jason Robert Carey Patterson](http://www.lighterra.com/papers/modernmicroprocessors/) `[Search: "lighterra modern microprocessors a 90 minute guide pipelining superscalar"]`
-  - 🎥 **Watch 1:** [Instruction Level Parallelism ILP | Computer Organization and Architecture Lectures in Hindi](https://www.youtube.com/watch?v=ZGUP5nUdIyc) `[Search: "Computerphile Instruction-Level Parallelism"]`
+  - 🎥 **Watch 1:** [Carnegie Mellon - Parallel Computer Architecture: Instruction-Level Parallelism - Onur Mutlu](https://www.youtube.com/watch?v=yUtn_vUPbNg) `[Search: "Carnegie Mellon Computer Architecture Instruction Level Parallelism Onur Mutlu"]`
   - 🎥 **Watch 2:** [Superscalar CPUs: Multiple, Parallel, Execution Units](https://www.youtube.com/watch?v=4xhyXVyFMHw) `[Search: "Superscalar Architecture and Reorder Buffers Explained"]`
 
 - **SIMD Vectorization (SSE, AVX2, AVX-512)**
@@ -783,61 +783,61 @@ flowchart LR
   - 📖 **Read 1:** [Investopedia - Bid and Ask Spread](https://www.investopedia.com/terms/b/bid-and-ask.asp) `[Search: "investopedia bid and ask spread"]`
   - 📖 **Read 2:** [Wikipedia - Order Book (trading)](https://en.wikipedia.org/wiki/Order_book) `[Search: "wikipedia order book trading level 2 level 3"]`
   - 📖 **Read 3:** [CME Group - Understanding the Order Book and Market Depth](https://www.cmegroup.com/education/courses/introduction-to-futures/understanding-market-depth.html) `[Search: "cme group understanding the order book market depth"]`
-  - 🎥 **Watch 1:** [Check the Order Book Before Investing | Fundamental Analysis Tips | Deepak Wadhwa | #trading #money](https://www.youtube.com/watch?v=Tx7qtbESWCM) `[Search: "How Financial Markets Work: The Order Book Explained"]`
-  - 🎥 **Watch 2:** [Market Makers (Liquidity Providers) and the Bid-Ask Spread Explained in One Minute](https://www.youtube.com/watch?v=1WO1GmrIlS0) `[Search: "Understanding Bid Ask Spread and Liquidity"]`
+  - 🎥 **Watch 1:** [Costis Maglaras: High-Frequency Trading](https://www.youtube.com/watch?v=DLD_P2G5m5Q) `[Search: "Costis Maglaras High-Frequency Trading Columbia Business School"]`
+  - 🎥 **Watch 2:** [Frontiers in Quantitative Finance: Dr Nicholas Westray, Extracting alpha from the limit order book](https://www.youtube.com/watch?v=0qy8IHmKvoY) `[Search: "Dr Nicholas Westray Extracting alpha from the limit order book Oxford"]`
 
 - **Limit Order Book (LOB) Architecture & Matching Engine Rules**
   - *Core Concept:* Price-Time Priority (FIFO) matching. An incoming market order immediately matches against resting limit orders at the best available price.
   - 📖 **Read 1:** [Wikipedia - Limit Order Book](https://en.wikipedia.org/wiki/Order_book) `[Search: "wikipedia limit order book price time priority"]`
   - 📖 **Read 2:** [QuantConnect - Limit Order Book Microstructure](https://www.quantconnect.com/learning/articles/introduction-to-financial-python/order-types-and-order-books) `[Search: "quantconnect limit order book microstructure"]`
   - 📖 **Read 3:** [QuantConnect - Limit Order Book Microstructure & Python/C++ Order Models](https://www.quantconnect.com/learning/articles/introduction-to-financial-python/order-types-and-order-books) `[Search: "quantconnect limit order book microstructure"]`
-  - 🎥 **Watch 1:** [High-Frequency Trading: Understanding Latency in Microseconds](https://www.youtube.com/watch?v=vFqYUKaMK_0) `[Search: "High-Frequency Trading: Understanding Latency in Microseconds"]`
-  - 🎥 **Watch 2:** [How orders affect the order book](https://www.youtube.com/watch?v=Kl4-VJ2K8Ik) `[Search: "How a Limit Order Book Works"]`
+  - 🎥 **Watch 1:** [When Nanoseconds Matter: Ultrafast Trading Systems in C++ - David Gross - CppCon 2024](https://www.youtube.com/watch?v=sX2nF1fW7kI) `[Search: "When Nanoseconds Matter: Ultrafast Trading Systems in C++ David Gross CppCon"]`
+  - 🎥 **Watch 2:** [Stock Trading System Design | Matching Engine, Order Book & Low-Latency Architecture](https://www.youtube.com/watch?v=ckIABmFFiRY) `[Search: "Stock Trading System Design Matching Engine Order Book Low Latency Architecture"]`
 
 - **Order Types: Market, Limit, Cancellations, and Icebergs**
   - *Core Concept:* Market orders consume liquidity and incur spread cost; limit orders provide liquidity and capture spread; cancellations modify state queue positions; iceberg orders conceal total depth.
   - 📖 **Read 1:** [Investopedia - Order Types](https://www.investopedia.com/terms/o/order.asp) `[Search: "investopedia order types market limit stop"]`
   - 📖 **Read 2:** [SEC - Guide to Trading Markets & Order Types](https://www.sec.gov/investor/pubs/tradingorders.htm) `[Search: "sec guide trading orders market limit"]`
-  - 🎥 **Watch 1:** [The Truth Behind Wall Street's Algorithmic Trading](https://www.youtube.com/watch?v=8-M0pwqsLzg) `[Search: "Order Types in Algorithmic Trading Explained"]`
-  - 🎥 **Watch 2:** [Market Order vs Limit Order - Explained💡📈](https://www.youtube.com/watch?v=CfXOGTRJpsA) `[Search: "Market Orders vs Limit Orders"]`
+  - 🎥 **Watch 1:** [Stochastic Market Microstructure Models of Limit Order Books](https://www.youtube.com/watch?v=XoBjQqMmKoM) `[Search: "Stochastic Market Microstructure Models of Limit Order Books INFORMS"]`
+  - 🎥 **Watch 2:** [Day 14 - VWAP, TWAP, and Execution Algorithms: How Institutions Trade Without Moving the Market](https://www.youtube.com/watch?v=T86rkAWFW04) `[Search: "VWAP TWAP and Execution Algorithms How Institutions Trade Without Moving the Market"]`
 
 - **Exchange Protocols: NASDAQ ITCH 5.0, OUCH, and FIX**
   - *Core Concept:* ITCH is binary UDP multicast market data; OUCH is point-to-point binary order entry; FIX is standard ASCII-tagged format for institutional routing.
   - 📖 **Read 1:** [NASDAQ ITCH 5.0 Specification](http://www.nasdaqtrader.com/content/technicalsupport/specifications/dataproducts/NQTVITCHspecification.pdf) `[Search: "nasdaq itch 5.0 specification pdf official"]`
   - 📖 **Read 2:** [FIX Trading Community Official Portal](https://www.fixtrading.org/) `[Search: "fix trading community official portal"]`
-  - 🎥 **Watch 1:** [Live/Historic NASDAQ ITCH Data Feed to FPGA](https://www.youtube.com/watch?v=J0E2pCwZ-QE) `[Search: "Live/Historic NASDAQ ITCH Data Feed to FPGA"]`
-  - 🎥 **Watch 2:** [Financial Information Exchange (FIX) Protocol](https://www.youtube.com/watch?v=tOk2o8vfA0E) `[Search: "Financial Information eXchange (FIX) Protocol Explained"]`
+  - 🎥 **Watch 1:** [Multicast and the Markets with Brian Nigito](https://www.youtube.com/watch?v=triyiLwqWUI) `[Search: "Multicast and the Markets with Brian Nigito Jane Street"]`
+  - 🎥 **Watch 2:** [What is Low Latency C++? (Part 2) - Timur Doumler - CppNow 2023](https://www.youtube.com/watch?v=5uIsadq-nyk) `[Search: "What is Low Latency C++ Part 2 Timur Doumler CppNow"]`
 
 - **Market Making & Adverse Selection Risk**
   - *Core Concept:* Quoting both bids and asks simultaneously to capture the spread. The central risk is adverse selection: being filled by informed traders right before the price moves violently against you.
   - 📖 **Read 1:** [Investopedia - Market Maker](https://www.investopedia.com/terms/m/marketmaker.asp) `[Search: "investopedia market maker spread"]`
   - 📖 **Read 2:** [Avellaneda & Stoikov - High-Frequency Trading in a Limit Order Book](https://www.math.nyu.edu/~avellane/HighFrequencyTrading.pdf) `[Search: "avellaneda stoikov high frequency trading limit order book pdf"]`
-  - 🎥 **Watch 1:** [How To Build a Market Maker Algorithm (in Python)](https://www.youtube.com/watch?v=FrK7SUcAs-U) `[Search: "How To Build a Market Maker Algorithm"]`
-  - 🎥 **Watch 2:** [Adverse Selection: Market Making Explained Simply! #shorts](https://www.youtube.com/watch?v=bQKfFyiLnyw) `[Search: "Market Making and Adverse Selection Explained"]`
+  - 🎥 **Watch 1:** [Where market making meets market microstructure](https://www.youtube.com/watch?v=S7eig5VXFpY) `[Search: "Where market making meets market microstructure Sasha Stoikov"]`
+  - 🎥 **Watch 2:** [The Avellaneda-Stoikov Market Making Model: A Complete Derivation](https://www.youtube.com/watch?v=GOeeAQXuk-Q) `[Search: "The Avellaneda-Stoikov Market Making Model: A Complete Derivation"]`
 
 - **Statistical Arbitrage & Pairs Trading (Mean Reversion)**
   - *Core Concept:* Identifying cointegrated asset pairs whose spread deviates from historical mean. Longing the undervalued asset and shorting the overvalued asset until convergence.
   - 📖 **Read 1:** [Investopedia - Statistical Arbitrage](https://www.investopedia.com/terms/s/statisticalarbitrage.asp) `[Search: "investopedia statistical arbitrage pairs trading"]`
   - 📖 **Read 2:** [Wikipedia - Pairs Trade](https://en.wikipedia.org/wiki/Pairs_trade) `[Search: "wikipedia pairs trade cointegration mean reversion"]`
   - 📖 **Read 3:** [QuantConnect - Pairs Trading Strategy Implementation Guide](https://www.quantconnect.com/learning/articles/investment-strategy-library/pairs-trading-copula-approach) `[Search: "quantconnect pairs trading strategy tutorial"]`
-  - 🎥 **Watch 1:** [Statistical Arbitrage & Pairs Trading: Quantitative Strategy - EP 45](https://www.youtube.com/watch?v=4RL8-cvc4LE) `[Search: "Statistical Arbitrage and Pairs Trading in Practice"]`
-  - 🎥 **Watch 2:** [Live Market | Mean Reversion Trading| Price action Trading - 25 Jun](https://www.youtube.com/watch?v=ZwXNbEWWnfo) `[Search: "Mean Reversion Trading Strategies"]`
+  - 🎥 **Watch 1:** [Algorithmic trading in Python: Cointegration and pair trading](https://www.youtube.com/watch?v=jvZ0vuC9oJk) `[Search: "NEDL Algorithmic trading in Python Cointegration and pair trading"]`
+  - 🎥 **Watch 2:** [Lecture 7: Linear Rates, Products, and Models](https://www.youtube.com/watch?v=RvXwSoGDYvg) `[Search: "MIT 18.S096 Topics in Mathematics with Applications in Finance"]`
 
 - **Smart Order Routing (SOR) Across Fragmented Venues**
   - *Core Concept:* Splitting large parent orders into child slices routed across multiple exchanges (NASDAQ, BATS, NYSE, dark pools) to maximize fill rates and minimize market impact.
   - 📖 **Read 1:** [Wikipedia - Smart Order Routing](https://en.wikipedia.org/wiki/Smart_order_routing) `[Search: "wikipedia smart order routing"]`
   - 📖 **Read 2:** [SEC - Equity Market Structure Literature Review: Order Routing](https://www.sec.gov/marketstructure/research/equity_market_structure_literature_review_order_routing.pdf) `[Search: "sec equity market structure order routing pdf"]`
   - 📖 **Read 3:** [SEC Market Structure - Overview of Order Routing and Execution Venues](https://www.sec.gov/marketstructure/research/equity_market_structure_literature_review_order_routing.pdf) `[Search: "sec equity market structure literature review order routing"]`
-  - 🎥 **Watch 1:** [Mission Critical SOR: Lock-Free State and Exchange Fault Tolerance](https://www.youtube.com/watch?v=f41f-W78yuM) `[Search: "Mission Critical SOR: Lock-Free State and Exchange Fault Tolerance"]`
-  - 🎥 **Watch 2:** [Smart Order Routing Explained (How Algos Get Best Price)](https://www.youtube.com/watch?v=dmKNEEQH2-Q) `[Search: "Smart Order Routing in Electronic Trading"]`
+  - 🎥 **Watch 1:** [State Machine Replication, and Why You Should Care with Doug Patti](https://www.youtube.com/watch?v=sk0LRzcDkRM) `[Search: "Jane Street State Machine Replication and Why You Should Care Doug Patti"]`
+  - 🎥 **Watch 2:** [Optimal Execution: Integrating Almgren-Chriss into Smart Order Routers](https://www.youtube.com/watch?v=vXqK3EgIeBc) `[Search: "Optimal Execution: Integrating Almgren-Chriss into Smart Order Routers"]`
 
 - **Algorithmic Execution Strategies (TWAP, VWAP, Implementation Shortfall)**
   - *Core Concept:* Institutional execution algorithms. Time-Weighted Average Price (TWAP) slices evenly across intervals; Volume-Weighted Average Price (VWAP) weights execution by historical intraday volume curves.
   - 📖 **Read 1:** [Investopedia - Volume-Weighted Average Price (VWAP)](https://www.investopedia.com/terms/v/vwap.asp) `[Search: "investopedia volume weighted average price vwap"]`
   - 📖 **Read 2:** [Wikipedia - Time-Weighted Average Price (TWAP)](https://en.wikipedia.org/wiki/Time-weighted_average_price) `[Search: "wikipedia time weighted average price twap"]`
   - 📖 **Read 3:** [CME Group - Algorithmic Execution Strategies: VWAP and TWAP](https://www.cmegroup.com/education/articles-and-reports/twap-and-vwap.html) `[Search: "cme group twap and vwap execution strategies"]`
-  - 🎥 **Watch 1:** [3 Types of Trading Algos Institutions Use: VWAP, TWAP & Steps ☝️](https://www.youtube.com/watch?v=PDN_1F_LXUU) `[Search: "Algorithmic Trading Strategies: VWAP and TWAP"]`
-  - 🎥 **Watch 2:** [VWAP Trading Free Tutorial by Abhishek Kar](https://www.youtube.com/watch?v=bcKZCLqHgdY) `[Search: "VWAP Explained with Real-World Examples"]`
+  - 🎥 **Watch 1:** [Day 14 - VWAP, TWAP, and Execution Algorithms: How Institutions Trade Without Moving the Market](https://www.youtube.com/watch?v=T86rkAWFW04) `[Search: "VWAP TWAP and Execution Algorithms How Institutions Trade Without Moving the Market"]`
+  - 🎥 **Watch 2:** [Optimal Execution: Integrating Almgren-Chriss into Smart Order Routers](https://www.youtube.com/watch?v=vXqK3EgIeBc) `[Search: "Almgren Chriss Optimal Execution Quantitative Trading"]`
 
 ---
 
@@ -851,7 +851,7 @@ flowchart LR
   - *Core Concept:* Vector spaces, matrix decomposition, and principal component analysis. Essential for portfolio risk factor modeling, PCA yield curve analysis, and algorithmic pricing.
   - 📖 **Read 1:** [MIT 18.06 - Linear Algebra (Gilbert Strang)](https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/) `[Search: "mit ocw 18.06 linear algebra gilbert strang official"]`
   - 📖 **Read 2:** [Gilbert Strang - Linear Algebra and Its Applications](https://math.mit.edu/~gs/linearalgebra/) `[Search: "gilbert strang linear algebra and its applications book"]`
-  - 🎥 **Watch 1:** [An Interview with Gilbert Strang on Teaching Linear Algebra](https://www.youtube.com/watch?v=7UJ4CFRGd-U) `[Search: "MIT 18.06 Gilbert Strang Lecture 1"]`
+  - 🎥 **Watch 1:** [Lec 1 | MIT 18.06 Linear Algebra, Spring 2005](https://www.youtube.com/watch?v=ZK3O402wf1c) `[Search: "Lec 1 MIT 18.06 Linear Algebra Spring 2005 Gilbert Strang"]`
   - 🎥 **Watch 2:** [Vectors | Chapter 1, Essence of linear algebra](https://www.youtube.com/watch?v=fNk_zzaMoSs) `[Search: "3Blue1Brown Essence of Linear Algebra"]`
 
 - **Probability & Statistics (Distributions, Expectation, Bayes' Theorem)**
@@ -861,12 +861,28 @@ flowchart LR
   - 🎥 **Watch 1:** [Lecture 1: Probability and Counting | Statistics 110](https://www.youtube.com/watch?v=KbB0FjPg0mw) `[Search: "Lecture 1: Probability and Counting | Statistics 110"]`
   - 🎥 **Watch 2:** [Bayes theorem, the geometry of changing beliefs](https://www.youtube.com/watch?v=HZGCoVF3YvM) `[Search: "Bayes' Theorem 3Blue1Brown"]`
 
+- **Quant Trader Rapid Math, Brainteasers & Speed Drills (Sub-Minute Pressure Track)**
+  - *Core Concept:* Mental arithmetic speed, fast expected value (linearity of expectation, coupon collector), fast Bayes' rule in odds format (prior odds × likelihood ratio), coin/dice stopping times, and market-making bid-ask quoting under strict 30-to-60-second timers. 100% free open platforms only (no paywalls).
+  - 📖 **Read 1:** [Zetamac Speed Arithmetic Drill](https://arithmetic.zetamac.com/) `[Search: "zetamac speed arithmetic mental math"]`
+  - 📖 **Read 2:** [Brainstellar - Quantitative Interview Puzzles](https://brainstellar.com/) `[Search: "brainstellar quant interview puzzles probability"]`
+  - 📖 **Read 3:** [Jane Street Official Puzzles Archive](https://www.janestreet.com/puzzles/archive/) `[Search: "jane street official puzzles archive math probability"]`
+  - 🎥 **Watch 1:** [A Jane Street Trading Mock Interview with Graham and Andrea](https://www.youtube.com/watch?v=NT_I1MjckaU) `[Search: "Jane Street Trading Mock Interview with Graham and Andrea"]`
+  - 🎥 **Watch 2:** [Jane Street Quant Trading Interview!](https://www.youtube.com/watch?v=gQJTkuEVPrU) `[Search: "Jane Street Quant Interview Questions Probability Bayes Theorem Quant Blueprint"]`
+
+- **Option Pricing Intuition & Greeks Under Pressure (Trader Option Theory Track)**
+  - *Core Concept:* Rapid put-call parity arbitrage ($C - P = S - K \cdot e^{-rT}$), Brenner-Subrahmanyam ATM straddle approximation ($\text{Straddle} \approx 0.8 \times S \times \sigma \times \sqrt{T}$), delta as an intuitive probability proxy, gamma risk peaks, vega exposure, and dynamic hedging without differential equation solving.
+  - 📖 **Read 1:** [Wikipedia - Put-Call Parity](https://en.wikipedia.org/wiki/Put%E2%80%93call_parity) `[Search: "wikipedia put call parity arbitrage"]`
+  - 📖 **Read 2:** [CME Group - Introduction to Option Greeks](https://www.cmegroup.com/education/courses/introduction-to-options/understanding-the-greeks.html) `[Search: "cme group understanding option greeks delta gamma vega"]`
+  - 📖 **Read 3:** [Investopedia - Option Greeks](https://www.investopedia.com/terms/g/greeks.asp) `[Search: "investopedia option greeks delta gamma vega theta"]`
+  - 🎥 **Watch 1:** [Where market making meets market microstructure](https://www.youtube.com/watch?v=S7eig5VXFpY) `[Search: "Where market making meets market microstructure Sasha Stoikov"]`
+  - 🎥 **Watch 2:** [The Avellaneda-Stoikov Market Making Model: A Complete Derivation](https://www.youtube.com/watch?v=GOeeAQXuk-Q) `[Search: "The Avellaneda-Stoikov Market Making Model: A Complete Derivation"]`
+
 - **Time-Series Analysis (Stationarity, Autocorrelation, Cointegration)**
   - *Core Concept:* Analyzing non-stationary financial asset prices. Augmented Dickey-Fuller (ADF) tests, ARIMA models, autocorrelation, and cointegration testing for pairs trading.
   - 📖 **Read 1:** [NIST/SEMATECH e-Handbook of Statistical Methods - Time Series](https://www.itl.nist.gov/div898/handbook/pmc/section4/pmc4.htm) `[Search: "nist time series analysis statistical handbook"]`
   - 📖 **Read 2:** [Wikipedia - Cointegration](https://en.wikipedia.org/wiki/Cointegration) `[Search: "wikipedia cointegration pairs trading"]`
   - 📖 **Read 3:** [Penn State University - Stat 510: Applied Time Series Analysis](https://online.stat.psu.edu/stat510/) `[Search: "penn state stat 510 applied time series analysis course"]`
-  - 🎥 **Watch 1:** [Complete Theory|Time Series Analysis|Statistics|BBA|BCA|B.COM|B.TECH|Dream Maths](https://www.youtube.com/watch?v=qx5055j0U6c) `[Search: "Time Series Analysis | Stationary Time Series"]`
+  - 🎥 **Watch 1:** [Stationarity in Time Series Analysis | Weak and Strict Stationarity](https://www.youtube.com/watch?v=Da-nWryjdrw) `[Search: "Stationarity in Time Series Analysis"]`
   - 🎥 **Watch 2:** [Algorithmic trading in Python: Cointegration and pair trading](https://www.youtube.com/watch?v=jvZ0vuC9oJk) `[Search: "Cointegration and Pairs Trading in Python"]`
 
 - **Stochastic Calculus (Brownian Motion, Ito's Lemma, Black-Scholes)**
@@ -875,7 +891,7 @@ flowchart LR
   - 📖 **Read 2:** [Wikipedia - Black-Scholes Model](https://en.wikipedia.org/wiki/Black%E2%80%93Scholes_model) `[Search: "wikipedia black scholes model derivative pricing"]`
   - 📖 **Read 3:** [MIT OpenCourseWare - Mathematics with Applications in Finance (Lecture Notes)](https://ocw.mit.edu/courses/18-s096-topics-in-mathematics-with-applications-in-finance-fall-2013/pages/lecture-notes/) `[Search: "mit 18.s096 lecture notes mathematics applications finance"]`
   - 🎥 **Watch 1:** [1. Introduction, Financial Terms and Concepts](https://www.youtube.com/watch?v=wvXDB9dMdEo) `[Search: "MIT 18.S096 Topics in Mathematics with Applications in Finance"]`
-  - 🎥 **Watch 2:** [Black Scholes Model INTUITIVELY Explained for Option Traders](https://www.youtube.com/watch?v=ir6oZ3N2hXY) `[Search: "Black Scholes Option Pricing Model Explained 3Blue1Brown"]`
+  - 🎥 **Watch 2:** [19. Black-Scholes Formula, Risk-neutral Valuation](https://www.youtube.com/watch?v=TnS8kI_KuJc) `[Search: "MIT 18.S096 Black Scholes Formula Risk neutral Valuation"]`
 
 ---
 
@@ -890,14 +906,14 @@ flowchart LR
   - 📖 **Read 1:** [LMAX Disruptor Architecture (Martin Fowler)](https://martinfowler.com/articles/lmax.html) `[Search: "lmax disruptor architecture martin fowler"]`
   - 📖 **Read 2:** [Adaptive - High Performance Matching Engine Architecture](https://weareadaptive.com/) `[Search: "weareadaptive high performance trading architecture"]`
   - 🎥 **Watch 1:** [CppCon 2017: Carl Cook “When a Microsecond Is an Eternity: High Performance Trading Systems in C++”](https://www.youtube.com/watch?v=NH1Tta7purM) `[Search: "CppCon 2017: Carl Cook “When a Microsecond Is an Eternity: High Performance Trading Systems in C++”"]`
-  - 🎥 **Watch 2:** [What Does an HFT C++ Developer Actually Do?](https://www.youtube.com/watch?v=NdDmtgiwgik) `[Search: "High-Frequency Trading Matching Engine in C++"]`
+  - 🎥 **Watch 2:** [When Nanoseconds Matter: Ultrafast Trading Systems in C++ - David Gross - CppCon 2024](https://www.youtube.com/watch?v=sX2nF1fW7kI) `[Search: "When Nanoseconds Matter: Ultrafast Trading Systems in C++ David Gross CppCon"]`
 
 - **Project 2: Kernel-Bypass Hardware-Accurate ITCH 5.0 Feed Handler**
   - *Core Concept:* Direct UDP multicast parser consuming live NASDAQ ITCH binary streams. Zero-copy architecture, SIMD ASCII unpacking, endianness conversion using __builtin_bswap, and ef_vi / DPDK kernel bypass.
   - 📖 **Read 1:** [NASDAQ ITCH 5.0 Official Specification](http://www.nasdaqtrader.com/content/technicalsupport/specifications/dataproducts/NQTVITCHspecification.pdf) `[Search: "nasdaq itch 5.0 specification pdf official"]`
   - 📖 **Read 2:** [DPDK Official Guides](https://doc.dpdk.org/guides/) `[Search: "dpdk official guides documentation"]`
-  - 🎥 **Watch 1:** [Live/Historic NASDAQ ITCH Data Feed to FPGA](https://www.youtube.com/watch?v=J0E2pCwZ-QE) `[Search: "Live/Historic NASDAQ ITCH Data Feed to FPGA"]`
-  - 🎥 **Watch 2:** [Kernel-bypass techniques for high-speed network packet processing](https://www.youtube.com/watch?v=MpjlWt7fvrw) `[Search: "Kernel-bypass techniques for high-speed network packet processing"]`
+  - 🎥 **Watch 1:** [Multicast and the Markets with Brian Nigito](https://www.youtube.com/watch?v=triyiLwqWUI) `[Search: "Multicast and the Markets with Brian Nigito Jane Street"]`
+  - 🎥 **Watch 2:** [What is Low Latency C++? (Part 2) - Timur Doumler - CppNow 2023](https://www.youtube.com/watch?v=5uIsadq-nyk) `[Search: "What is Low Latency C++ Part 2 Timur Doumler CppNow"]`
 
 - **Project 3: High-Throughput Lock-Free SPSC / MPMC Ring Buffer**
   - *Core Concept:* Circular ring buffer queue passing messages between network and matching threads without mutexes. Cache-line aligned (alignas(64)) atomic read/write indices, explicit acquire-release semantics, and Google Benchmark suite.
@@ -911,7 +927,7 @@ flowchart LR
   - 📖 **Read 1:** [Linux Kernel HugeTLB Documentation](https://www.kernel.org/doc/html/latest/admin-guide/mm/hugetlbpage.html) `[Search: "linux kernel hugetlb pages documentation"]`
   - 📖 **Read 2:** [C++ Core Guidelines - Per-Allocation](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rper-alloc) `[Search: "c++ core guidelines per allocation memory pool"]`
   - 🎥 **Watch 1:** [Back to Basics: Custom Allocators Explained - From Basics to Advanced - Kevin Carpenter - CppCon](https://www.youtube.com/watch?v=RpD-0oqGEzE) `[Search: "CppCon Custom Allocators in C++"]`
-  - 🎥 **Watch 2:** [Memory Pool-1: When to use memory pool inside the system? Theoretical Understanding!](https://www.youtube.com/watch?v=ItI2qQVeLcU) `[Search: "Building High-Performance Memory Pools in C++"]`
+  - 🎥 **Watch 2:** [CppCon 2017: John Lakos “Local ('Arena') Memory Allocators (part 1 of 2)”](https://www.youtube.com/watch?v=nZNd5FjSquk) `[Search: "CppCon 2017: John Lakos Local Arena Memory Allocators part 1 of 2"]`
 
 ---
 
