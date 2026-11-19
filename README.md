@@ -1,32 +1,5 @@
 # C++ Systems & Performance Engineering Roadmap
 
-> [!TIP]
-> **Goal:** Become exceptionally strong in modern C++, Linux systems, concurrency, performance engineering, networking, and hardware-aware programming.
-
-> [!NOTE]
-> **Target Profile:** HFT, low-latency systems, high-performance infrastructure, databases, runtimes, compilers, and strong systems/software roles at top-tier firms.
-
----
-
-## Roadmap Progression Tiers
-
-| Tier | Candidate Profile & Core Competencies |
-| :--- | :--- |
-| **THE TOP 1% TIER** | **Lock-Free Primitives** • **Memory Consistency Models** • **Cache Coherence (MESI)** • **Micro-benchmarking** • **Assembly & Inlines** |
-| **COMPETITIVE TIER** | Modern C++ (20/23) • Profiling (perf/VTune) • Kernel Bypass (DPDK/ef_vi) • Linux Kernel Tuning • Custom Allocators |
-| **BASELINE TIER** | Standard DSA • Socket Programming • CMake • Valgrind • OOP |
-
-### Role Track Specializations
-
-| Role Track | What You Listed That Matters | Missing Essentials You Must Master |
-| :--- | :--- | :--- |
-| **C++ Core Software Dev (Low-Latency)** | Memory architecture (TLB, cache lines), `perf`, `Valgrind`, `VTune`, `CMake`, `DPDK`/`ef_vi` | **Extreme Concurrency:** Lock-free structures (SPSC, memory orders).<br>**Modern C++ Internals:** Move semantics, `constexpr`/`consteval`, zero-cost abstractions.<br>**OS & Architecture:** MESI, branch prediction, kernel bypass.<br>**DSA:** Fast algorithmic reasoning under strict constraints. |
-| **FPGA / Hardware Engineer** | FPGA (Verilog/VHDL, SystemVerilog), ITCH/OUCH parsing on chip, PCIe/Ethernet MAC layers | High-speed digital design, CDC (Clock Domain Crossing), pipeline timing closure, AXI stream interfaces, Vivado/Quartus toolchains. |
-| **Quantitative Developer / Researcher** | Market mechanics (Order book matching, FIX, ITCH/OUCH) | Fast mental probability, linear algebra, time-series statistics, vectorized Python/C++ integration, pricing models. |
-
-> [!TIP]
-> **Key hiring reality for HFT freshers:** Most HFTs test Computer Architecture, Multithreading, Modern C++, and Advanced DSA/Puzzles during campus/off-campus hiring. You rarely get quizzed on proprietary APIs like `ef_vi` or ITCH/OUCH specifications in interviews, but knowing them makes your resume stand out and gives you an immediate advantage in technical discussions and trial weeks.
-
 # Table of Contents
 
 1. [The Overall Roadmap](#1-the-overall-roadmap)
@@ -42,13 +15,8 @@
 11. [Phase 9: Financial Markets & Trading Mechanics](#11-phase-9-financial-markets--trading-mechanics)
 12. [Phase 10: Quantitative Math & Probability (Quant Track)](#12-phase-10-quantitative-math--probability-quant-track)
 13. [Phase 11: The Hardcore Flagship Projects (The Capstone Suite)](#13-phase-11-the-hardcore-flagship-projects-the-capstone-suite)
-14. [What Not to Learn Yet](#14-what-not-to-learn-yet)
-15. [Weekly Study Split](#15-weekly-study-split)
-16. [Free Resources & Portals](#16-free-resources--portals)
-17. [The Learning Loop](#17-the-learning-loop)
-18. [The Principal Engineer Benchmarking & Resume Playbook](#18-the-principal-engineer-benchmarking--resume-playbook)
-
----
+14. [Free Video Courses & Interactive Portals](#14-free-video-courses--interactive-portals)
+15. [The Principal Engineer Benchmarking & Resume Playbook](#15-the-principal-engineer-benchmarking--resume-playbook)
 
 # 1. The Overall Roadmap
 
@@ -233,6 +201,12 @@ flowchart TD
 ```
 
 ## Core Topics & Deep Study Guides
+
+- **Build Systems, Toolchains & Modern CMake**
+  - *Core Concept:* Systems projects require deterministic, high-performance builds. Modern CMake uses target-based modeling (`add_library`, `target_include_directories`, `target_compile_options`), Ninja for parallel generation, low-latency compiler optimization flags (`-O3 -march=native -mtune=native -fno-exceptions -fno-rtti -flto`), and debug sanitizer instrumentation (`-fsanitize=address,undefined`).
+  - 🎥 **Watch 1:** [CppCon 2017: Mathieu Ropert "Using Modern CMake Patterns to Enforce a Good Modular Design"](https://www.youtube.com/watch?v=eC9-iRN2b04) `[Search: "CppCon 2017 Mathieu Ropert Using Modern CMake Patterns"]`
+  - 🎥 **Watch 2:** [How to Properly Setup C++ Projects](https://www.youtube.com/watch?v=5glH8dGoeCA) `[Search: "The Cherno How to Properly Setup C++ Projects"]`
+  - 📖 **Read (Supplementary Reference - Optional):** [An Introduction to Modern CMake - CLIUtils](https://cliutils.gitlab.io/modern-cmake/) `[Search: "cliutils an introduction to modern cmake"]`
 
 - **Translation Units & The Preprocessor**
   - *Core Concept:* Each .cpp file is preprocessed into an isolated translation unit. Unintended macro expansions or redundant includes cause bloated compile times and subtle bugs.
@@ -514,10 +488,14 @@ flowchart TD
   - 📖 **Read (Supplementary Reference - Optional):** [Red Hat Documentation - Isolating CPUs](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_for_real_time/7/html/tuning_guide/isolating_cpus_using_tuned_profiles) `[Search: "red hat real time tuning isolating cpus"]`
 
 - **System Jitter & CPU Power States (C-States, P-States, Turbo Boost)**
-  - *Core Concept:* Disabling energy-saving states (intel_idle.max_cstate=0) and CPU frequency governors (performance mode) to guarantee consistent nanosecond response times without thermal throttling or frequency spin-up delay.
-  - 🎥 **Watch 1:** [CPU Performance Parameters in COA: Average CPI, MIPS, and Execution Time | COA](https://www.youtube.com/watch?v=5ayaVunXFUY) `[Search: "CPU Frequency Scaling and C-States Linux"]`
-  - 🎥 **Watch 2:** [Basic Real-time kernel optimization in Linux | Lower latency, better performance #linuxcnc #linux](https://www.youtube.com/watch?v=N9tv5LoZuHI) `[Search: "Latency Jitter Reduction in Linux"]`
+  - *Core Concept:* Disabling CPU energy-saving idle states and frequency governors (performance mode) to guarantee consistent nanosecond response times without thermal throttling or frequency spin-up delay. Configuration differs between CPU vendors on Linux:
+    - **AMD CPUs (e.g. Ryzen 7 9700X / Zen 4 & Zen 5):** `processor.max_cstate=0 idle=poll amd_pstate=active` and set `/sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference` to `performance`.
+    - **Intel CPUs:** `intel_idle.max_cstate=0 intel_pstate=performance`.
+    - **Universal Core Isolation (Brand-Independent):** `isolcpus=2-7 nohz_full=2-7 rcu_nocbs=2-7 nosmt tsc=reliable audit=0`.
+  - 🎥 **Watch 1:** [How to Configure Linux Kernel for Real-Time Applications | Deterministic Low Latency Performance](https://www.youtube.com/watch?v=iqWLWagb5JM) `[Search: "Linux Real-Time Kernel Tuning isolcpus deterministic low latency"]`
+  - 🎥 **Watch 2:** [What is Low Latency C++? (Part 1) - Timur Doumler - CppNow 2023](https://www.youtube.com/watch?v=EzmNeAhWqVs) `[Search: "CppCon Low Latency Linux System Tuning"]`
   - 📖 **Read (Supplementary Reference - Optional):** [Linux Kernel Documentation - CPU Performance Scaling](https://www.kernel.org/doc/html/latest/admin-guide/pm/cpufreq.html) `[Search: "linux kernel cpufreq documentation"]`
+  - 📖 **Read (Supplementary Reference - Optional):** [AMD Linux Power Management & AMD P-State Driver](https://docs.kernel.org/admin-guide/pm/amd-pstate.html) `[Search: "linux kernel amd pstate driver documentation"]`
   - 📖 **Read (Supplementary Reference - Optional):** [Intel - C-States, P-States, and CPU Power Management](https://www.intel.com/content/www/us/en/developer/articles/technical/intel-power-governor.html) `[Search: "intel power management c states p states"]`
 
 - **Memory Locking (mlockall) to Prevent Page Swapping**
@@ -668,12 +646,15 @@ flowchart TD
   - 📖 **Read (Supplementary Reference - Optional):** [Brendan Gregg - Flame Graphs](https://github.com/brendangregg/FlameGraph) `[Search: "brendan gregg flame graphs official documentation"]`
   - 📖 **Read (Supplementary Reference - Optional):** [GitHub - brendangregg/FlameGraph](https://github.com/brendangregg/FlameGraph) `[Search: "github brendangregg flamegraph"]`
 
-- **Intel VTune Profiler (Microarchitecture Exploration)**
-  - *Core Concept:* Deep profiling of instruction throughput, memory bandwidth bottlenecks, frontend/backend pipeline stalls, and NUMA memory traffic.
-  - 🎥 **Watch 1:** [Take Advantage for Intel® Instrumentation and Tracing Technology for Performance Analysis](https://www.youtube.com/watch?v=1zdVFLajewM) `[Search: "Intel VTune Profiler Getting Started Tutorial"]`
+- **Hardware Microarchitecture Profilers: AMD uProf & Intel VTune**
+  - *Core Concept:* Microarchitecture exploration of execution pipelines, memory bandwidth bottlenecks, frontend/backend stalls, and NUMA latency. Tools are vendor-tailored:
+    - **AMD Systems (e.g. Ryzen 7 9700X / Zen 5):** Use **AMD uProf** (AMD's official GUI and CLI profiler for core IPC, cache hit/miss breakdown, memory controller saturation, and instruction stalls).
+    - **Intel Systems:** Use **Intel VTune Profiler** (OneAPI) for microarchitecture exploration and memory access analysis.
+    - **Universal Brand-Independent Standard:** Linux `perf` (`perf stat`, `perf record`, `perf c2c`) runs identically on both AMD and Intel with zero vendor lock-in.
+  - 🎥 **Watch 1:** [How to use AMD uProf: Quick Guide](https://www.youtube.com/watch?v=edRsmxlKKVQ) `[Search: "How to use AMD uProf: Quick Guide"]`
   - 🎥 **Watch 2:** [Introduction to Intel VTune](https://www.youtube.com/watch?v=4jwhjsN_Ock) `[Search: "CppCon Microarchitecture Profiling with VTune"]`
+  - 📖 **Read (Supplementary Reference - Optional):** [AMD uProf User Guide](https://www.amd.com/en/developer/uprof.html) `[Search: "amd uprof user guide performance analysis official"]`
   - 📖 **Read (Supplementary Reference - Optional):** [Intel VTune Profiler User Guide](https://www.intel.com/content/www/us/en/docs/vtune-profiler/user-guide/current/overview.html) `[Search: "intel vtune profiler user guide overview"]`
-  - 📖 **Read (Supplementary Reference - Optional):** [Intel - Performance Snapshot](https://www.intel.com/content/www/us/en/developer/tools/oneapi/vtune-profiler.html) `[Search: "intel oneapi vtune profiler documentation"]`
 
 - **Valgrind Memcheck & Memory Correctness**
   - *Core Concept:* Instrumentation framework running code in a virtual CPU to detect heap use-after-free, uninitialized memory reads, buffer overflows, and memory leaks.
@@ -919,14 +900,17 @@ flowchart LR
   - 📖 **Read (Supplementary Reference - Optional):** [Wikipedia - Instruction-Level Parallelism](https://en.wikipedia.org/wiki/Instruction-level_parallelism) `[Search: "wikipedia instruction level parallelism out of order"]`
   - 📖 **Read (Supplementary Reference - Optional):** [Modern Microprocessors - A 90-Minute Guide by Jason Robert Carey Patterson](http://www.lighterra.com/papers/modernmicroprocessors/) `[Search: "lighterra modern microprocessors a 90 minute guide pipelining superscalar"]`
 
-- **SIMD Vectorization (SSE, AVX2, AVX-512)**
-  - *Core Concept:* Single Instruction, Multiple Data. 256-bit (YMM) and 512-bit (ZMM) registers processing 8 or 16 floating-point/integer operations simultaneously in a single CPU cycle.
-  - 🎥 **Watch 1:** [CppCon: std::simd: How to Express Inherent Parallelism Efficiently - Matthias Kretz](https://www.youtube.com/watch?v=LAJ_hywLtMA) `[Search: "CppCon std simd Matthias Kretz"]`
-  - 🎥 **Watch 2:** [Vectorization Explained: SIMD & Compiler Optimization for Beginners](https://www.youtube.com/watch?v=afWqyGdKcsk) `[Search: "CppCon SIMD Vectorization in C++"]`
+- **SIMD Vectorization (SSE, AVX2, AVX-512) & CPU Architecture Differences**
+  - *Core Concept:* Processing 4, 8, or 16 data elements simultaneously in 256-bit (`ymm`) or 512-bit (`zmm`) registers. Crucially, SIMD performance depends on underlying microarchitecture:
+    - **AMD Zen 5 (e.g., Ryzen 7 9700X):** Features native dual 512-bit vector execution pipelines with **zero frequency throttling (0 downclock penalty)**, executing 512-bit SIMD instructions at full CPU boost clock.
+    - **AMD Zen 4:** Executes AVX-512 over dual-pumped 256-bit units with zero frequency penalty.
+    - **Intel Client CPUs (12th-14th Gen Core):** Fused off AVX-512 entirely in silicon, requiring AVX2 or server Xeons.
+    - **Cross-Platform Rule:** Standard C++ code with `<immintrin.h>` (`_mm256_...`, `_mm512_...`) compiles cleanly with GCC/Clang on both AMD and Intel x86-64 processors.
+  - 🎥 **Watch 1:** [SIMD in C++ - The Cherno](https://www.youtube.com/watch?v=wX11Fcw86Zg) `[Search: "The Cherno SIMD in C++"]`
+  - 🎥 **Watch 2:** [Vectorization: How to Write Fast C++ - Denis Bakhvalov - CppCon 2021](https://www.youtube.com/watch?v=2_oE192f1f4) `[Search: "Vectorization: How to Write Fast C++ - Denis Bakhvalov - CppCon 2021"]`
   - 🎥 **Watch 3:** [Denis Yaroshevskiy - my first SIMD - Meeting C++ online](https://www.youtube.com/watch?v=d6NcnyXjc3I) `[Search: "Denis Yaroshevskiy my first SIMD Meeting C++"]`
-  - 📖 **Read (Supplementary Reference - Optional):** [Wikipedia - Advanced Vector Extensions (AVX)](https://en.wikipedia.org/wiki/Advanced_Vector_Extensions) `[Search: "wikipedia advanced vector extensions avx avx2 avx512"]`
-  - 📖 **Read *(CRITICAL MUST-READ: Agner Fog's assembly optimization guide)*:** [Agner Fog - Optimizing Subroutines in Assembly Language](https://www.agner.org/optimize/optimizing_assembly.pdf) `[Search: "agner fog optimizing subroutines assembly"]`
-  - 📖 **Read (Supplementary Reference - Optional):** [Wojciech Mula - SIMD Algorithms & Data Vectorization in Practice](http://0x80.pl/) `[Search: "wojciech mula 0x80 pl simd algorithms vectorization"]`
+  - 📖 **Read (Supplementary Reference - Optional):** [Intel Intrinsics Guide (Standard x86 Intrinsics for Intel & AMD)](https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html) `[Search: "intel intrinsics guide official search"]`
+  - 📖 **Read (Supplementary Reference - Optional):** [Agner Fog - Optimizing Subroutines in Assembly Language](https://www.agner.org/optimize/optimizing_assembly.pdf) `[Search: "agner fog optimizing subroutines assembly"]`
 
 - **Compiler Intrinsics (<immintrin.h> & Bit Manipulation)**
   - *Core Concept:* C functions mapping directly to CPU instructions (_mm256_add_ps, _mm256_loadu_si256) and bitwise intrinsics (__builtin_clz, __builtin_popcount, __builtin_bswap32/64) for ultra-fast binary parsing.
@@ -1103,105 +1087,58 @@ flowchart LR
 
 # 13. Phase 11: The Hardcore Flagship Projects (The Capstone Suite)
 
-> **Overview:** Proof of work: four hardcore production-grade systems projects built for Tier-1 HFT engineering hiring that prove mechanical empathy, zero-allocation discipline, and kernel-bypass mastery for zero dollars on consumer hardware.
+> **Overview:** Proof of work: four hardcore production-grade systems projects engineered for Tier-1 HFT hiring that demonstrate mechanical empathy, zero-allocation discipline, and kernel-bypass mastery for zero dollars on commodity consumer hardware.
 
 > [!IMPORTANT]
-> **Interleaved Build Schedule:** Do not wait until you complete all theoretical phases before writing code. Build these four projects progressively as you finish their prerequisite modules:
-> 1. **Foundational Project: Custom Arena Allocator & HugePage Memory Pool (`hugepage-arena-allocator`)** -> Build after Phase 2 & Phase 3
-> 2. **Project 1 (Rank #1): `itch-xsk` - NASDAQ TotalView-ITCH 5.0 & MoldUDP64 Feed Handler, Gap-Recovery Engine, and Cache-Optimal L3 Order Book** -> Build after Phase 6 & Phase 7
-> 3. **Project 2 (Rank #2): `shmbus-mc` - Formally Verified Lock-Free Shared-Memory IPC, Event-Sourced Sequencer, and Hardware-Traced Telemetry Engine** -> Build after Phase 4 & Phase 5
-> 4. **Project 3 (Rank #3): `ouch-risk-sim` - Compile-Time OUCH 5.0 Execution Gateway, SIMD Pre-Trade Risk Firewall, and Queue-Aware Historical Replay Engine** -> Build after Phase 8 & Phase 9
->
-> Complete technical specifications, code blueprints, and benchmark targets are detailed in [Section 18.6](#6-the-interleaved-phase-to-project-roadmap-when-to-build-what) and [Section 18.7](#7-architectural-implementation-blueprints-zero-guesswork-specs).
+> **Interleaved Build Schedule (When to Build What):**
+> Do not wait until you complete all theoretical phases before writing code. Build these four projects progressively as you finish their prerequisite modules:
+> 
+> 1. 🏗️ **Milestone 1 (After Phase 2 & Phase 3):**
+>    - **Foundational Project:** [Custom Arena Allocator & HugePage Memory Pool (`hugepage-arena-allocator`)](#foundational-project-custom-arena-allocator--hugepage-memory-pool)
+>    - *Prerequisites:* CPU Caches, Data Alignment (`alignas(64)`), Virtual Memory, TLBs, and POSIX `mmap` (`MAP_HUGETLB`).
+> 
+> 2. ⚡ **Milestone 2 (After Phase 4 & Phase 5):**
+>    - **Flagship Project 2 (Rank #2):** [Formally Verified Lock-Free Shared-Memory IPC & Sequencer (`shmbus-mc`)](#project-2-rank-2-shmbus-mc---formally-verified-lock-free-shared-memory-ipc-event-sourced-sequencer-and-hardware-traced-telemetry-engine)
+>    - *Prerequisites:* C++20 atomics, memory consistency (x86-TSO/RC11), wait-free SPSC/SPMC rings, GenMC model checking, and `perf c2c` false-sharing profiling.
+> 
+> 3. 🌐 **Milestone 3 (After Phase 6 & Phase 7):**
+>    - **Flagship Project 1 (Rank #1):** [NASDAQ TotalView-ITCH 5.0 Feed Handler & L3 Order Book (`itch-xsk`)](#project-1-rank-1-itch-xsk---nasdaq-totalview-itch-50--moldudp64-feed-handler-gap-recovery-engine-and-cache-optimal-l3-order-book)
+>    - *Prerequisites:* POSIX sockets, MoldUDP64 framing, `recvmmsg` + `SO_BUSY_POLL`, `AF_XDP` (XSK) on `veth` pairs, `io_uring`, and cache-optimal L3 slab book.
+> 
+> 4. 🎯 **Milestone 4 (After Phase 8 & Phase 9):**
+>    - **Flagship Project 3 (Rank #3):** [Compile-Time OUCH 5.0 Gateway & AVX2 Risk Firewall (`ouch-risk-sim`)](#project-3-rank-3-ouch-risk-sim---compile-time-ouch-50-execution-gateway-simd-pre-trade-risk-firewall-and-queue-aware-historical-replay-engine)
+>    - *Prerequisites:* System V AMD64 ABI, AVX2 SIMD vectorization (`_mm256_cmpgt_epi64`), OUCH 5.0 protocol, idempotent FSM, and queue-priority replay (`qty_ahead`).
 
-## Core Topics & Deep Study Guides
+## Project Summaries & Technical References
 
 - **Foundational Project: Custom C++ Arena Allocator & HugePage Memory Pool (`hugepage-arena-allocator`)**
-  - *Core Concept:* Zero-allocation memory management runtime. Pre-allocates 2MB static HugePages via `mmap(MAP_HUGETLB)`, implements monotonic bump allocation for per-tick events, and an intrusive fixed-block free-list pool for order records. Eliminates dTLB misses and runtime page faults.
-  - 📖 **Read 1:** [Linux Kernel HugeTLB Documentation](https://www.kernel.org/doc/html/latest/admin-guide/mm/hugetlbpage.html) `[Search: "linux kernel hugetlb pages documentation"]`
-  - 🎥 **Watch 1:** [Trading at light speed: designing low latency systems in C++ - David Gross - Meeting C++ 2022](https://www.youtube.com/watch?v=8uAW5FQtcvE) `[Search: "Trading at light speed: designing low latency systems in C++ - David Gross - Meeting C++ 2022"]`
-  - 🎥 **Watch 2:** [Using Modern C++ to Eliminate Virtual Functions - Jonathan Gopel - CppCon 2022](https://www.youtube.com/watch?v=gTNJXVmuRRA) `[Search: "Using Modern C++ to Eliminate Virtual Functions - Jonathan Gopel - CppCon 2022"]`
-  - 🎥 **Watch 3:** [CppCon 2014: Mike Acton "Data-Oriented Design and C++"](https://www.youtube.com/watch?v=rX0ItVEVjHc) `[Search: "CppCon 2014: Mike Acton "Data-Oriented Design and C++""]`
+  - *Core Concept:* Zero-allocation memory runtime for sub-microsecond tick processing. Pre-allocates 2MB static HugePages via `mmap(MAP_HUGETLB | MAP_ANONYMOUS | MAP_POPULATE)`, implements monotonic bump allocation for per-tick events, and an intrusive fixed-block free-list pool for order records. Eliminates dTLB misses, heap locks, and runtime page faults.
+  - *Detailed Blueprint & Code Specification:* [Jump to Section 18.7.1 Blueprint](#foundational-project-custom-arena-allocator--hugepage-memory-pool)
+  - 📖 **Read (CRITICAL MUST-READ: Linux Kernel HugeTLB Subsystem):** [Linux Kernel HugeTLB Documentation](https://www.kernel.org/doc/html/latest/admin-guide/mm/hugetlbpage.html) `[Search: "linux kernel hugetlb pages documentation"]`
+  - 📖 **Read (Supplementary Reference - Optional):** [cppreference - std::align](https://en.cppreference.com/w/cpp/memory/align) `[Search: "cppreference std align"]`
 
-- **Project 1 (Rank #1): itch-xsk - NASDAQ TotalView-ITCH 5.0, MoldUDP64 & AF_XDP Feed Handler (`itch-xsk`)**
+- **Flagship Project 1 (Rank #1): itch-xsk - NASDAQ TotalView-ITCH 5.0 Feed Handler & L3 Order Book (`itch-xsk`)**
   - *Core Concept:* Zero-dollar high-throughput feed handler and L3 book. Ingests raw MoldUDP64 packet streams over three swappable Linux networking backends behind a C++20 concept policy: `recvmmsg` + `SO_BUSY_POLL`, `io_uring` with registered fixed buffers, and `AF_XDP` (XSK) backed by eBPF `XDP_REDIRECT`. Features dual-stream A/B arbitration, packet deduplication, out-of-order gap staging, and automated retransmission client. Feeds a cache-optimal L3 order book utilizing 32-bit slab indices, a flat open-addressing hash table with backward-shift deletion, and BBO tick-arrays scanned via `TZCNT`.
-  - 📖 **Read 1:** *(CRITICAL MUST-READ: Official NASDAQ wire transport format)* [NASDAQ MoldUDP64 Protocol Specification v1.00](https://www.nasdaqtrader.com/content/technicalsupport/specifications/dataproducts/moldudp64.pdf) `[Search: "nasdaq moldudp64 protocol specification v1.00 pdf"]`
-  - 📖 **Read 2:** *(CRITICAL MUST-READ: Official byte-level market data format)* [NASDAQ TotalView-ITCH 5.0 Specification](https://www.nasdaqtrader.com/content/technicalsupport/specifications/dataproducts/NQTVITCHspecification.pdf) `[Search: "nasdaq totalview itch 5.0 specification pdf"]`
-  - 🎥 **Watch 1:** [Kernel Bypass: DPDK, AF_XDP and Low Latency Networking](https://www.youtube.com/watch?v=adgK47FSn5g) `[Search: "Kernel Bypass: DPDK, AF_XDP and Low Latency Networking"]`
-  - 🎥 **Watch 2:** [SUSE Labs Conference 2018 - XDP - Networking from kernel to userspace](https://www.youtube.com/watch?v=DsSwrpDkct0) `[Search: "SUSE Labs Conference 2018 - XDP - Networking from kernel to userspace"]`
-  - 🎥 **Watch 3:** [Cloud Native Superpowers with eBPF - Liz Rice, Isovalent](https://www.youtube.com/watch?v=KY5qujcujfI) `[Search: "Cloud Native Superpowers with eBPF - Liz Rice, Isovalent"]`
-  - 🎥 **Watch 4:** [LPC2018 - Path to DPDK speeds for AF XDP](https://www.youtube.com/watch?v=JmGfJok32Kw) `[Search: "LPC2018 - Path to DPDK speeds for AF XDP"]`
-  - 🎥 **Watch 1:** [The Design and Evolution of io_uring by Jens Axboe](https://www.youtube.com/watch?v=y4cb39pBp0I) `[Search: "The Design and Evolution of io_uring by Jens Axboe"]`
-  - 🎥 **Watch 2:** [Demystifying io_uring: How Linux I/O Just Got Faster](https://www.youtube.com/watch?v=aGKdQ1QsH00) `[Search: "Demystifying io_uring: How Linux I/O Just Got Faster"]`
-  - 🎥 **Watch 3:** [io_uring Looks Illegal](https://www.youtube.com/watch?v=4D7LPloaBFY) `[Search: "io_uring Looks Illegal"]`
-  - 🎥 **Watch 4:** [Demystifying io_uring: How Linux I/O Just Got Faster](https://www.youtube.com/watch?v=aGKdQ1QsH00) `[Search: "Demystifying io_uring: How Linux I/O Just Got Faster"]`
-  - 🎥 **Watch 1:** [Trading at light speed: designing low latency systems in C++ - David Gross - Meeting C++ 2022](https://www.youtube.com/watch?v=8uAW5FQtcvE) `[Search: "Trading at light speed: designing low latency systems in C++ - David Gross - Meeting C++ 2022"]`
-  - 🎥 **Watch 2:** [TCP vs UDP Multicast, epoll and Kernel Bypass for Low-Latency Trading | HFT Engineering Part 3](https://www.youtube.com/watch?v=0L-3xjrlVlA) `[Search: "TCP vs UDP Multicast, epoll and Kernel Bypass for Low-Latency Trading | HFT Engineering Part 3"]`
-  - 🎥 **Watch 3:** [99% of Developers Don't Get Sockets](https://www.youtube.com/watch?v=D26sUZ6DHNQ) `[Search: "99% of Developers Don't Get Sockets"]`
+  - *Detailed Blueprint & Code Specification:* [Jump to Section 18.7.2 Blueprint](#project-1-rank-1-itch-xsk---nasdaq-totalview-itch-50--moldudp64-feed-handler-gap-recovery-engine-and-cache-optimal-l3-order-book)
+  - 📖 **Read (CRITICAL MUST-READ: Official NASDAQ wire transport format):** [NASDAQ MoldUDP64 Protocol Specification v1.00](https://www.nasdaqtrader.com/content/technicalsupport/specifications/dataproducts/moldudp64.pdf) `[Search: "nasdaq moldudp64 protocol specification v1.00 pdf"]`
+  - 📖 **Read (CRITICAL MUST-READ: Official byte-level market data format):** [NASDAQ TotalView-ITCH 5.0 Specification](https://www.nasdaqtrader.com/content/technicalsupport/specifications/dataproducts/NQTVITCHspecification.pdf) `[Search: "nasdaq totalview itch 5.0 specification pdf"]`
+  - 📖 **Read (CRITICAL MUST-READ: Linux Kernel XSK Subsystem):** [Linux Kernel AF_XDP Documentation](https://docs.kernel.org/networking/af_xdp.html) `[Search: "linux kernel af_xdp documentation"]`
 
-- **Project 2 (Rank #2): shmbus-mc - Formally Verified Lock-Free Shared-Memory IPC (`shmbus-mc`)**
-  - *Core Concept:* High-performance cross-process IPC bus and event sequencer. Built on POSIX shared memory (`shm_open`, 2 MiB `MAP_HUGETLB`) partitioned into 128-byte cache-isolated zones (`alignas(128)`) to neutralize hardware adjacent-cache-line prefetchers. Features Erik Rigtorp's wait-free SPSC ring with local cached cursors, an SPMC broadcast ring supporting both Backpressure Mode and Overwrite/Epoch Mode, and a wait-free `SeqLock<T>` with atomic thread fences. Formally verified under weak memory models (RC11 and IMM) using the GenMC LLVM-IR model checker. Diagnosed with `perf c2c` for zero HITM cache contention and Intel Processor Trace (`magic-trace`) for sub-30ns cycle-accurate tail spike capture.
-  - 📖 **Read 1:** *(CRITICAL MUST-READ: Formal verification guide for weak memory)* [GenMC User Manual - Max Planck Institute](https://plv.mpi-sws.org/genmc/) `[Search: "genmc user manual max planck institute"]`
-  - 📖 **Read 2:** *(CRITICAL MUST-READ: Guide to diagnosing cache-to-cache false sharing)* [Joe Mario - c2c - Cache to Cache: An Introduction to perf c2c](https://joemario.github.io/blog/2016/09/01/c2c-blog/) `[Search: "joe mario c2c cache to cache perf c2c"]`
-  - 🎥 **Watch 1:** [Single Producer Single Consumer Lock-free FIFO From the Ground Up - Charles Frasch - CppCon 2023](https://www.youtube.com/watch?v=K3P_Lmq6pw0) `[Search: "Single Producer Single Consumer Lock-free FIFO From the Ground Up - Charles Frasch - CppCon 2023"]`
-  - 🎥 **Watch 2:** [Why Adding CPU Cores Made My C++ Code 30x SLOWER! ⚡ (False Sharing & MESI)](https://www.youtube.com/watch?v=z_zh2NGYBWc) `[Search: "Why Adding CPU Cores Made My C++ Code 30x SLOWER! ⚡ (False Sharing & MESI)"]`
-  - 🎥 **Watch 3:** [Introduction to Wait-free Algorithms in C++ Programming - Daniel Anderson - CppCon 2024](https://www.youtube.com/watch?v=kPh8pod0-gk) `[Search: "Introduction to Wait-free Algorithms in C++ Programming - Daniel Anderson - CppCon 2024"]`
-  - 🎥 **Watch 4:** [Lock-free programming with modern C++ - Timur Doumler [ACCU 2017]](https://www.youtube.com/watch?v=qdrp6k4rcP4) `[Search: "Lock-free programming with modern C++ - Timur Doumler [ACCU 2017]"]`
-  - 🎥 **Watch 1:** [Lock-Free Messaging: Seqlocks, the LMAX Disruptor and Aeron Explained | HFT Engineering Part 4](https://www.youtube.com/watch?v=4AoWfAUZrFM) `[Search: "Lock-Free Messaging: Seqlocks, the LMAX Disruptor and Aeron Explained | HFT Engineering Part 4"]`
-  - 🎥 **Watch 2:** [C++ Memory Model: from C++11 to C++23 - Alex Dathskovsky - CppCon 2023](https://www.youtube.com/watch?v=SVEYNEWZLo4) `[Search: "C++ Memory Model: from C++11 to C++23 - Alex Dathskovsky - CppCon 2023"]`
-  - 🎥 **Watch 3:** [CppCon 2017: Fedor Pikus “C++ atomics, from basic to advanced.  What do they really do?”](https://www.youtube.com/watch?v=ZQFzMfHIxng) `[Search: "CppCon 2017: Fedor Pikus “C++ atomics, from basic to advanced.  What do they really do?”"]`
-  - 🎥 **Watch 1:** [C++ Memory Model: from C++11 to C++23 - Alex Dathskovsky - CppCon 2023](https://www.youtube.com/watch?v=SVEYNEWZLo4) `[Search: "C++ Memory Model: from C++11 to C++23 - Alex Dathskovsky - CppCon 2023"]`
-  - 🎥 **Watch 2:** [CppCon 2014: Herb Sutter "Lock-Free Programming (or, Juggling Razor Blades), Part I"](https://www.youtube.com/watch?v=c1gO9aB9nbs) `[Search: "CppCon 2014: Herb Sutter "Lock-Free Programming (or, Juggling Razor Blades), Part I""]`
-  - 🎥 **Watch 3:** [Mark Batty: Modular relaxed dependencies in weak memory concurrency](https://www.youtube.com/watch?v=iy6VRAoxIYQ) `[Search: "Mark Batty: Modular relaxed dependencies in weak memory concurrency"]`
-  - 🎥 **Watch 1:** [Why Adding CPU Cores Made My C++ Code 30x SLOWER! ⚡ (False Sharing & MESI)](https://www.youtube.com/watch?v=z_zh2NGYBWc) `[Search: "Why Adding CPU Cores Made My C++ Code 30x SLOWER! ⚡ (False Sharing & MESI)"]`
-  - 🎥 **Watch 2:** [Performance Engineering on Hard Mode with Andrew Hunter](https://www.youtube.com/watch?v=uXLRWkdi0o8) `[Search: "Performance Engineering on Hard Mode with Andrew Hunter"]`
-  - 🎥 **Watch 3:** [code::dive conference 2014 - Scott Meyers: Cpu Caches and Why You Care](https://www.youtube.com/watch?v=WDIkqP4JbkE) `[Search: "code::dive conference 2014 - Scott Meyers: Cpu Caches and Why You Care"]`
-  - 🎥 **Watch 1:** [Performance Engineering on Hard Mode with Andrew Hunter](https://www.youtube.com/watch?v=uXLRWkdi0o8) `[Search: "Performance Engineering on Hard Mode with Andrew Hunter"]`
-  - 🎥 **Watch 2:** [Adrien Vergé - hardware assisted software tracing | ELC 2014](https://www.youtube.com/watch?v=tcsdM5-nU-A) `[Search: "Adrien Vergé - hardware assisted software tracing | ELC 2014"]`
-  - 🎥 **Watch 3:** [Steven Rostedt - Learning the Linux Kernel with tracing](https://www.youtube.com/watch?v=JRyrhsx-L5Y) `[Search: "Steven Rostedt - Learning the Linux Kernel with tracing"]`
+- **Flagship Project 2 (Rank #2): shmbus-mc - Formally Verified Lock-Free Shared-Memory IPC (`shmbus-mc`)**
+  - *Core Concept:* High-performance cross-process IPC bus and event sequencer. Built on POSIX shared memory (`shm_open`, 2 MiB `MAP_HUGETLB`) partitioned into 128-byte cache-isolated zones (`alignas(128)`) to neutralize hardware adjacent-cache-line prefetchers. Features Erik Rigtorp's wait-free SPSC ring with local cached cursors, an SPMC broadcast ring supporting both Backpressure Mode and Overwrite/Epoch Mode, and a wait-free `SeqLock<T>` with atomic thread fences. Formally verified under weak memory models (RC11 and IMM) with GenMC, with false-sharing validated via `perf c2c` and sub-nanosecond instruction profiling via `magic-trace` (Intel PT).
+  - *Detailed Blueprint & Code Specification:* [Jump to Section 18.7.3 Blueprint](#project-2-rank-2-shmbus-mc---formally-verified-lock-free-shared-memory-ipc-event-sourced-sequencer-and-hardware-traced-telemetry-engine)
+  - 📖 **Read (CRITICAL MUST-READ: Formal verification guide for weak memory):** [GenMC User Manual - Max Planck Institute](https://plv.mpi-sws.org/genmc/) `[Search: "genmc user manual max planck institute"]`
+  - 📖 **Read (CRITICAL MUST-READ: Linux Kernel Shared Memory & IPC):** [shm_open(3) - Linux Manual Page](https://man7.org/linux/man-pages/man3/shm_open.3.html) `[Search: "man7 shm_open linux manual page"]`
 
-- **Project 3 (Rank #3): ouch-risk-sim - Compile-Time OUCH 5.0 & AVX2 Risk Firewall (`ouch-risk-sim`)**
-  - *Core Concept:* Microsecond order execution gateway and queue-aware exchange simulator. Features a concrete compile-time `constexpr` NASDAQ OUCH 5.0 binary codec evaluated with Clang `-ftime-trace` to eliminate template bloat. Outbound orders pass through an AVX2 SIMD pre-trade risk firewall evaluating 64-bit limits branchlessly in parallel (`_mm256_cmpgt_epi64`, `_mm256_movemask_epi8`) with 64-bit integer overflow protection. Manages an idempotent order state machine (FSM) resolving in-flight cancel/executed races and disconnect reconciliation. In historical simulation, models true microstructure realism via a deterministic timing-wheel delay queue (1 µs - 200 µs), tracking FIFO queue priority (`qty_ahead`) and conservative cancellation attribution from L3 ITCH feeds.
-  - 📖 **Read 1:** *(CRITICAL MUST-READ: Official NASDAQ order entry wire spec)* [NASDAQ OUCH 5.0 Protocol Specification](https://www.nasdaqtrader.com/content/technicalsupport/specifications/TradingProducts/ouch5.0.pdf) `[Search: "nasdaq ouch 5.0 protocol specification pdf"]`
-  - 🎥 **Watch 1:** [Branchless Programming in C++ - Fedor Pikus - CppCon 2021](https://www.youtube.com/watch?v=g-WPhYREFjk) `[Search: "Branchless Programming in C++ - Fedor Pikus - CppCon 2021"]`
-  - 🎥 **Watch 2:** [C++ Crash Course: Intro to SIMD Intrinsics](https://www.youtube.com/watch?v=ee932A3iJwc) `[Search: "C++ Crash Course: Intro to SIMD Intrinsics"]`
-  - 🎥 **Watch 3:** [The Most Important Optimizations to Apply in Your C++ Programs - Jan Bielak - CppCon 2022](https://www.youtube.com/watch?v=qCjEN5XRzHc) `[Search: "The Most Important Optimizations to Apply in Your C++ Programs - Jan Bielak - CppCon 2022"]`
-  - 🎥 **Watch 1:** [Using Modern C++ to Eliminate Virtual Functions - Jonathan Gopel - CppCon 2022](https://www.youtube.com/watch?v=gTNJXVmuRRA) `[Search: "Using Modern C++ to Eliminate Virtual Functions - Jonathan Gopel - CppCon 2022"]`
-  - 🎥 **Watch 2:** [Trading at light speed: designing low latency systems in C++ - David Gross - Meeting C++ 2022](https://www.youtube.com/watch?v=8uAW5FQtcvE) `[Search: "Trading at light speed: designing low latency systems in C++ - David Gross - Meeting C++ 2022"]`
-  - 🎥 **Watch 3:** [Back to Basics: Templates (part 1 of 2) - Andreas Fertig - CppCon 2020](https://www.youtube.com/watch?v=VNJ4wiuxJM4) `[Search: "Back to Basics: Templates (part 1 of 2) - Andreas Fertig - CppCon 2020"]`
-  - 🎥 **Watch 1:** [Trading at light speed: designing low latency systems in C++ - David Gross - Meeting C++ 2022](https://www.youtube.com/watch?v=8uAW5FQtcvE) `[Search: "Trading at light speed: designing low latency systems in C++ - David Gross - Meeting C++ 2022"]`
-  - 🎥 **Watch 2:** [TCP vs UDP Multicast, epoll and Kernel Bypass for Low-Latency Trading | HFT Engineering Part 3](https://www.youtube.com/watch?v=0L-3xjrlVlA) `[Search: "TCP vs UDP Multicast, epoll and Kernel Bypass for Low-Latency Trading | HFT Engineering Part 3"]`
-  - 🎥 **Watch 3:** [C++20: An (Almost) Complete Overview - Marc Gregoire - CppCon 2020](https://www.youtube.com/watch?v=FRkJCvHWdwQ) `[Search: "C++20: An (Almost) Complete Overview - Marc Gregoire - CppCon 2020"]`
-  - 🎥 **Watch 1:** [Trading at light speed: designing low latency systems in C++ - David Gross - Meeting C++ 2022](https://www.youtube.com/watch?v=8uAW5FQtcvE) `[Search: "Trading at light speed: designing low latency systems in C++ - David Gross - Meeting C++ 2022"]`
-  - 🎥 **Watch 2:** [Using Modern C++ to Eliminate Virtual Functions - Jonathan Gopel - CppCon 2022](https://www.youtube.com/watch?v=gTNJXVmuRRA) `[Search: "Using Modern C++ to Eliminate Virtual Functions - Jonathan Gopel - CppCon 2022"]`
-  - 🎥 **Watch 3:** [Trading at light speed: designing low latency systems in C++ - David Gross - Meeting C++ 2022](https://www.youtube.com/watch?v=8uAW5FQtcvE) `[Search: "Trading at light speed: designing low latency systems in C++ - David Gross - Meeting C++ 2022"]`
-  - 🎥 **Watch 1:** [Trading at light speed: designing low latency systems in C++ - David Gross - Meeting C++ 2022](https://www.youtube.com/watch?v=8uAW5FQtcvE) `[Search: "Trading at light speed: designing low latency systems in C++ - David Gross - Meeting C++ 2022"]`
-  - 🎥 **Watch 2:** [Lock-Free Messaging: Seqlocks, the LMAX Disruptor and Aeron Explained | HFT Engineering Part 4](https://www.youtube.com/watch?v=4AoWfAUZrFM) `[Search: "Lock-Free Messaging: Seqlocks, the LMAX Disruptor and Aeron Explained | HFT Engineering Part 4"]`
-  - 🎥 **Watch 3:** [Inside a Real High-Frequency Trading System | HFT Architecture](https://www.youtube.com/watch?v=iwRaNYa8yTw) `[Search: "Inside a Real High-Frequency Trading System | HFT Architecture"]`
+- **Flagship Project 3 (Rank #3): ouch-risk-sim - Compile-Time OUCH 5.0 & AVX2 Risk Firewall (`ouch-risk-sim`)**
+  - *Core Concept:* Microsecond order execution gateway and queue-aware exchange simulator. Features a concrete compile-time `constexpr` NASDAQ OUCH 5.0 binary codec evaluated with Clang `-ftime-trace` to eliminate template bloat. Outbound orders pass through an AVX2 SIMD pre-trade risk firewall evaluating 64-bit limits branchlessly in parallel (`_mm256_cmpgt_epi64`, `_mm256_movemask_epi8`) with 64-bit integer overflow protection in under 15 ns. Manages an idempotent order state machine (FSM) resolving in-flight cancel/executed races and disconnect reconciliation. In historical simulation, models true microstructure realism via a deterministic timing-wheel delay queue (1 µs - 200 µs), tracking FIFO queue priority (`qty_ahead`) and conservative cancellation attribution from L3 ITCH feeds.
+  - *Detailed Blueprint & Code Specification:* [Jump to Section 18.7.4 Blueprint](#project-3-rank-3-ouch-risk-sim---compile-time-ouch-50-execution-gateway-simd-pre-trade-risk-firewall-and-queue-aware-historical-replay-engine)
+  - 📖 **Read (CRITICAL MUST-READ: Official NASDAQ order entry wire spec):** [NASDAQ OUCH 5.0 Protocol Specification](https://www.nasdaqtrader.com/content/technicalsupport/specifications/TradingProducts/ouch5.0.pdf) `[Search: "nasdaq ouch 5.0 protocol specification pdf"]`
+  - 📖 **Read (CRITICAL MUST-READ: Intel Intrinsics Guide):** [Intel Intrinsics Guide (AVX2)](https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html) `[Search: "intel intrinsics guide avx2 official"]`
 
 ---
 
-# 14. What Not to Learn Yet
-
-- **Do Not Memorize Every C++ Feature:** You do not need every obscure template trick or Boost library. Understand mechanical execution and memory layout deeply instead.
-- **Do Not Learn Design Patterns as a Checklist:** Understand *why* an abstraction exists and its *runtime cost*. Indirection (such as deep virtual inheritance) destroys cache locality. Choose abstractions based on the hardware problem.
-- **Do Not Start With Lock-Free Programming:** Master mutexes, cache coherence, contention, and memory ordering semantics before attempting to write lock-free data structures.
-- **Do Not Spend All Your Time on LeetCode:** Maintain strong algorithmic problem-solving skills, but pair them with serious low-level systems knowledge and hardware-aware projects.
-
----
-
-# 15. Weekly Study Split
-
-A recommended approximate split for mastering this curriculum:
-- **35% -> C++ Systems Projects:** Actual implementation. Build and profile code.
-- **25% -> DSA / Competitive Programming:** Maintain algorithmic speed under strict time limits.
-- **20% -> Systems Theory:** Study Operating Systems, Computer Architecture, Networking, and Concurrency.
-- **15% -> Performance Engineering:** Benchmarking with RDTSC, profiling with `perf`/`VTune`, and assembly inspection.
-- **5% -> Reading Production Code:** Study the Linux kernel, DPDK, ClickHouse, and high-performance trading engines.
-
----
-
-# 16. Free Resources & Portals
+# 14. Free Video Courses & Interactive Portals
 
 ### 📚 Official Documentation & Interactive Portals
 
@@ -1228,32 +1165,7 @@ If you prefer structured video-first learning over reading dry documentation, th
 
 ---
 
-# 17. The Learning Loop
-
-```mermaid
-flowchart TD
-    L[LEARN CONCEPT] --> I[IMPLEMENT IN C++]
-    I --> B[STRESS TEST & BREAK IT]
-    B --> D[DEBUG WITH GDB & RR]
-    D --> P[PROFILE WITH PERF & VTUNE]
-    P --> U[UNDERSTAND HARDWARE REASON]
-    U --> M[MEASURE TAIL LATENCY WITH RDTSC]
-    M --> W[DOCUMENT BENCHMARK IN README]
-    W -.->|Next Topic| L
-```
-
-For every project you build, your repository README should answer:
-1. **What problem does this solve?**
-2. **What is the mechanical hardware architecture?**
-3. **What tradeoffs did you make (memory vs latency vs throughput)?**
-4. **How did you measure performance (cycle-accurate timers, percentiles)?**
-5. **What bottleneck did the profiler reveal?**
-6. **What specific optimization did you implement?**
-7. **Why did it work at the hardware level?**
-
----
-
-# 18. The Principal Engineer Benchmarking & Resume Playbook
+# 15. The Principal Engineer Benchmarking & Resume Playbook
 
 > [!IMPORTANT]
 > **The Core Philosophy:** In low-latency systems engineering, **hardware clock speed is a commodity, but algorithmic cycle efficiency is an art.** Anyone can buy an expensive 5.5 GHz CPU to lower their raw nanoseconds. Elite engineers write 20-cycle algorithms that run at warp speed on *any* architecture.
@@ -1309,11 +1221,14 @@ Hiring managers at top quantitative trading firms (Citadel, Jane Street, HRT, Op
 
 ---
 
-### 4. The Multi-Architecture Resume Blueprint
+### 4. The Multi-Architecture Resume Blueprint (AMD Zen 5 & Intel Agnostic)
 
 Never write: *"Wrote AVX-512 code on my laptop."* (Junior framing).
 
-Instead, write your code with **dual SIMD backends and runtime CPUID dynamic dispatch**:
+Instead, write your code with **dual SIMD backends, runtime CPUID dynamic dispatch, and vendor-agnostic hardware validation**:
+- On **AMD Zen 5 (e.g., Ryzen 7 9700X)**, AVX-512 runs natively on silicon at full boost frequency with dual 512-bit vector ALUs and zero downclocking penalty.
+- On **Intel client hardware** without native AVX-512, validate the AVX-512 path via Intel SDE (Software Development Emulator) or QEMU-user in CI, while running AVX2 natively on local silicon.
+
 ```cpp
 // Production-grade multi-target SIMD architecture (Startup Dispatch)
 using ParserFn = void(*)(const char*);
@@ -1324,10 +1239,11 @@ private:
 public:
     ItchFeedHandler() {
         // One-time CPUID check at initialization -> zero branching in the hot path
+        // Runs natively on AMD Zen 4/5 (e.g., Ryzen 7 9700X) or Intel Xeon
         if (__builtin_cpu_supports("avx512f")) {
-            parse_fn_ = &parse_avx512; // Validated via Intel SDE / QEMU-user / CI
+            parse_fn_ = &parse_avx512; // Native on AMD Zen 4/5, or Intel SDE / QEMU in CI
         } else {
-            parse_fn_ = &parse_avx2;   // Validated natively on local silicon
+            parse_fn_ = &parse_avx2;   // Universal native fallback on all modern x86-64 silicon
         }
     }
 
@@ -1338,7 +1254,7 @@ public:
 ```
 
 #### The Bullet Point That Gets You Hired:
-> **"Engineered an ultra-low-latency NASDAQ ITCH 5.0 feed handler in C++20 with dual SIMD backends (AVX2 & AVX-512). Architected a zero-copy 64-byte cache-line aligned parser with runtime CPUID dynamic dispatch; verified 512-bit vector correctness and instruction histograms using Intel SDE and QEMU-user emulation, achieving a deterministic 24-cycle packet ingestion latency."**
+> **"Engineered an ultra-low-latency NASDAQ ITCH 5.0 feed handler in C++20 with dual SIMD backends (AVX2 & AVX-512). Architected a zero-copy 64-byte cache-line aligned parser with runtime CPUID dynamic dispatch; validated native 512-bit vector execution on AMD Zen 5 silicon (Ryzen 7 9700X) with zero downclocking and verified CI coverage via Intel SDE, achieving a deterministic 24-cycle packet ingestion latency."**
 
 ---
 
@@ -1549,7 +1465,7 @@ Use these concrete technical blueprints so you never have to guess what files, s
   include/journal/binary_journal.hpp  # O_DIRECT append-only binary crash recovery log
   verification/genmc/harness_spsc.cpp # GenMC bounded model-checking harness (RC11/IMM)
   benchmarks/bench_ping_pong.cpp      # Cross-core RTT and perf c2c HITM contention harness
-  telemetry/magic_trace_hook.hpp      # Cold-path Intel PT (magic-trace) tail capture hook
+  telemetry/hw_trace_hook.hpp         # Cold-path AMD IBS & Intel PT (magic-trace) tail capture hook
   CMakeLists.txt
   ```
 * **Core Data Structure Design:**
@@ -1699,7 +1615,7 @@ When submitting your resume to quantitative trading firms (Jane Street, Citadel,
 * Neutralized hardware adjacent-cache-line prefetch invalidations by isolating read/write cursors to distinct 128-byte aligned boundaries (`alignas(128)`), eliminating false sharing Local/Remote HITM stalls verified via Linux `perf c2c`.
 * Implemented an Erik Rigtorp wait-free SPSC ring with local cached cursors, an SPMC broadcast ring (Backpressure and Overwrite/Epoch modes), and a wait-free `SeqLock<T>` with atomic thread fences.
 * Formally verified lock-free atomic primitives under weak memory models (RC11 and IMM) using the **GenMC** model checker, mathematically proving freedom from data races, deadlocks, and weak-memory misorderings.
-* Instrumented a cold-path snapshot hook utilizing **Intel Processor Trace (`magic-trace`)** to capture sub-30ns cycle-accurate execution timelines attributing p99.9 latency spikes to OS interrupts and page faults.
+* Instrumented a cold-path telemetry hook supporting **AMD IBS (Instruction-Based Sampling)** on AMD Zen 5 (Ryzen 7 9700X) and **Intel Processor Trace (`magic-trace`)** on Intel to capture sub-30ns cycle-accurate execution timelines attributing p99.9 latency spikes to OS interrupts and page faults.
 
 **ouch-risk-sim: Compile-Time OUCH 5.0 Gateway & AVX2 Pre-Trade Risk Firewall** | *C++20, AVX2 SIMD, Intrinsics, constexpr, Order State Machine, Market Realism*
 * Implemented an ultra-low-latency order execution gateway and queue-aware exchange simulator in C++20 encoding and decoding NASDAQ OUCH 5.0 binary messages via a concrete compile-time `constexpr` codec evaluated with Clang `-ftime-trace`.
@@ -1711,15 +1627,3 @@ When submitting your resume to quantitative trading firms (Jane Street, Citadel,
 * Engineered a deterministic, zero-syscall memory management subsystem pre-allocating 2MB static HugePages via `mmap(MAP_HUGETLB)`.
 * Implemented a pointer-bump monotonic arena allocator and an intrusive fixed-block free-list pool, replacing `malloc`/`free` with deterministic O(1) allocations.
 * Verified via Linux `perf stat`: translation lookaside buffer misses (`dTLB-load-misses`) and kernel page faults dropped to exactly **zero** during sustained million-operation simulation workloads.
-
-
-# Final Goal
-
-Do not aim to become:
-> Someone who knows a lot of C++ syntax.
-
-Aim to become:
-> [!SUCCESS]
-> **Someone who can understand a system from the C++ source code down through compiler assembly, CPU microarchitecture, cache coherence, memory controllers, Linux kernel internals, networking wires, and sub-nanosecond performance measurements.**
-
-That is the depth that defines the top 1% of systems and performance engineers. Go deep, build continuously, benchmark everything, and document your work publicly.
