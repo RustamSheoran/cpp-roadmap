@@ -1,23 +1,27 @@
 # C++ Systems & Performance Engineering Roadmap
 
+**Main Curriculum Repository:** [github.com/RustamSheoran/cpp-roadmap](https://github.com/RustamSheoran/cpp-roadmap)  
+**Production Capstone Projects Blueprint:** [github.com/RustamSheoran/cpp-pro](https://github.com/RustamSheoran/cpp-pro)
+
 # Table of Contents
 
-1. [The Overall Roadmap](#1-the-overall-roadmap)
-2. [Phase 0: Modern C++ Foundation](#2-phase-0-modern-c-foundation)
-3. [Phase 1: What Happens Beneath C++ & Compiler Design](#3-phase-1-what-happens-beneath-c--compiler-design)
-4. [Phase 2: CPU Architecture, Memory, and Hardware](#4-phase-2-cpu-architecture-memory-and-hardware)
-5. [Phase 3: OS Fundamentals & Linux Systems Mastery](#5-phase-3-os-fundamentals--linux-systems-mastery)
-6. [Phase 4: Concurrency & Memory Models](#6-phase-4-concurrency--memory-models)
-7. [Phase 5: Performance Engineering & Reliability](#7-phase-5-performance-engineering--reliability)
-8. [Phase 6: Networking and I/O](#8-phase-6-networking-and-io)
-9. [Phase 7: Advanced I/O and Kernel Bypass](#9-phase-7-advanced-io-and-kernel-bypass)
-10. [Phase 8: x86-64, Assembly, and SIMD](#10-phase-8-x86-64-assembly-and-simd)
-11. [Phase 9: Financial Markets & Trading Mechanics](#11-phase-9-financial-markets--trading-mechanics)
-12. [Phase 10: Quantitative Math & Probability (Quant Track)](#12-phase-10-quantitative-math--probability-quant-track)
-13. [Phase 11: The Hardcore Flagship Projects (The Capstone Suite)](#13-phase-11-the-hardcore-flagship-projects-the-capstone-suite)
-14. [Free Video Courses & Interactive Portals](#14-free-video-courses--interactive-portals)
-15. [The Principal Engineer Benchmarking & Resume Playbook](#15-the-principal-engineer-benchmarking--resume-playbook)
+1. [The Overall Roadmap](#overall-roadmap)
+2. [Phase 0: Modern C++ Foundation](#phase-0)
+3. [Phase 1: What Happens Beneath C++ & Compiler Design](#phase-1)
+4. [Phase 2: CPU Architecture, Memory, and Hardware](#phase-2)
+5. [Phase 3: OS Fundamentals & Linux Systems Mastery](#phase-3)
+6. [Phase 4: Concurrency & Memory Models](#phase-4)
+7. [Phase 5: Performance Engineering & Reliability](#phase-5)
+8. [Phase 6: Networking and I/O](#phase-6)
+9. [Phase 7: Advanced I/O and Kernel Bypass](#phase-7)
+10. [Phase 8: x86-64, Assembly, and SIMD](#phase-8)
+11. [Phase 9: Financial Markets & Trading Mechanics](#phase-9)
+12. [Phase 10: Quantitative Math & Probability (Quant Track)](#phase-10)
+13. [Phase 11: The Hardcore Flagship Projects (The Capstone Suite)](#phase-11)
+14. [Free Video Courses & Interactive Portals](#free-courses)
+15. [The Principal Engineer Benchmarking & Resume Playbook](#benchmarking-playbook)
 
+<a id="overall-roadmap"></a>
 # 1. The Overall Roadmap
 
 ```mermaid
@@ -52,6 +56,7 @@ The goal is to become someone who can answer:
 
 ---
 
+<a id="phase-0"></a>
 # 2. Phase 0: Modern C++ Foundation
 
 > **Overview:** Master the core language, memory lifetime, value semantics, and the modern standard library without runtime overhead.
@@ -184,6 +189,7 @@ The goal is to become someone who can answer:
 
 ---
 
+<a id="phase-1"></a>
 # 3. Phase 1: What Happens Beneath C++ & Compiler Design
 
 > **Overview:** Understand the journey from source code to machine execution: the preprocessor, compiler frontend/backend, linker, and ABI.
@@ -285,6 +291,7 @@ flowchart TD
 
 ---
 
+<a id="phase-2"></a>
 # 4. Phase 2: CPU Architecture, Memory, and Hardware
 
 > **Overview:** Mechanical empathy: design contiguous data structures aligned with CPU cache hierarchies, prefetchers, and memory controllers.
@@ -415,6 +422,7 @@ flowchart TD
 
 ---
 
+<a id="phase-3"></a>
 # 5. Phase 3: OS Fundamentals & Linux Systems Mastery
 
 > **Overview:** Master the Linux operating system as a low-level systems programmer: kernel space vs user space, syscall overhead, and deterministic core isolation.
@@ -523,6 +531,7 @@ flowchart TD
 
 ---
 
+<a id="phase-4"></a>
 # 6. Phase 4: Concurrency & Memory Models
 
 > **Overview:** Master multithreading, atomic instructions, lock-free queues, memory consistency models, and safe memory reclamation.
@@ -626,6 +635,7 @@ flowchart TD
 
 ---
 
+<a id="phase-5"></a>
 # 7. Phase 5: Performance Engineering & Reliability
 
 > **Overview:** Empirical engineering: profile with hardware performance counters, eliminate latency jitter, and build crash-resilient code.
@@ -741,6 +751,7 @@ flowchart TD
 
 ---
 
+<a id="phase-6"></a>
 # 8. Phase 6: Networking and I/O
 
 > **Overview:** Master TCP/IP, UDP multicast, the Linux sockets API, and high-performance event multiplexing before stepping into kernel bypass.
@@ -804,6 +815,7 @@ flowchart TD
 
 ---
 
+<a id="phase-7"></a>
 # 9. Phase 7: Advanced I/O and Kernel Bypass
 
 > **Overview:** Eliminate the operating system from the networking path: Direct Memory Access (DMA), Solarflare ef_vi, OpenOnload, and DPDK.
@@ -871,6 +883,7 @@ flowchart LR
 
 ---
 
+<a id="phase-8"></a>
 # 10. Phase 8: x86-64, Assembly, and SIMD
 
 > **Overview:** Inspect compiler assembly, optimize instruction pipelining, and vectorize data processing with SIMD intrinsics.
@@ -933,6 +946,7 @@ flowchart LR
 
 ---
 
+<a id="phase-9"></a>
 # 11. Phase 9: Financial Markets & Trading Mechanics
 
 > **Overview:** Understand market microstructure from scratch: limit order books, exchange protocols, market making, and smart order routing.
@@ -1025,6 +1039,7 @@ flowchart LR
 
 ---
 
+<a id="phase-10"></a>
 # 12. Phase 10: Quantitative Math & Probability (Quant Track)
 
 > **Overview:** Master the mathematical fundamentals required for quantitative development and research roles.
@@ -1085,59 +1100,138 @@ flowchart LR
 
 ---
 
+<a id="phase-11"></a>
 # 13. Phase 11: The Hardcore Flagship Projects (The Capstone Suite)
 
 > **Overview:** Proof of work: four hardcore production-grade systems projects engineered for Tier-1 HFT hiring that demonstrate mechanical empathy, zero-allocation discipline, and kernel-bypass mastery for zero dollars on commodity consumer hardware.
+>
+> 🔗 **Companion Repositories:**
+> - Master Curriculum: [github.com/RustamSheoran/cpp-roadmap](https://github.com/RustamSheoran/cpp-roadmap)
+> - Detailed Production Blueprints: [github.com/RustamSheoran/cpp-pro](https://github.com/RustamSheoran/cpp-pro)
 
 > [!IMPORTANT]
 > **Interleaved Build Schedule (When to Build What):**
 > Do not wait until you complete all theoretical phases before writing code. Build these four projects progressively as you finish their prerequisite modules:
-> 
-> 1. 🏗️ **Milestone 1 (After Phase 2 & Phase 3):**
->    - **Foundational Project:** [Custom Arena Allocator & HugePage Memory Pool (`hugepage-arena-allocator`)](#foundational-project-custom-arena-allocator--hugepage-memory-pool)
->    - *Prerequisites:* CPU Caches, Data Alignment (`alignas(64)`), Virtual Memory, TLBs, and POSIX `mmap` (`MAP_HUGETLB`).
-> 
-> 2. ⚡ **Milestone 2 (After Phase 4 & Phase 5):**
->    - **Flagship Project 2 (Rank #2):** [Formally Verified Lock-Free Shared-Memory IPC & Sequencer (`shmbus-mc`)](#project-2-rank-2-shmbus-mc---formally-verified-lock-free-shared-memory-ipc-event-sourced-sequencer-and-hardware-traced-telemetry-engine)
->    - *Prerequisites:* C++20 atomics, memory consistency (x86-TSO/RC11), wait-free SPSC/SPMC rings, GenMC model checking, and `perf c2c` false-sharing profiling.
-> 
-> 3. 🌐 **Milestone 3 (After Phase 6 & Phase 7):**
->    - **Flagship Project 1 (Rank #1):** [NASDAQ TotalView-ITCH 5.0 Feed Handler & L3 Order Book (`itch-xsk`)](#project-1-rank-1-itch-xsk---nasdaq-totalview-itch-50--moldudp64-feed-handler-gap-recovery-engine-and-cache-optimal-l3-order-book)
->    - *Prerequisites:* POSIX sockets, MoldUDP64 framing, `recvmmsg` + `SO_BUSY_POLL`, `AF_XDP` (XSK) on `veth` pairs, `io_uring`, and cache-optimal L3 slab book.
-> 
-> 4. 🎯 **Milestone 4 (After Phase 8 & Phase 9):**
->    - **Flagship Project 3 (Rank #3):** [Compile-Time OUCH 5.0 Gateway & AVX2 Risk Firewall (`ouch-risk-sim`)](#project-3-rank-3-ouch-risk-sim---compile-time-ouch-50-execution-gateway-simd-pre-trade-risk-firewall-and-queue-aware-historical-replay-engine)
->    - *Prerequisites:* System V AMD64 ABI, AVX2 SIMD vectorization (`_mm256_cmpgt_epi64`), OUCH 5.0 protocol, idempotent FSM, and queue-priority replay (`qty_ahead`).
 
-## Project Summaries & Technical References
+1. 🏗️ **Milestone 1 (After Phase 2 & Phase 3):**
+   - **Foundational Project:** [Custom Arena Allocator & HugePage Memory Pool (`hugepage-arena-allocator`)](#allocator-summary)
+   - *Prerequisites:* CPU Caches, Data Alignment (`alignas(64)`), Virtual Memory, TLBs, and POSIX `mmap` (`MAP_HUGETLB`).
 
-- **Foundational Project: Custom C++ Arena Allocator & HugePage Memory Pool (`hugepage-arena-allocator`)**
-  - *Core Concept:* Zero-allocation memory runtime for sub-microsecond tick processing. Pre-allocates 2MB static HugePages via `mmap(MAP_HUGETLB | MAP_ANONYMOUS | MAP_POPULATE)`, implements monotonic bump allocation for per-tick events, and an intrusive fixed-block free-list pool for order records. Eliminates dTLB misses, heap locks, and runtime page faults.
-  - *Detailed Blueprint & Code Specification:* [Jump to Section 18.7.1 Blueprint](#foundational-project-custom-arena-allocator--hugepage-memory-pool)
-  - 📖 **Read (CRITICAL MUST-READ: Linux Kernel HugeTLB Subsystem):** [Linux Kernel HugeTLB Documentation](https://www.kernel.org/doc/html/latest/admin-guide/mm/hugetlbpage.html) `[Search: "linux kernel hugetlb pages documentation"]`
-  - 📖 **Read (Supplementary Reference - Optional):** [cppreference - std::align](https://en.cppreference.com/w/cpp/memory/align) `[Search: "cppreference std align"]`
+2. ⚡ **Milestone 2 (After Phase 4 & Phase 5):**
+   - **Flagship Project 2 (Rank #2):** [Formally Verified Lock-Free Shared-Memory IPC & Sequencer (`shmbus-mc`)](#shmbus-summary)
+   - *Prerequisites:* C++20 atomics, memory consistency (x86-TSO/RC11), wait-free SPSC/SPMC rings, GenMC model checking, and `perf c2c` false-sharing profiling.
 
-- **Flagship Project 1 (Rank #1): itch-xsk - NASDAQ TotalView-ITCH 5.0 Feed Handler & L3 Order Book (`itch-xsk`)**
-  - *Core Concept:* Zero-dollar high-throughput feed handler and L3 book. Ingests raw MoldUDP64 packet streams over three swappable Linux networking backends behind a C++20 concept policy: `recvmmsg` + `SO_BUSY_POLL`, `io_uring` with registered fixed buffers, and `AF_XDP` (XSK) backed by eBPF `XDP_REDIRECT`. Features dual-stream A/B arbitration, packet deduplication, out-of-order gap staging, and automated retransmission client. Feeds a cache-optimal L3 order book utilizing 32-bit slab indices, a flat open-addressing hash table with backward-shift deletion, and BBO tick-arrays scanned via `TZCNT`.
-  - *Detailed Blueprint & Code Specification:* [Jump to Section 18.7.2 Blueprint](#project-1-rank-1-itch-xsk---nasdaq-totalview-itch-50--moldudp64-feed-handler-gap-recovery-engine-and-cache-optimal-l3-order-book)
-  - 📖 **Read (CRITICAL MUST-READ: Official NASDAQ wire transport format):** [NASDAQ MoldUDP64 Protocol Specification v1.00](https://www.nasdaqtrader.com/content/technicalsupport/specifications/dataproducts/moldudp64.pdf) `[Search: "nasdaq moldudp64 protocol specification v1.00 pdf"]`
-  - 📖 **Read (CRITICAL MUST-READ: Official byte-level market data format):** [NASDAQ TotalView-ITCH 5.0 Specification](https://www.nasdaqtrader.com/content/technicalsupport/specifications/dataproducts/NQTVITCHspecification.pdf) `[Search: "nasdaq totalview itch 5.0 specification pdf"]`
-  - 📖 **Read (CRITICAL MUST-READ: Linux Kernel XSK Subsystem):** [Linux Kernel AF_XDP Documentation](https://docs.kernel.org/networking/af_xdp.html) `[Search: "linux kernel af_xdp documentation"]`
+3. 🌐 **Milestone 3 (After Phase 6 & Phase 7):**
+   - **Flagship Project 1 (Rank #1):** [NASDAQ TotalView-ITCH 5.0 Feed Handler & L3 Order Book (`itch-xsk`)](#itch-summary)
+   - *Prerequisites:* POSIX sockets, MoldUDP64 framing, `recvmmsg` + `SO_BUSY_POLL`, `AF_XDP` (XSK) on `veth` pairs, `io_uring`, and cache-optimal L3 slab book.
 
-- **Flagship Project 2 (Rank #2): shmbus-mc - Formally Verified Lock-Free Shared-Memory IPC (`shmbus-mc`)**
-  - *Core Concept:* High-performance cross-process IPC bus and event sequencer. Built on POSIX shared memory (`shm_open`, 2 MiB `MAP_HUGETLB`) partitioned into 128-byte cache-isolated zones (`alignas(128)`) to neutralize hardware adjacent-cache-line prefetchers. Features Erik Rigtorp's wait-free SPSC ring with local cached cursors, an SPMC broadcast ring supporting both Backpressure Mode and Overwrite/Epoch Mode, and a wait-free `SeqLock<T>` with atomic thread fences. Formally verified under weak memory models (RC11 and IMM) with GenMC, with false-sharing validated via `perf c2c` and sub-nanosecond instruction profiling via `magic-trace` (Intel PT).
-  - *Detailed Blueprint & Code Specification:* [Jump to Section 18.7.3 Blueprint](#project-2-rank-2-shmbus-mc---formally-verified-lock-free-shared-memory-ipc-event-sourced-sequencer-and-hardware-traced-telemetry-engine)
-  - 📖 **Read (CRITICAL MUST-READ: Formal verification guide for weak memory):** [GenMC User Manual - Max Planck Institute](https://plv.mpi-sws.org/genmc/) `[Search: "genmc user manual max planck institute"]`
-  - 📖 **Read (CRITICAL MUST-READ: Linux Kernel Shared Memory & IPC):** [shm_open(3) - Linux Manual Page](https://man7.org/linux/man-pages/man3/shm_open.3.html) `[Search: "man7 shm_open linux manual page"]`
-
-- **Flagship Project 3 (Rank #3): ouch-risk-sim - Compile-Time OUCH 5.0 & AVX2 Risk Firewall (`ouch-risk-sim`)**
-  - *Core Concept:* Microsecond order execution gateway and queue-aware exchange simulator. Features a concrete compile-time `constexpr` NASDAQ OUCH 5.0 binary codec evaluated with Clang `-ftime-trace` to eliminate template bloat. Outbound orders pass through an AVX2 SIMD pre-trade risk firewall evaluating 64-bit limits branchlessly in parallel (`_mm256_cmpgt_epi64`, `_mm256_movemask_epi8`) with 64-bit integer overflow protection in under 15 ns. Manages an idempotent order state machine (FSM) resolving in-flight cancel/executed races and disconnect reconciliation. In historical simulation, models true microstructure realism via a deterministic timing-wheel delay queue (1 µs - 200 µs), tracking FIFO queue priority (`qty_ahead`) and conservative cancellation attribution from L3 ITCH feeds.
-  - *Detailed Blueprint & Code Specification:* [Jump to Section 18.7.4 Blueprint](#project-3-rank-3-ouch-risk-sim---compile-time-ouch-50-execution-gateway-simd-pre-trade-risk-firewall-and-queue-aware-historical-replay-engine)
-  - 📖 **Read (CRITICAL MUST-READ: Official NASDAQ order entry wire spec):** [NASDAQ OUCH 5.0 Protocol Specification](https://www.nasdaqtrader.com/content/technicalsupport/specifications/TradingProducts/ouch5.0.pdf) `[Search: "nasdaq ouch 5.0 protocol specification pdf"]`
-  - 📖 **Read (CRITICAL MUST-READ: Intel Intrinsics Guide):** [Intel Intrinsics Guide (AVX2)](https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html) `[Search: "intel intrinsics guide avx2 official"]`
+4. 🎯 **Milestone 4 (After Phase 8 & Phase 9):**
+   - **Flagship Project 3 (Rank #3):** [Compile-Time OUCH 5.0 Gateway & AVX2 Risk Firewall (`ouch-risk-sim`)](#ouch-summary)
+   - *Prerequisites:* System V AMD64 ABI, AVX2 SIMD vectorization (`_mm256_cmpgt_epi64`), OUCH 5.0 protocol, idempotent FSM, and queue-priority replay (`qty_ahead`).
 
 ---
 
+## Project Summaries: The Core Ideas, What to Build & What to Implement
+
+<a id="allocator-summary"></a><a id="hugepage-arena-allocator"></a>
+### 1. Foundational Project: Custom C++ Arena Allocator & HugePage Memory Pool (`hugepage-arena-allocator`)
+- **The Core Idea (Why Build It):** In low-latency trading, calling `new` or `malloc` on the critical path is forbidden because dynamic heap allocators use global locks and trigger expensive Linux kernel page faults (> 1,000 ns). You build a pre-allocated memory engine backed by static 2MB HugePages that delivers O(1) allocations in single-digit clock cycles (< 5 ns) with zero page faults.
+- **What to Build (System Components):**
+  - A 2MB HugePage memory arena (`HugePageArena`) requesting static pages from Linux via `mmap(MAP_HUGETLB)`.
+  - A zero-syscall monotonic bump allocator for ephemeral per-tick objects.
+  - An intrusive fixed-block free-list pool (`FixedBlockPool`) for long-lived order nodes, reusing deleted slots without returning memory to the OS.
+- **What to Implement (Key Mechanisms):**
+  - Bitwise alignment arithmetic: `(offset + align - 1) & ~(align - 1)` ensuring 64-byte cache line alignment.
+  - Static 2MB hugepage configuration via `sysctl vm.nr_hugepages`.
+  - Monotonic offset bumping and instant O(1) bulk reset (`offset = 0`).
+- **What to Measure & Prove:**
+  - Run `perf stat -e dTLB-load-misses,page-faults` to prove runtime page faults drop to exactly zero.
+  - Compare allocation throughput against `malloc`/`free`.
+- **References & Blueprints:**
+  - 🔗 **Production Blueprint:** [Complete hugepage-arena-allocator Technical Specification in cpp-pro](https://github.com/RustamSheoran/cpp-pro#hugepage-arena-allocator)
+  - 📖 **Read (CRITICAL MUST-READ):** [Linux Kernel HugeTLB Documentation](https://www.kernel.org/doc/html/latest/admin-guide/mm/hugetlbpage.html) `[Search: "linux kernel hugetlb pages documentation"]`
+  - 📖 **Read (Supplementary Reference):** [cppreference - std::align](https://en.cppreference.com/w/cpp/memory/align) `[Search: "cppreference std align"]`
+
+---
+
+<a id="itch-summary"></a><a id="itch-xsk"></a>
+### 2. Flagship Project 1 (Rank #1): itch-xsk - NASDAQ TotalView-ITCH 5.0 Feed Handler & L3 Order Book (`itch-xsk`)
+- **The Core Idea (Why Build It):** The market data feed handler sits at the most critical boundary between the exchange network and the trading strategy. You need to ingest millions of UDP packets per second during market-open bursts, resolve packet loss between redundant feeds without stalling, and maintain a full-depth Level-3 order book with zero dynamic heap allocation.
+- **What to Build (System Components):**
+  - An open-loop MoldUDP64 packet replayer that memory-maps real multi-gigabyte NASDAQ ITCH 5.0 binary archives and streams them over a Linux virtual Ethernet (`veth`) pair.
+  - A swappable 3-backend Linux networking engine benchmarking standard sockets (`recvmmsg` + `SO_BUSY_POLL`), asynchronous ring I/O (`io_uring`), and kernel-bypass (`AF_XDP` / XSK) over eBPF.
+  - An A/B arbitration and gap recovery state machine tracking sequence numbers and requesting retransmissions.
+  - A cache-optimal Level-3 (L3) order book tracking every live order in the market.
+- **What to Implement (Key Mechanisms):**
+  - Concept-based C++20 network policy interface (`NetBackend<T>`) eliminating virtual dispatch overhead.
+  - MoldUDP64 downstream framing (20-byte header + packed variable-length ITCH messages).
+  - Intrusive 64-byte `OrderNode` layout with 32-bit slab indices (halving pointer footprints).
+  - Flat open-addressing hash table with backward-shift deletion (zero tombstones).
+  - Hybrid dense BBO tick array with bitset scanned via `TZCNT` (`std::countl_zero`) for O(1) best price updates.
+- **What to Measure & Prove:**
+  - Open-loop tail latency distributions (p50, p90, p99, p99.9) using `HdrHistogram`.
+  - 2x3 ablation matrix comparing naive `std::map` book vs. cache-optimal slab book across `recvmmsg`, `io_uring`, and `AF_XDP`.
+  - Hardware counters: `LLC-load-misses`, `dTLB-load-misses`, `branch-misses`.
+- **References & Blueprints:**
+  - 🔗 **Production Blueprint:** [Complete itch-xsk Technical Specification in cpp-pro](https://github.com/RustamSheoran/cpp-pro#itch-xsk)
+  - 📖 **Read (CRITICAL MUST-READ):** [NASDAQ MoldUDP64 Protocol Specification v1.00](https://www.nasdaqtrader.com/content/technicalsupport/specifications/dataproducts/moldudp64.pdf) `[Search: "nasdaq moldudp64 protocol specification v1.00 pdf"]`
+  - 📖 **Read (CRITICAL MUST-READ):** [NASDAQ TotalView-ITCH 5.0 Specification](https://www.nasdaqtrader.com/content/technicalsupport/specifications/dataproducts/NQTVITCHspecification.pdf) `[Search: "nasdaq totalview itch 5.0 specification pdf"]`
+  - 📖 **Read (CRITICAL MUST-READ):** [Linux Kernel AF_XDP Documentation](https://docs.kernel.org/networking/af_xdp.html) `[Search: "linux kernel af_xdp documentation"]`
+
+---
+
+<a id="shmbus-summary"></a><a id="shmbus-mc"></a>
+### 3. Flagship Project 2 (Rank #2): shmbus-mc - Formally Verified Lock-Free Shared-Memory IPC & Sequencer (`shmbus-mc`)
+- **The Core Idea (Why Build It):** In low-latency trading architectures, pipeline stages (feed handler -> strategy -> risk gateway -> execution) run on isolated CPU cores and communicate without mutex locks or OS context switches. You build a lock-free shared-memory IPC bus and event-sourced sequencer, then formally prove it free of data races under weak memory models (RC11/IMM) using GenMC, and eliminate false-sharing cache line bouncing via `perf c2c`.
+- **What to Build (System Components):**
+  - A POSIX shared-memory segment (`shm_open`, `memfd_create`) backed by 2MB HugePages and locked with `mlock`.
+  - A wait-free Single-Producer Single-Consumer (`SpscRing<T>`) ring buffer.
+  - A Multi-Consumer Single-Producer (`SpmcRing<T>`) broadcast ring supporting both Backpressure Mode and Overwrite/Epoch Mode.
+  - A wait-free `SeqLock<T>` with atomic thread fences for publishing latest market/risk state.
+  - An event-sourced deterministic sequencer and binary crash-recovery journal.
+  - Cold-path hardware execution tracing hooks (AMD IBS / Intel PT `magic-trace`) triggered on tail-spike thresholds.
+- **What to Implement (Key Mechanisms):**
+  - 128-byte cache-line isolation (`alignas(128)`) separating write cursors, read cursors, and slot storage to neutralize adjacent-cache-line prefetcher false sharing.
+  - Local cached cursor loads (`cached_read_idx_`, `cached_write_idx_`) to minimize cross-core MESI cache invalidations.
+  - Minimal C++20 atomic orderings (`relaxed` for self-indices, `release` for publishing, `acquire` for observing peers, never `seq_cst`).
+  - GenMC LLVM-IR test harnesses compiled with Clang under `--rc11` and `--imm`.
+- **What to Measure & Prove:**
+  - `perf c2c` HITM (Hit in Modified cache line) audit showing false-sharing stalls drop to zero with 128B padding.
+  - Zero data races and zero assertion failures under GenMC model checking.
+  - Ping-pong round-trip latency percentiles (p50 through p99.9) on isolated CPU cores.
+- **References & Blueprints:**
+  - 🔗 **Production Blueprint:** [Complete shmbus-mc Technical Specification in cpp-pro](https://github.com/RustamSheoran/cpp-pro#shmbus-mc)
+  - 📖 **Read (CRITICAL MUST-READ):** [GenMC User Manual - Max Planck Institute](https://plv.mpi-sws.org/genmc/) `[Search: "genmc user manual max planck institute"]`
+  - 📖 **Read (CRITICAL MUST-READ):** [shm_open(3) - Linux Manual Page](https://man7.org/linux/man-pages/man3/shm_open.3.html) `[Search: "man7 shm_open linux manual page"]`
+
+---
+
+<a id="ouch-summary"></a><a id="ouch-risk-sim"></a>
+### 4. Flagship Project 3 (Rank #3): ouch-risk-sim - Compile-Time OUCH 5.0 Gateway & AVX2 Risk Firewall (`ouch-risk-sim`)
+- **The Core Idea (Why Build It):** A single buggy order state transition or bypassed pre-trade risk check can bankrupt a trading firm in seconds. You build an outbound order-execution gateway with a compile-time binary protocol codec, an ultra-fast (< 5 ns) AVX2 SIMD pre-trade risk firewall, an idempotent order state machine, and a queue-aware historical replay engine that simulates realistic exchange matching mechanics (FIFO queue priority and adverse selection) instead of naive instant fills.
+- **What to Build (System Components):**
+  - A compile-time (`constexpr`) NASDAQ OUCH 5.0 binary codec evaluating field offsets and validation at compile time.
+  - A Structure-of-Arrays (SoA) AVX2 SIMD pre-trade risk firewall checking credit, price bands, and max quantity in parallel.
+  - An idempotent order lifecycle state machine (FSM) resolving in-flight cancel/fill races and disconnect reconciliation.
+  - A custom order slab pool with intrusive freelist for zero heap allocations.
+  - A queue-aware historical exchange simulator tracking your position in the FIFO queue (`qty_ahead`) and injecting parameterized latency profiles via a deterministic timing wheel.
+- **What to Implement (Key Mechanisms):**
+  - Branchless AVX2 parallel limit comparison via `_mm256_cmpgt_epi64` and `_mm256_movemask_epi8`.
+  - Compile-time wire parsing avoiding Alexandrescu template bloat (measured with Clang `-ftime-trace`).
+  - Table-driven exhaustive 8x12 State x Event transition matrix.
+  - Microstructure queue dynamics: decrementing `qty_ahead` on trades, conservative cancellation attribution, and measuring adverse selection markouts across latency tiers (1 us vs 10 us vs 50 us).
+- **What to Measure & Prove:**
+  - Cache-cold vs. cache-hot signal-to-wire latency (using `_mm_clflush` to simulate sporadic trade signals).
+  - Differential fuzz testing proving 100% identical allow/reject decisions between AVX2 and scalar checker over 50M random orders.
+  - Adverse selection curve: demonstrating how injected latency degrades fill quality and markout P&L.
+- **References & Blueprints:**
+  - 🔗 **Production Blueprint:** [Complete ouch-risk-sim Technical Specification in cpp-pro](https://github.com/RustamSheoran/cpp-pro#ouch-risk-sim)
+  - 📖 **Read (CRITICAL MUST-READ):** [NASDAQ OUCH 5.0 Protocol Specification](https://www.nasdaqtrader.com/content/technicalsupport/specifications/TradingProducts/ouch5.0.pdf) `[Search: "nasdaq ouch 5.0 protocol specification pdf"]`
+  - 📖 **Read (CRITICAL MUST-READ):** [Intel Intrinsics Guide (AVX2)](https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html) `[Search: "intel intrinsics guide avx2 official"]`
+
+---
+
+<a id="free-courses"></a>
 # 14. Free Video Courses & Interactive Portals
 
 ### 📚 Official Documentation & Interactive Portals
@@ -1165,6 +1259,7 @@ If you prefer structured video-first learning over reading dry documentation, th
 
 ---
 
+<a id="benchmarking-playbook"></a>
 # 15. The Principal Engineer Benchmarking & Resume Playbook
 
 > [!IMPORTANT]
@@ -1183,7 +1278,7 @@ $$\text{Latency (ns)} = \frac{\text{Clock Cycles}}{\text{Core Frequency (GHz)}}$
   At 5.5 GHz, 10 ns equals **55 Clock Cycles** ($10 \times 5.5$). Their code executed 55 cycles of instruction stalls and branch bloat -> their expensive CPU clock frequency merely masked inefficient code.
 * **Why Principal Systems Engineers Measure in Cycles (`__rdtsc`):**  
   An elite engineer measures using the invariant hardware timestamp counter (`__rdtsc()` / `__rdtscp()`):
-  > *"Tick-to-trade latency: **24 CPU Cycles** (7.5 ns on 3.2 GHz Haswell -> projected **4.3 ns** on 5.5 GHz Zen 5)."*  
+  *"Tick-to-trade latency: **24 CPU Cycles** (7.5 ns on 3.2 GHz Haswell -> projected **4.3 ns** on 5.5 GHz Zen 5)."*  
   The 24-cycle algorithm is **over 2x more efficient** at the instruction and pipeline level. When deployed onto production exchange servers -> the 24-cycle code crushes the 55-cycle code every single time.
 
 ---
@@ -1254,349 +1349,39 @@ public:
 ```
 
 #### The Bullet Point That Gets You Hired:
-> **"Engineered an ultra-low-latency NASDAQ ITCH 5.0 feed handler in C++20 with dual SIMD backends (AVX2 & AVX-512). Architected a zero-copy 64-byte cache-line aligned parser with runtime CPUID dynamic dispatch; validated native 512-bit vector execution on AMD Zen 5 silicon (Ryzen 7 9700X) with zero downclocking and verified CI coverage via Intel SDE, achieving a deterministic 24-cycle packet ingestion latency."**
+**"Engineered an ultra-low-latency NASDAQ ITCH 5.0 feed handler in C++20 with dual SIMD backends (AVX2 & AVX-512). Architected a zero-copy 64-byte cache-line aligned parser with runtime CPUID dynamic dispatch; validated native 512-bit vector execution on AMD Zen 5 silicon (Ryzen 7 9700X) with zero downclocking and verified CI coverage via Intel SDE, achieving a deterministic 24-cycle packet ingestion latency."**
 
 ---
 
-### 5. Production CMake & Ninja Systems Template
-
-Systems projects require strict zero-cost optimization flags. You do not need bloated build scripts; modern CMake takes 20 lines:
-
-```cmake
-cmake_minimum_required(VERSION 3.25)
-project(LowLatencyEngine CXX)
-
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-# Hardware-specific low-latency optimization flags
-add_compile_options(
-    -O3
-    -march=native
-    -Wall
-    -Wextra
-    -Wpedantic
-    -fno-exceptions      # Eliminates stack unwinding tables for deterministic latency
-    -fno-rtti            # Disables runtime type information (zero vtable overhead)
-)
-
-find_package(Threads REQUIRED)
-
-add_executable(matching_engine src/main.cpp src/matching_engine.cpp)
-target_include_directories(matching_engine PRIVATE include)
-target_link_libraries(matching_engine PRIVATE Threads::Threads)
-```
-
-**Build Commands (Ninja Generator):**
-```bash
-# Configure with Ninja
-cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
-
-# Compile at parallel speed
-ninja -C build
-
-# Benchmark with CPU affinity (isolate benchmark to Core 1 & 2)
-taskset -c 1,2 ./build/matching_engine
-```
-
----
-
-### 6. The Interleaved Phase-to-Project Roadmap (When to Build What)
+### 5. The Interleaved Phase-to-Project Roadmap (When to Build What)
 
 Do not make the fatal mistake of reading all 10 theory phases before writing code. Build projects **immediately** after their supporting theory is understood:
 
 | Execution Order | Theory Phases Completed | Project to Build | Core Focus & Architecture | Estimated Build Time |
 | :---: | :--- | :--- | :--- | :---: |
-| **1st** | **Phase 2 & Phase 3**<br>*(CPU Arch + Linux)* | **Project 1: Arena & HugePage Pool** | `mmap(MAP_HUGETLB)` -> zero-syscall bump allocation -> fixed-size free-lists -> memory engine for Project 4. | **2 Weeks** |
-| **2nd** | **Phase 4 & Phase 5**<br>*(Concurrency + Perf)* | **Project 2: Lock-Free SPSC Ring Buffer** | Pure memory ordering (`acquire`/`release`) -> cache-line padding (`alignas(64)`) -> Google Benchmark. | **2 Weeks** |
-| **3rd** | **Phase 6 & Phase 8**<br>*(Networking + SIMD)* | **Project 3: NASDAQ ITCH 5.0 SIMD Parser** | UDP multicast ingestion -> AVX2/AVX-512 vector unpacking -> zero-copy piping into Project 2 Ring Buffer. | **2.5 Weeks** |
-| **4th** | **Phase 9**<br>*(Financial Markets & LOB)* | **Project 4: Limit Order Book & Matching Engine** | Project 1 memory pool -> flat price-level arrays -> FIFO matching -> cycle-accurate `__rdtsc()`. | **2.5 Weeks** |
+| **Milestone 1** | **Phase 2 & Phase 3**<br>*(CPU Arch + Linux)* | **Foundational Project:**<br>[`hugepage-arena-allocator`](https://github.com/RustamSheoran/cpp-pro) | Pre-allocate 2MB HugePages (`MAP_HUGETLB`) -> zero-syscall monotonic bump allocation -> intrusive fixed-block free-list pool for order nodes -> zero page faults. | **2 Weeks** |
+| **Milestone 2** | **Phase 4 & Phase 5**<br>*(Concurrency + Perf)* | **Flagship Project 2 (Rank #2):**<br>[`shmbus-mc`](https://github.com/RustamSheoran/cpp-pro) | POSIX shared memory (`shm_open`) -> 128-byte cache-isolated zones (`alignas(128)`) -> wait-free SPSC/SPMC rings + UB-free SeqLock -> formal verification under RC11/IMM with GenMC -> `perf c2c` HITM audit. | **3 Weeks** |
+| **Milestone 3** | **Phase 6 & Phase 7**<br>*(Networking + Kernel Bypass)* | **Flagship Project 1 (Rank #1):**<br>[`itch-xsk`](https://github.com/RustamSheoran/cpp-pro) | MoldUDP64 framing + A/B gap recovery -> swappable Linux backends (`recvmmsg` + `SO_BUSY_POLL`, `io_uring`, `AF_XDP` on `veth`) -> intrusive 64-byte L3 slab book with flat open-addressing map & `TZCNT` BBO tick array. | **4 Weeks** |
+| **Milestone 4** | **Phase 8 & Phase 9**<br>*(SIMD + Trading Mechanics)* | **Flagship Project 3 (Rank #3):**<br>[`ouch-risk-sim`](https://github.com/RustamSheoran/cpp-pro) | Compile-time `constexpr` OUCH 5.0 codec -> AVX2 SIMD SoA pre-trade risk firewall (< 5 ns) -> idempotent order lifecycle FSM -> queue-aware historical replay engine tracking FIFO priority and adverse selection. | **3 Weeks** |
 
 ---
 
-### 7. Architectural Implementation Blueprints (Zero-Guesswork Specs)
+### 6. Architectural Implementation Blueprints (cpp-pro)
 
-Use these concrete technical blueprints so you never have to guess what files, structs, algorithms, or benchmarks to build.
+> [!TIP]
+> **Complete Technical Blueprints & Source Specs:**  
+> The complete zero-guesswork code architectures, struct memory layouts, GenMC verification harnesses, and benchmark suites are maintained in the dedicated companion repository:  
+> 🔗 **[github.com/RustamSheoran/cpp-pro](https://github.com/RustamSheoran/cpp-pro)**
 
----
-
-#### Foundational Project: Custom Arena Allocator & HugePage Memory Pool
-* **Repository Name:** `hugepage-arena-allocator`
-* **File Structure:**
-  ```text
-  include/hugepage_arena.hpp
-  include/fixed_block_pool.hpp
-  benchmarks/bench_allocator.cpp
-  tests/test_arena.cpp
-  CMakeLists.txt
-  ```
-* **Core Data Structure Design:**
-  ```cpp
-  class HugePageArena {
-  private:
-      char* buffer_{nullptr};
-      size_t capacity_{0};
-      size_t offset_{0};
-  public:
-      HugePageArena(size_t size_in_bytes) {
-          // Pre-allocate 2MB HugePages from Linux kernel
-          buffer_ = static_cast<char*>(mmap(
-              nullptr, size_in_bytes,
-              PROT_READ | PROT_WRITE,
-              MAP_PRIVATE | MAP_ANONYMOUS | MAP_HUGETLB,
-              -1, 0
-          ));
-          if (buffer_ == MAP_FAILED) {
-              // Fallback to standard 4KB pages if hugepages are not reserved on host
-              buffer_ = static_cast<char*>(mmap(
-                  nullptr, size_in_bytes,
-                  PROT_READ | PROT_WRITE,
-                  MAP_PRIVATE | MAP_ANONYMOUS,
-                  -1, 0
-              ));
-          }
-          capacity_ = (buffer_ != MAP_FAILED) ? size_in_bytes : 0;
-      }
-      ~HugePageArena() {
-          if (buffer_ && buffer_ != MAP_FAILED) {
-              munmap(buffer_, capacity_);
-          }
-      }
-
-      // Zero-syscall monotonic bump allocation
-      template <typename T, typename... Args>
-      T* allocate(Args&&... args) {
-          if (!buffer_ || buffer_ == MAP_FAILED) return nullptr;
-          size_t aligned_offset = (offset_ + alignof(T) - 1) & ~(alignof(T) - 1);
-          if (aligned_offset + sizeof(T) > capacity_) return nullptr;
-          offset_ = aligned_offset + sizeof(T);
-          return new (buffer_ + aligned_offset) T(std::forward<Args>(args)...);
-      }
-      void reset() noexcept { offset_ = 0; } // Instant O(1) bulk deallocation
-  };
-  ```
-* **Key Mechanics to Implement:**
-  1. **Static 2MB Page Configuration:** Test kernel hugepage reservation via `sysctl vm.nr_hugepages`.
-  2. **Memory Alignment:** Bitwise alignment math `(offset + align - 1) & ~(align - 1)` ensuring every object aligns to its natural boundary or 64 bytes.
-  3. **Fixed Block Free-List:** An intrusive singly-linked list pool for reusing deleted order objects without freeing back to the OS.
-* **Benchmark Deliverable:** Compare `malloc`/`free` vs. `HugePageArena` allocation throughput. Run `perf stat -e dTLB-load-misses,page-faults` to prove page faults drop to exactly **zero**.
-  - 🎥 **Watch 1:** [Trading at light speed: designing low latency systems in C++ - David Gross - Meeting C++ 2022](https://www.youtube.com/watch?v=8uAW5FQtcvE) `[Search: "Trading at light speed: designing low latency systems in C++ - David Gross - Meeting C++ 2022"]`
-  - 🎥 **Watch 2:** [Using Modern C++ to Eliminate Virtual Functions - Jonathan Gopel - CppCon 2022](https://www.youtube.com/watch?v=gTNJXVmuRRA) `[Search: "Using Modern C++ to Eliminate Virtual Functions - Jonathan Gopel - CppCon 2022"]`
-  - 🎥 **Watch 3:** [CppCon 2014: Mike Acton "Data-Oriented Design and C++"](https://www.youtube.com/watch?v=rX0ItVEVjHc) `[Search: "CppCon 2014: Mike Acton "Data-Oriented Design and C++""]`
+Refer to [cpp-pro](https://github.com/RustamSheoran/cpp-pro) for the complete production specifications:
+- **Foundational Project:** `hugepage-arena-allocator` (Static 2MB HugePage arena + intrusive fixed-block freelist)
+- **Flagship Project 1 (Build First):** `shmbus-mc` (128B-padded wait-free SPSC/SPMC rings, SeqLock, GenMC RC11/IMM formal verification)
+- **Flagship Project 2 (Build Second):** `itch-xsk` (MoldUDP64 A/B gap recovery, recvmmsg/io_uring/AF_XDP copy & zero-copy, intrusive 64B L3 slab book)
+- **Flagship Project 3 (Build Third):** `ouch-risk-sim` (constexpr OUCH 5.0 binary codec, AVX2 SIMD SoA risk firewall, queue-aware historical replay)
 
 ---
 
-#### Project 1 (Rank #1): itch-xsk - NASDAQ TotalView-ITCH 5.0 & MoldUDP64 Feed Handler, Gap-Recovery Engine, and Cache-Optimal L3 Order Book
-* **Repository Name:** `itch-xsk`
-* **File Structure:**
-  ```text
-  include/itch/messages.hpp          # Packed ITCH 5.0 structs (S, R, A, F, E, C, X, D, U, P, Q, I)
-  include/moldudp/moldudp64.hpp      # MoldUDP64 Downstream & Request headers
-  include/net/network_backend.hpp    # C++20 concept policy interface
-  include/net/recvmmsg_backend.hpp   # recvmmsg + SO_BUSY_POLL ingress
-  include/net/iouring_backend.hpp    # io_uring SQ/CQ registered fixed buffer ingress
-  include/net/af_xdp_backend.hpp     # AF_XDP (XSK) UMEM 4-ring driver/copy ingress
-  include/book/order_node.hpp        # 64-byte OrderNode with 32-bit slab indices
-  include/book/l3_order_book.hpp     # Intrusive FIFO queues, Robin Hood map, BBO tick array
-  src/replayer/mold_replayer.cpp     # Open-loop pacing replayer over veth pairs
-  benchmarks/bench_feed_handler.cpp  # HdrHistogram p50/p90/p99/p99.9 open-loop benchmarks
-  tests/golden_diff_test.cpp         # Bit-for-bit diff against std::map reference
-  CMakeLists.txt
-  ```
-* **Core Data Structure Design:**
-  ```cpp
-  #pragma pack(push, 1)
-  struct MoldDownstreamHeader {
-      char     session[10];
-      uint64_t sequence_number; // Big-endian 64-bit sequence
-      uint16_t message_count;   // 0 = Heartbeat, 0xFFFF = End of Session
-  };
-  #pragma pack(pop)
-
-  // Exactly 64 bytes: fits inside a single cache line!
-  struct alignas(64) OrderNode {
-      uint64_t order_reference_number; // 8 bytes
-      uint32_t price;                  // 4 bytes: Fixed-point Price(4)
-      uint32_t shares;                 // 4 bytes: Active share count
-      uint64_t timestamp;              // 8 bytes: RDTSCP cycle stamp
-      uint32_t next_idx;               // 4 bytes: 32-bit slab offset (halves pointer footprint!)
-      uint32_t prev_idx;               // 4 bytes: 32-bit slab offset
-      uint16_t stock_locate;           // 2 bytes
-      char     buy_sell_indicator;     // 1 byte:  'B' or 'S'
-      uint8_t  padding[29];            // Pad to exact 64 bytes
-  };
-  static_assert(sizeof(OrderNode) == 64, "OrderNode must be exactly 64 bytes to eliminate cache spilling!");
-  ```
-* **Key Mechanics to Implement:**
-  1. **Swappable Linux Ingress Concept:** Write a compile-time C++20 concept policy eliminating virtual dispatch overhead on packet reception:
-     * *Backend A:* `recvmmsg` + `SO_BUSY_POLL` batching.
-     * *Backend B:* `io_uring` with shared SQ/CQ rings and registered fixed buffers (`IORING_REGISTER_BUFFERS`).
-     * *Backend C:* `AF_XDP` (XSK) + eBPF `XDP_REDIRECT` using `libxdp` over virtual ethernet (`veth`) pairs for zero cost.
-  2. **A/B Feed Arbitration & Out-of-Order Gap Recovery:** Whichever feed delivers `seq == next_expected_seq` advances immediately; trailing duplicates drop in O(1). If both feeds drop packets (`seq > next_expected_seq`), stage incoming future packets inside an out-of-order circular ring buffer while firing a MoldUDP64 Request Packet to the replay server.
-  3. **Cache-Optimal L3 Book:** Order lookups by 64-bit `order_reference_number` run through a flat open-addressing hash table with **backward-shift deletion** (zero tombstones). Symbol price levels use a hybrid dense BBO tick-array scanned via `TZCNT` (`std::countl_zero`) for $O(1)$ best price updates.
-  4. **Golden Differential Testing:** Replay a 3.5 GB historical ITCH 5.0 file through both a naive `std::map` reference and your slab book, asserting bit-for-bit identical L1, L2, and share totals after every message.
-* **Benchmark Deliverable:** Run open-loop load generation pacing from 20k to peak msgs/sec. Capture wire-to-book latency in `HdrHistogram` extracting p50, p90, p99, and p99.9. Collect `perf stat -e cycles,instructions,branch-misses,L1-dcache-load-misses,LLC-load-misses,dTLB-load-misses`.
-  - 🎥 **Watch 1:** [Kernel Bypass: DPDK, AF_XDP and Low Latency Networking](https://www.youtube.com/watch?v=adgK47FSn5g) `[Search: "Kernel Bypass: DPDK, AF_XDP and Low Latency Networking"]`
-  - 🎥 **Watch 2:** [SUSE Labs Conference 2018 - XDP - Networking from kernel to userspace](https://www.youtube.com/watch?v=DsSwrpDkct0) `[Search: "SUSE Labs Conference 2018 - XDP - Networking from kernel to userspace"]`
-  - 🎥 **Watch 3:** [Cloud Native Superpowers with eBPF - Liz Rice, Isovalent](https://www.youtube.com/watch?v=KY5qujcujfI) `[Search: "Cloud Native Superpowers with eBPF - Liz Rice, Isovalent"]`
-  - 🎥 **Watch 4:** [LPC2018 - Path to DPDK speeds for AF XDP](https://www.youtube.com/watch?v=JmGfJok32Kw) `[Search: "LPC2018 - Path to DPDK speeds for AF XDP"]`
-  - 🎥 **Watch 1:** [The Design and Evolution of io_uring by Jens Axboe](https://www.youtube.com/watch?v=y4cb39pBp0I) `[Search: "The Design and Evolution of io_uring by Jens Axboe"]`
-  - 🎥 **Watch 2:** [Demystifying io_uring: How Linux I/O Just Got Faster](https://www.youtube.com/watch?v=aGKdQ1QsH00) `[Search: "Demystifying io_uring: How Linux I/O Just Got Faster"]`
-  - 🎥 **Watch 3:** [io_uring Looks Illegal](https://www.youtube.com/watch?v=4D7LPloaBFY) `[Search: "io_uring Looks Illegal"]`
-  - 🎥 **Watch 4:** [Demystifying io_uring: How Linux I/O Just Got Faster](https://www.youtube.com/watch?v=aGKdQ1QsH00) `[Search: "Demystifying io_uring: How Linux I/O Just Got Faster"]`
-  - 🎥 **Watch 1:** [Trading at light speed: designing low latency systems in C++ - David Gross - Meeting C++ 2022](https://www.youtube.com/watch?v=8uAW5FQtcvE) `[Search: "Trading at light speed: designing low latency systems in C++ - David Gross - Meeting C++ 2022"]`
-  - 🎥 **Watch 2:** [TCP vs UDP Multicast, epoll and Kernel Bypass for Low-Latency Trading | HFT Engineering Part 3](https://www.youtube.com/watch?v=0L-3xjrlVlA) `[Search: "TCP vs UDP Multicast, epoll and Kernel Bypass for Low-Latency Trading | HFT Engineering Part 3"]`
-  - 🎥 **Watch 3:** [99% of Developers Don't Get Sockets](https://www.youtube.com/watch?v=D26sUZ6DHNQ) `[Search: "99% of Developers Don't Get Sockets"]`
-  - 🎥 **Watch 1:** [Trading at light speed: designing low latency systems in C++ - David Gross - Meeting C++ 2022](https://www.youtube.com/watch?v=8uAW5FQtcvE) `[Search: "Trading at light speed: designing low latency systems in C++ - David Gross - Meeting C++ 2022"]`
-  - 🎥 **Watch 2:** [FIX protocol (explained by a quant developer)](https://www.youtube.com/watch?v=uZ8UEVhtPAo) `[Search: "FIX protocol (explained by a quant developer)"]`
-  - 🎥 **Watch 3:** [Trading at light speed: designing low latency systems in C++ - David Gross - Meeting C++ 2022](https://www.youtube.com/watch?v=8uAW5FQtcvE) `[Search: "Trading at light speed: designing low latency systems in C++ - David Gross - Meeting C++ 2022"]`
-
----
-
-#### Project 2 (Rank #2): shmbus-mc - Formally Verified Lock-Free Shared-Memory IPC, Event-Sourced Sequencer, and Hardware-Traced Telemetry Engine
-* **Repository Name:** `shmbus-mc`
-* **File Structure:**
-  ```text
-  include/shm/shm_segment.hpp         # POSIX shared memory + 2MB HugeTLB mapper
-  include/ring/spsc_ring.hpp          # Erik Rigtorp 128B-isolated wait-free SPSC ring
-  include/ring/spmc_ring.hpp          # Multi-consumer broadcast ring (backpressure & overwrite)
-  include/sync/seqlock.hpp            # Wait-free SeqLock with memory fences
-  include/sequencer/sequencer.hpp     # Deterministic monotonic 64-bit sequencer
-  include/journal/binary_journal.hpp  # O_DIRECT append-only binary crash recovery log
-  verification/genmc/harness_spsc.cpp # GenMC bounded model-checking harness (RC11/IMM)
-  benchmarks/bench_ping_pong.cpp      # Cross-core RTT and perf c2c HITM contention harness
-  telemetry/hw_trace_hook.hpp         # Cold-path AMD IBS & Intel PT (magic-trace) tail capture hook
-  CMakeLists.txt
-  ```
-* **Core Data Structure Design:**
-  ```cpp
-  template <typename T, size_t Capacity>
-  class alignas(128) SpscRing {
-      static_assert((Capacity & (Capacity - 1)) == 0, "Capacity must be power of 2!");
-      static_assert(std::is_trivially_copyable_v<T>, "T must be trivially copyable for SHM transport!");
-  private:
-      // Cache-isolated Zone 1: Producer Write Cursor (128-byte padded)
-      alignas(128) std::atomic<size_t> write_idx_{0};
-      size_t cached_read_idx_{0};
-
-      // Cache-isolated Zone 2: Consumer Read Cursor (128-byte padded)
-      alignas(128) std::atomic<size_t> read_idx_{0};
-      size_t cached_write_idx_{0};
-
-      // Cache-isolated Zone 3: Contiguous Power-of-2 Slot Storage
-      alignas(128) T buffer_[Capacity];
-  public:
-      bool try_push(const T& item) noexcept {
-          const size_t current_write = write_idx_.load(std::memory_order_relaxed);
-          if (current_write - cached_read_idx_ >= Capacity) {
-              cached_read_idx_ = read_idx_.load(std::memory_order_acquire);
-              if (current_write - cached_read_idx_ >= Capacity) return false; // Full
-          }
-          buffer_[current_write & (Capacity - 1)] = item;
-          write_idx_.store(current_write + 1, std::memory_order_release);
-          return true;
-      }
-
-      bool try_pop(T& item) noexcept {
-          const size_t current_read = read_idx_.load(std::memory_order_relaxed);
-          if (current_read == cached_write_idx_) {
-              cached_write_idx_ = write_idx_.load(std::memory_order_acquire);
-              if (current_read == cached_write_idx_) return false; // Empty
-          }
-          item = buffer_[current_read & (Capacity - 1)];
-          read_idx_.store(current_read + 1, std::memory_order_release);
-          return true;
-      }
-  };
-  ```
-* **Key Mechanics to Implement:**
-  1. **128-Byte False Sharing Elimination:** Isolate cursors to distinct 128-byte aligned memory strips (`alignas(128)`) to defeat hardware adjacent-cache-line prefetchers on Intel/AMD CPUs.
-  2. **Multi-Consumer SPMC Broadcast Ring:** Implement dual policies: *Backpressure Mode* (throttles to slowest consumer) and *Overwrite/Epoch Mode* (monotonic 64-bit sequence tags allowing slow consumers to detect dropped/overwritten frames and resynchronize without stalling the producer).
-  3. **Wait-Free SeqLock:** Publish latest BBO and risk parameters using odd/even sequence counters and atomic chunked copies with `std::atomic_thread_fence(std::memory_order_acquire)`.
-  4. **GenMC Formal Verification:** Write LLVM-IR test harnesses compiled via Clang and run `genmc --rc11` and `genmc --imm` to mathematically verify freedom from data races, deadlocks, and weak-memory misorderings. Include a deliberately broken `relaxed` test branch demonstrating GenMC generating a DOT counterexample graph for a race that passes x86-64 stress tests.
-  5. **Telemetry & Tail Postmortem:** Run `perf c2c record` / `perf c2c report` to verify zero Local/Remote HITM stalls on cursors. Wire `magic-trace` (Intel Processor Trace) to snapshot sub-30ns cycle-accurate timelines whenever an IPC hop crosses a p99.9 latency threshold.
-* **Benchmark Deliverable:** Measure one-way cross-core IPC latency via RDTSCP ping-pong. Generate p50, p90, p99, and p99.9 curves in HdrHistogram. Contrast unpadded vs 64B vs 128B false-sharing HITM stalls via `perf c2c`.
-  - 🎥 **Watch 1:** [Single Producer Single Consumer Lock-free FIFO From the Ground Up - Charles Frasch - CppCon 2023](https://www.youtube.com/watch?v=K3P_Lmq6pw0) `[Search: "Single Producer Single Consumer Lock-free FIFO From the Ground Up - Charles Frasch - CppCon 2023"]`
-  - 🎥 **Watch 2:** [Why Adding CPU Cores Made My C++ Code 30x SLOWER! ⚡ (False Sharing & MESI)](https://www.youtube.com/watch?v=z_zh2NGYBWc) `[Search: "Why Adding CPU Cores Made My C++ Code 30x SLOWER! ⚡ (False Sharing & MESI)"]`
-  - 🎥 **Watch 3:** [Introduction to Wait-free Algorithms in C++ Programming - Daniel Anderson - CppCon 2024](https://www.youtube.com/watch?v=kPh8pod0-gk) `[Search: "Introduction to Wait-free Algorithms in C++ Programming - Daniel Anderson - CppCon 2024"]`
-  - 🎥 **Watch 4:** [Lock-free programming with modern C++ - Timur Doumler [ACCU 2017]](https://www.youtube.com/watch?v=qdrp6k4rcP4) `[Search: "Lock-free programming with modern C++ - Timur Doumler [ACCU 2017]"]`
-  - 🎥 **Watch 1:** [Lock-Free Messaging: Seqlocks, the LMAX Disruptor and Aeron Explained | HFT Engineering Part 4](https://www.youtube.com/watch?v=4AoWfAUZrFM) `[Search: "Lock-Free Messaging: Seqlocks, the LMAX Disruptor and Aeron Explained | HFT Engineering Part 4"]`
-  - 🎥 **Watch 2:** [C++ Memory Model: from C++11 to C++23 - Alex Dathskovsky - CppCon 2023](https://www.youtube.com/watch?v=SVEYNEWZLo4) `[Search: "C++ Memory Model: from C++11 to C++23 - Alex Dathskovsky - CppCon 2023"]`
-  - 🎥 **Watch 3:** [CppCon 2017: Fedor Pikus “C++ atomics, from basic to advanced.  What do they really do?”](https://www.youtube.com/watch?v=ZQFzMfHIxng) `[Search: "CppCon 2017: Fedor Pikus “C++ atomics, from basic to advanced.  What do they really do?”"]`
-  - 🎥 **Watch 1:** [C++ Memory Model: from C++11 to C++23 - Alex Dathskovsky - CppCon 2023](https://www.youtube.com/watch?v=SVEYNEWZLo4) `[Search: "C++ Memory Model: from C++11 to C++23 - Alex Dathskovsky - CppCon 2023"]`
-  - 🎥 **Watch 2:** [CppCon 2014: Herb Sutter "Lock-Free Programming (or, Juggling Razor Blades), Part I"](https://www.youtube.com/watch?v=c1gO9aB9nbs) `[Search: "CppCon 2014: Herb Sutter "Lock-Free Programming (or, Juggling Razor Blades), Part I""]`
-  - 🎥 **Watch 3:** [Mark Batty: Modular relaxed dependencies in weak memory concurrency](https://www.youtube.com/watch?v=iy6VRAoxIYQ) `[Search: "Mark Batty: Modular relaxed dependencies in weak memory concurrency"]`
-  - 🎥 **Watch 1:** [Why Adding CPU Cores Made My C++ Code 30x SLOWER! ⚡ (False Sharing & MESI)](https://www.youtube.com/watch?v=z_zh2NGYBWc) `[Search: "Why Adding CPU Cores Made My C++ Code 30x SLOWER! ⚡ (False Sharing & MESI)"]`
-  - 🎥 **Watch 2:** [Performance Engineering on Hard Mode with Andrew Hunter](https://www.youtube.com/watch?v=uXLRWkdi0o8) `[Search: "Performance Engineering on Hard Mode with Andrew Hunter"]`
-  - 🎥 **Watch 3:** [code::dive conference 2014 - Scott Meyers: Cpu Caches and Why You Care](https://www.youtube.com/watch?v=WDIkqP4JbkE) `[Search: "code::dive conference 2014 - Scott Meyers: Cpu Caches and Why You Care"]`
-  - 🎥 **Watch 1:** [Performance Engineering on Hard Mode with Andrew Hunter](https://www.youtube.com/watch?v=uXLRWkdi0o8) `[Search: "Performance Engineering on Hard Mode with Andrew Hunter"]`
-  - 🎥 **Watch 2:** [Adrien Vergé - hardware assisted software tracing | ELC 2014](https://www.youtube.com/watch?v=tcsdM5-nU-A) `[Search: "Adrien Vergé - hardware assisted software tracing | ELC 2014"]`
-  - 🎥 **Watch 3:** [Steven Rostedt - Learning the Linux Kernel with tracing](https://www.youtube.com/watch?v=JRyrhsx-L5Y) `[Search: "Steven Rostedt - Learning the Linux Kernel with tracing"]`
-
----
-
-#### Project 3 (Rank #3): ouch-risk-sim - Compile-Time OUCH 5.0 Execution Gateway, SIMD Pre-Trade Risk Firewall, and Queue-Aware Historical Replay Engine
-* **Repository Name:** `ouch-risk-sim`
-* **File Structure:**
-  ```text
-  include/ouch/ouch_messages.hpp       # Variable-length OUCH 5.0 binary message structs
-  include/ouch/constexpr_codec.hpp     # Concrete compile-time constexpr encoder/decoder
-  include/risk/risk_firewall.hpp       # AVX2 SIMD Structure-of-Arrays (SoA) pre-trade checker
-  include/fsm/order_fsm.hpp            # Idempotent order state machine & race resolver
-  include/allocator/order_slab.hpp     # Contiguous pre-allocated slab with intrusive freelist
-  include/sim/timing_wheel.hpp         # Deterministic timing-wheel latency delay queue
-  include/sim/historical_replay.hpp    # L3 ITCH queue-aware matching simulator (qty_ahead)
-  benchmarks/bench_risk_latency.cpp    # Cache-cold vs cache-hot signal-to-wire latency
-  tests/fsm_matrix_test.cpp            # Table-driven state x event exhaustive transition test
-  CMakeLists.txt
-  ```
-* **Core Data Structure Design:**
-  ```cpp
-  // 32-byte aligned Structure-of-Arrays (SoA) for branchless AVX2 parallel limit checking
-  struct alignas(32) SymbolRiskLimits {
-      int64_t net_position[4];      // [Current, MaxLongLimit, -MaxShortLimit, Reserved]
-      int64_t open_notional[4];     // [CurrentPendingNotional, MaxNotionalLimit, FatFingerPriceBound, Reserved]
-      int64_t message_rate[4];      // [CurrentTokenCount, TokenCapacity, LastRefillTime, FillRate]
-  };
-
-  // Branchless AVX2 Pre-Trade Risk Firewall
-  inline uint32_t check_risk_avx2(const int64_t* current_values, const int64_t* limit_thresholds) noexcept {
-      // Load 4 parallel 64-bit integer values and limits into YMM registers
-      __m256i val = _mm256_load_si256(reinterpret_cast<const __m256i*>(current_values));
-      __m256i lim = _mm256_load_si256(reinterpret_cast<const __m256i*>(limit_thresholds));
-
-      // Branchless parallel comparison: val > lim ? 0xFFFFFFFFFFFFFFFF : 0x0
-      __m256i cmp = _mm256_cmpgt_epi64(val, lim);
-
-      // Extract 8-bit comparison bitmask: zero means 100% compliant, non-zero encodes violation!
-      return static_cast<uint32_t>(_mm256_movemask_epi8(cmp));
-  }
-  ```
-* **Key Mechanics to Implement:**
-  1. **Concrete `constexpr` OUCH 5.0 Codec:** Implement zero-allocation encoding and decoding of NASDAQ OUCH 5.0 messages (Enter Order, Cancel Order, Replace Order, Accepted, Executed, etc.). Audit compile times and object sizes using `clang++ -ftime-trace` to prove concrete `constexpr` achieves zero runtime overhead without template instantiation bloat.
-  2. **Branchless AVX2 SIMD Risk Firewall:** Evaluate four parallel 64-bit risk limits (net position limit, open notional, BBO price collar, rate limit) simultaneously via `_mm256_cmpgt_epi64` and `_mm256_movemask_epi8`, producing a single reject bitmask with zero branch mispredictions on the healthy path. Incorporate 64-bit overflow guards on `price * quantity`.
-  3. **Idempotent Order FSM:** Maintain live order slots inside a pre-allocated slab with an $O(1)$ intrusive freelist. Execute an exhaustive state times event transition matrix resolving in-flight races (e.g. Executed report arriving while Cancel is in flight) and network disconnect reconciliation.
-  4. **Queue-Aware Historical Replay (Microstructure Realism):** Ingest historical L3 ITCH data and track FIFO queue priority (`qty_ahead`). Decrement `qty_ahead` on historical trades at price P, apply conservative (back-of-queue) cancellation attribution, and inject parameterized network latency profiles (1 µs, 10 µs, 50 µs, 200 µs) via a deterministic timing wheel. Track maker/taker fees, crossing slippage, and adverse selection markouts.
-* **Benchmark Deliverable:** Measure signal-to-wire latency under both cache-hot and **cache-cold** regimes (explicitly evicting L1/L2 caches between events). Measure branch-miss reductions and IPC gains of AVX2 vs branchy scalar risk checks via `perf stat`.
-  - 🎥 **Watch 1:** [Branchless Programming in C++ - Fedor Pikus - CppCon 2021](https://www.youtube.com/watch?v=g-WPhYREFjk) `[Search: "Branchless Programming in C++ - Fedor Pikus - CppCon 2021"]`
-  - 🎥 **Watch 2:** [C++ Crash Course: Intro to SIMD Intrinsics](https://www.youtube.com/watch?v=ee932A3iJwc) `[Search: "C++ Crash Course: Intro to SIMD Intrinsics"]`
-  - 🎥 **Watch 3:** [The Most Important Optimizations to Apply in Your C++ Programs - Jan Bielak - CppCon 2022](https://www.youtube.com/watch?v=qCjEN5XRzHc) `[Search: "The Most Important Optimizations to Apply in Your C++ Programs - Jan Bielak - CppCon 2022"]`
-  - 🎥 **Watch 1:** [Using Modern C++ to Eliminate Virtual Functions - Jonathan Gopel - CppCon 2022](https://www.youtube.com/watch?v=gTNJXVmuRRA) `[Search: "Using Modern C++ to Eliminate Virtual Functions - Jonathan Gopel - CppCon 2022"]`
-  - 🎥 **Watch 2:** [Trading at light speed: designing low latency systems in C++ - David Gross - Meeting C++ 2022](https://www.youtube.com/watch?v=8uAW5FQtcvE) `[Search: "Trading at light speed: designing low latency systems in C++ - David Gross - Meeting C++ 2022"]`
-  - 🎥 **Watch 3:** [Back to Basics: Templates (part 1 of 2) - Andreas Fertig - CppCon 2020](https://www.youtube.com/watch?v=VNJ4wiuxJM4) `[Search: "Back to Basics: Templates (part 1 of 2) - Andreas Fertig - CppCon 2020"]`
-  - 🎥 **Watch 1:** [Trading at light speed: designing low latency systems in C++ - David Gross - Meeting C++ 2022](https://www.youtube.com/watch?v=8uAW5FQtcvE) `[Search: "Trading at light speed: designing low latency systems in C++ - David Gross - Meeting C++ 2022"]`
-  - 🎥 **Watch 2:** [TCP vs UDP Multicast, epoll and Kernel Bypass for Low-Latency Trading | HFT Engineering Part 3](https://www.youtube.com/watch?v=0L-3xjrlVlA) `[Search: "TCP vs UDP Multicast, epoll and Kernel Bypass for Low-Latency Trading | HFT Engineering Part 3"]`
-  - 🎥 **Watch 3:** [C++20: An (Almost) Complete Overview - Marc Gregoire - CppCon 2020](https://www.youtube.com/watch?v=FRkJCvHWdwQ) `[Search: "C++20: An (Almost) Complete Overview - Marc Gregoire - CppCon 2020"]`
-  - 🎥 **Watch 1:** [Trading at light speed: designing low latency systems in C++ - David Gross - Meeting C++ 2022](https://www.youtube.com/watch?v=8uAW5FQtcvE) `[Search: "Trading at light speed: designing low latency systems in C++ - David Gross - Meeting C++ 2022"]`
-  - 🎥 **Watch 2:** [Using Modern C++ to Eliminate Virtual Functions - Jonathan Gopel - CppCon 2022](https://www.youtube.com/watch?v=gTNJXVmuRRA) `[Search: "Using Modern C++ to Eliminate Virtual Functions - Jonathan Gopel - CppCon 2022"]`
-  - 🎥 **Watch 3:** [Trading at light speed: designing low latency systems in C++ - David Gross - Meeting C++ 2022](https://www.youtube.com/watch?v=8uAW5FQtcvE) `[Search: "Trading at light speed: designing low latency systems in C++ - David Gross - Meeting C++ 2022"]`
-  - 🎥 **Watch 1:** [Trading at light speed: designing low latency systems in C++ - David Gross - Meeting C++ 2022](https://www.youtube.com/watch?v=8uAW5FQtcvE) `[Search: "Trading at light speed: designing low latency systems in C++ - David Gross - Meeting C++ 2022"]`
-  - 🎥 **Watch 2:** [Lock-Free Messaging: Seqlocks, the LMAX Disruptor and Aeron Explained | HFT Engineering Part 4](https://www.youtube.com/watch?v=4AoWfAUZrFM) `[Search: "Lock-Free Messaging: Seqlocks, the LMAX Disruptor and Aeron Explained | HFT Engineering Part 4"]`
-  - 🎥 **Watch 3:** [Inside a Real High-Frequency Trading System | HFT Architecture](https://www.youtube.com/watch?v=iwRaNYa8yTw) `[Search: "Inside a Real High-Frequency Trading System | HFT Architecture"]`
-
----
-
-### 8. Master Sample Resume Section (Copy-Paste Ready for Top-Tier Firms)
+### 7. Master Sample Resume Section (Copy-Paste Ready for Top-Tier Firms)
 
 When submitting your resume to quantitative trading firms (Jane Street, Citadel, HRT, Optiver, Jump Trading, Flow Traders, IMC) or low-latency systems infrastructure teams, format your projects using this exact ATS-optimized, high-impact phrasing:
 
